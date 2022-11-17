@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'SMT|MODERN WARFARE'",
-"Cпасибо, что присоединились к 'SMT|MODERN WARFARE'",
+"Добро пожаловать на 'Modern Warfare 2019'",
+"Cпасибо, что присоединились к 'Modern Warfare 2019'",
 "Удачной вам игры!"
 ];
 
