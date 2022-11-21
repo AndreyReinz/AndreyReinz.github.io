@@ -13,7 +13,7 @@ var l_serverImage = "images/logo.png";
 
 /*Custom server name configuration
 Leave it blank for automatic server name*/
-var l_serverName = "SMT|MODERN WARFARE";
+var l_serverName = "War Of The Worlds";
 
 /*Use a video for the background?
 Otherwise it will just use images*/
@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'Modern Warfare 2019'",
-"Cпасибо, что присоединились к 'Modern Warfare 2019'",
+"Добро пожаловать на 'War Of The Worlds'",
+"Cпасибо, что присоединились к 'War Of The Worlds'",
 "Удачной вам игры!"
 ];
 
