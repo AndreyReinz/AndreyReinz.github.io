@@ -13,7 +13,7 @@ var l_serverImage = "images/logo.png";
 
 /*Custom server name configuration
 Leave it blank for automatic server name*/
-var l_serverName = "War Of The Worlds";
+var l_serverName = "World War Z";
 
 /*Use a video for the background?
 Otherwise it will just use images*/
@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'War Of The Worlds'",
-"Cпасибо, что присоединились к 'War Of The Worlds'",
+"Добро пожаловать на 'World War Z'",
+"Cпасибо, что присоединились к 'World War Z'",
 "Удачной вам игры!"
 ];
 
