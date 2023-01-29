@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'World War Z'",
-"Cпасибо, что присоединились к 'World War Z'",
+"Добро пожаловать на 'HL2 EP2'",
+"Cпасибо, что присоединились к 'HL2 EP2'",
 "Удачной вам игры!"
 ];
 
