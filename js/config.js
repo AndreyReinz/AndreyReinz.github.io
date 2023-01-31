@@ -13,7 +13,7 @@ var l_serverImage = "images/logo.png";
 
 /*Custom server name configuration
 Leave it blank for automatic server name*/
-var l_serverName = "World War Z";
+var l_serverName = "NYPD";
 
 /*Use a video for the background?
 Otherwise it will just use images*/
@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'HL2 EP2'",
-"Cпасибо, что присоединились к 'HL2 EP2'",
+"Добро пожаловать на 'NYPD'",
+"Cпасибо, что присоединились к 'NYPD'",
 "Удачной вам игры!"
 ];
 
