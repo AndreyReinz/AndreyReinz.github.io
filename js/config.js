@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'NYPD'",
-"Cпасибо, что присоединились к 'NYPD'",
+"Добро пожаловать на 'CSPD'",
+"Cпасибо, что присоединились к 'CSPD'",
 "Удачной вам игры!"
 ];
 
