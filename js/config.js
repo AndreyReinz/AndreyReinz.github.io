@@ -13,7 +13,7 @@ var l_serverImage = "images/logo.png";
 
 /*Custom server name configuration
 Leave it blank for automatic server name*/
-var l_serverName = "CSPD";
+var l_serverName = "MWS";
 
 /*Use a video for the background?
 Otherwise it will just use images*/
@@ -102,7 +102,7 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'MWS | Операция в Казахстане'",
+"Добро пожаловать на 'MWS | Past Oblivion'",
 "Cпасибо, что присоединились к 'MWS'",
 "Удачной вам игры!"
 ];
