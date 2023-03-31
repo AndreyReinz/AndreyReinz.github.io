@@ -82,7 +82,7 @@ var l_bgDarkening = 50;
 var l_music = true;
 
 /*Display actual song's name?*/
-var l_musicDisplay = true;
+var l_musicDisplay = false;
 
 /*Music playlist
 Place how much Youtube IDs/.ogg you want*/
