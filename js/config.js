@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'MWS | Past Oblivion'",
-"Cпасибо, что присоединились к 'MWS'",
+"Добро пожаловать на 'Project Despair | Операция Белый песок'",
+"Cпасибо, что присоединились к 'Project Despair'",
 "Удачной вам игры!"
 ];
 
