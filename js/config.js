@@ -13,7 +13,7 @@ var l_serverImage = "images/logo.png";
 
 /*Custom server name configuration
 Leave it blank for automatic server name*/
-var l_serverName = "MWS";
+var l_serverName = "SWRP | Republican Supremacy";
 
 /*Use a video for the background?
 Otherwise it will just use images*/
@@ -50,11 +50,11 @@ var l_background = "backgrounds/videos/glimmering.webm";
 Place one or more images
 Multiple images will automatically shuffle between them*/
 var l_bgImages = [
-	"backgrounds/images/fond1.png",
-	"backgrounds/images/fond2.png",
-	"backgrounds/images/fond3.png",
-	"backgrounds/images/fond4.png",
-	"backgrounds/images/fond5.png"
+	"backgrounds/images/fond1.jpg",
+	"backgrounds/images/fond2.jpg",
+	"backgrounds/images/fond3.jpg",
+	"backgrounds/images/fond4.jpg",
+	"backgrounds/images/fond5.jpg"
 ]
 
 /*Random background images order?*/
@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'Project Despair | Операция Белый песок'",
-"Cпасибо, что присоединились к 'Project Despair'",
+"Добро пожаловать на 'SWRP | Republican Supremacy'",
+"Cпасибо, что присоединились к 'Republican Supremacy'",
 "Удачной вам игры!"
 ];
 
