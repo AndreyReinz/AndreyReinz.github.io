@@ -13,7 +13,7 @@ var l_serverImage = "images/logo.png";
 
 /*Custom server name configuration
 Leave it blank for automatic server name*/
-var l_serverName = "SWRP | Republican Supremacy";
+var l_serverName = "MTF | SCP Epsilon-6";
 
 /*Use a video for the background?
 Otherwise it will just use images*/
@@ -102,8 +102,8 @@ var l_messagesEnabled = true;
 
 /*Enter your custom messages below*/
 var l_messages = [
-"Добро пожаловать на 'SWRP | Republican Supremacy'",
-"Cпасибо, что присоединились к 'Republican Supremacy'",
+"Добро пожаловать на 'MTF | SCP Epsilon-6'",
+"Cпасибо, что присоединились к 'SCP Epsilon-6'",
 "Удачной вам игры!"
 ];
 
