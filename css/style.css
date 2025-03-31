@@ -158,10 +158,10 @@ nav ul li a:hover {
 }
 
 .cta-button i.fa-shopping-cart {
-    margin-left: 3px;  /* Было 8px, уменьшили до 3px */
+    margin-left: 8px;  /* Возвращаем стандартный отступ */
     font-size: 14px;
     position: relative;
-    right: 1px;  /* Дополнительно сдвигаем влево на 1px */
+    right: 0;  /* Убираем дополнительный сдвиг */
 }
 
 .cta-button:hover {
@@ -171,8 +171,8 @@ nav ul li a:hover {
 
 /* Для кнопки "Каталог" на главной */
 .hero .cta-button i.fa-shopping-cart {
-    margin-left: 10px;  /* Можно сделать еще меньше для главной кнопки */
-    right: 10px;
+    margin-left: 8px;  /* Стандартный отступ */
+    right: 0;
 }
 
 .cta-button i {
@@ -781,11 +781,11 @@ footer {
 
 .close-modal {
     position: absolute;
-    top: 10px; /* Уменьшаем отступ сверху */
-    right: 10px; /* Уменьшаем отступ справа */
-    font-size: 1.3rem; /* Можно немного уменьшить размер */
-    width: 30px; /* Уменьшаем размер кнопки */
-    height: 30px;
+    top: 15px; /* Возвращаем стандартный отступ */
+    right: 15px; /* Возвращаем стандартный отступ */
+    font-size: 1.5rem; /* Стандартный размер */
+    width: 40px; /* Стандартный размер */
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -907,7 +907,7 @@ footer {
 }
 
 .modal-buttons .secondary-button i.fa-times {
-    margin-right: 5px; /* Уменьшаем отступ между иконкой и текстом */
+    margin-right: 8px; /* Стандартный отступ */
 }
 
 @media (max-width: 576px) {
