@@ -158,13 +158,21 @@ nav ul li a:hover {
 }
 
 .cta-button i.fa-shopping-cart {
-    margin-left: 5px; /* Уменьшаем отступ слева */
-    font-size: 14px; /* Можно немного уменьшить размер */
+    margin-left: 3px;  /* Было 8px, уменьшили до 3px */
+    font-size: 14px;
+    position: relative;
+    right: 1px;  /* Дополнительно сдвигаем влево на 1px */
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(157, 77, 255, 0.6);
+}
+
+/* Для кнопки "Каталог" на главной */
+.hero .cta-button i.fa-shopping-cart {
+    margin-left: 2px;  /* Можно сделать еще меньше для главной кнопки */
+    right: 1px;
 }
 
 .cta-button i {
