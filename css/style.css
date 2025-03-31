@@ -157,11 +157,11 @@ nav ul li a:hover {
     left: 100%;
 }
 
+/* Убираем все предыдущие стили для иконки корзины */
 .cta-button i.fa-shopping-cart {
-    margin-left: 18px;  /* Возвращаем стандартный отступ */
+    margin-left: 8px !important;  /* Фиксированный отступ 8px */
     font-size: 14px;
-    position: relative;
-    left: 500;  /* Убираем дополнительный сдвиг */
+    position: static !important;  /* Убираем относительное позиционирование */
 }
 
 .cta-button:hover {
@@ -169,12 +169,13 @@ nav ul li a:hover {
     box-shadow: 0 10px 25px rgba(157, 77, 255, 0.6);
 }
 
-/* Для кнопки "Каталог" на главной */
+/* Убираем специфичные стили для героя */
 .hero .cta-button i.fa-shopping-cart {
-    margin-left: 15px;  /* Стандартный отступ */
-    left: 500;
+    margin-left: 8px !important;
+    position: static !important;
 }
 
+/* Общий стиль для всех иконок в кнопках (если нужно) */
 .cta-button i {
     margin-left: 8px;
     font-size: 14px;
