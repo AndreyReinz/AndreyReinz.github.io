@@ -157,6 +157,11 @@ nav ul li a:hover {
     left: 100%;
 }
 
+.cta-button i.fa-shopping-cart {
+    margin-left: 5px; /* Уменьшаем отступ слева */
+    font-size: 14px; /* Можно немного уменьшить размер */
+}
+
 .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(157, 77, 255, 0.6);
@@ -768,25 +773,26 @@ footer {
 
 .close-modal {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: all 0.3s;
-    background: none;
-    border: none;
-    width: 40px;
-    height: 40px;
+    top: 10px; /* Уменьшаем отступ сверху */
+    right: 10px; /* Уменьшаем отступ справа */
+    font-size: 1.3rem; /* Можно немного уменьшить размер */
+    width: 30px; /* Уменьшаем размер кнопки */
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    transition: all 0.3s;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
 }
 
 .close-modal:hover {
     color: var(--primary);
     background-color: rgba(157, 77, 255, 0.1);
+    transform: scale(1.1); /* Добавляем небольшой эффект при наведении */
 }
 
 .modal-content {
@@ -890,6 +896,10 @@ footer {
     display: flex;
     gap: 15px;
     margin-top: 30px;
+}
+
+.modal-buttons .secondary-button i.fa-times {
+    margin-right: 5px; /* Уменьшаем отступ между иконкой и текстом */
 }
 
 @media (max-width: 576px) {
