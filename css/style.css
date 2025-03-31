@@ -161,7 +161,7 @@ nav ul li a:hover {
     margin-left: 18px;  /* Возвращаем стандартный отступ */
     font-size: 14px;
     position: relative;
-    right: 0;  /* Убираем дополнительный сдвиг */
+    left: 5;  /* Убираем дополнительный сдвиг */
 }
 
 .cta-button:hover {
@@ -172,7 +172,7 @@ nav ul li a:hover {
 /* Для кнопки "Каталог" на главной */
 .hero .cta-button i.fa-shopping-cart {
     margin-left: 15px;  /* Стандартный отступ */
-    right: 0;
+    left: 5;
 }
 
 .cta-button i {
