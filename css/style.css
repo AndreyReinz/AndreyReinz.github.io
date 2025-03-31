@@ -159,7 +159,7 @@ nav ul li a:hover {
 
 /* Убираем все предыдущие стили для иконки корзины */
 .cta-button i.fa-shopping-cart {
-    margin-left: 8px !important;  /* Фиксированный отступ 8px */
+    margin-left: 20px !important;  /* Фиксированный отступ 8px */
     font-size: 14px;
     position: static !important;  /* Убираем относительное позиционирование */
 }
