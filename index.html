@@ -90,20 +90,34 @@
     </div>
     
     <!-- Страница каталога -->
-    <div id="catalog-page" class="catalog-page">
-        <div class="container">
-            <a href="#" class="cta-button secondary-button back-button nav-link" data-page="home"><i class="fas fa-arrow-left icon-spaced"></i> На главную</a>
-            <h2 class="section-title">ВЕСЬ КАТАЛОГ ТОВАРОВ</h2>
-            <div class="product-grid" id="full-catalog">
-                <!-- Products will be added by JavaScript -->
-            </div>
-            
-            <!-- Пагинация -->
-            <div class="pagination" id="pagination">
-                <!-- Pages will be added by JavaScript -->
-            </div>
+<!-- Страница каталога -->
+<div id="catalog-page" class="catalog-page">
+    <div class="container">
+        <a href="#" class="cta-button secondary-button back-button nav-link" data-page="home"><i class="fas fa-arrow-left icon-spaced"></i> На главную</a>
+        <h2 class="section-title">ВЕСЬ КАТАЛОГ ТОВАРОВ</h2>
+        
+        <!-- Вот этот блок с кнопками категорий нужно добавить -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Все товары</button>
+            <button class="category-btn" data-category="dps">ДПС</button>
+            <button class="category-btn" data-category="pps">ППС</button>
+            <button class="category-btn" data-category="mchs">МЧС</button>
+            <button class="category-btn" data-category="fso">ФСО</button>
+            <button class="category-btn" data-category="skrf">СКРФ</button>
+            <button class="category-btn" data-category="civil">Гражданские</button>
+        </div>
+        <!-- Конец блока с кнопками категорий -->
+        
+        <div class="product-grid" id="full-catalog">
+            <!-- Products will be added by JavaScript -->
+        </div>
+        
+        <!-- Пагинация -->
+        <div class="pagination" id="pagination">
+            <!-- Pages will be added by JavaScript -->
         </div>
     </div>
+</div>
     
     <footer id="contacts">
         <div class="container">
