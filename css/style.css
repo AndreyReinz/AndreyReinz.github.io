@@ -94,11 +94,16 @@ header.scrolled {
 nav ul {
     display: flex;
     list-style: none;
+    justify-content: center; /* Центрируем элементы */
+    align-items: center; /* Выравниваем по вертикали */
+    gap: 20px; /* Равные промежутки между элементами */
 }
 
 nav ul li {
-    margin-left: 25px;
+    margin-left: 0; /* Убираем индивидуальные отступы */
     position: relative;
+    flex: 1; /* Равномерное распределение пространства */
+    text-align: center; /* Центрируем текст */
 }
 
 nav ul li a {
@@ -108,6 +113,8 @@ nav ul li a {
     transition: all 0.3s;
     font-size: 16px;
     position: relative;
+    padding: 10px 15px; /* Добавляем отступы для лучшего клика */
+    display: inline-block; /* Для правильного отображения псевдоэлементов */
 }
 
 nav ul li a::after {
