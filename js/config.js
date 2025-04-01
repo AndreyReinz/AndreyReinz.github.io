@@ -5,9 +5,9 @@ const config = {
     description: "Магазин уникальных, а главное, качественных моделей для ГТА 5",
     socialLinks: {
         vk: "https://vk.com/faust_shop_official",
-        telegram: "https://t.me/AndreyCode",
-        youtube: "https://www.youtube.com/@FaustChannel1",
-        github: "https://github.com/AndreyReinz"
+        telegram: "#",
+        youtube: "https://youtube.com",
+        github: "https://github.com"
     },
     contacts: {
         email: "info@faust-shop.ru",
@@ -65,15 +65,15 @@ const config = {
             name: "АМАРОК | ЦОДД | ГТА 5 | ELS/NON ELS",
             description: "Высококачественная модель АМАРОК для ЦОДД с детализированным интерьером и уникальным тюнингом. Полностью работоспособные фары, поворотники и спецсигналы. Модель оптимизирована для использования в GTA 5 и FiveM.",
             price: "795.00₽",
-            image: "https://faust-shop.ru/gallery_gen/0f96df332e2272101743306c1c9deae9_400x400.png",
-	    category: "dps", // Добавленная категория
+            image: "https://i.imgur.com/2YpZBaC.png",
+			category: "civil",
             images: [
-                "https://faust-shop.ru/gallery_gen/218b9a94444dbfcf9cecd2ab036ba33b_400x400.png",
-                "https://faust-shop.ru/gallery_gen/3d0769f4011c03893f1542af5f6c4d1c_400x400.png",
-                "https://faust-shop.ru/gallery_gen/86a51f33d41719e6b2494d55804512e2_400x400.png",
-                "https://faust-shop.ru/gallery_gen/f5bc4ddc5a8ff3b22a9171fef1f9ecea_400x400.png",
-                "https://faust-shop.ru/gallery_gen/1092ab58e1b62ece3e4da083e98488e6_400x400.png",
-                "https://faust-shop.ru/gallery_gen/d81814c06d1c1e5ee30cfe3494e90e7e_400x400.png"
+                "https://i.imgur.com/yKS5luQ.png",
+                "https://i.imgur.com/LDne2rC.png",
+                "https://i.imgur.com/MD3dou3.png",
+                "https://i.imgur.com/KIabq5p.png",
+                "https://i.imgur.com/8VT6gyQ.png",
+                "https://i.imgur.com/oGWUyTP.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -88,11 +88,12 @@ const config = {
             name: "ШЕВРОЛЕ КОБАЛЬТ | ПОЛИЦИЯ КАЗАХСТАНА | ГТА 5 | ELS/NON ELS",
             description: "Реалистичная модель ШЕВРОЛЕ КОБАЛЬТ для полиции Казахстана с работающими фарами и поворотниками. Модель полностью готова к использованию в игре, с детализированным салоном и кастомными текстурами.",
             price: "595.00₽",
-            image: "https://i.imgur.com/xIXaA9S.png",
+            image: "https://i.imgur.com/65uoskk.png",
+			category: "dps",
             images: [
-                "https://i.imgur.com/Dh2rbDN.png",
-                "https://i.imgur.com/ZwgThsi.png",
-                "https://i.imgur.com/scaAH9V.png"
+                "https://i.imgur.com/JBKbKsq.png",
+                "https://i.imgur.com/L648z6G.png",
+                "https://i.imgur.com/eiKMHhN.png"
             ],
             features: [
                 "Аутентичная полицейская раскраска",
@@ -107,14 +108,15 @@ const config = {
             name: "УАЗ ПАТРИОТ 'ЕСАУЛ' | МЧС | ГТА 5 | ELS/NON ELS",
             description: "Детализированный УАЗ ПАТРИОТ для МЧС с возможностью кастомизации и уникальными текстурами. Модель полностью готова к использованию в игре, с детализированным салоном и кастомными текстурами.",
             price: "995.00₽",
-            image: "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
+            image: "https://i.imgur.com/9QsadcT.png",
+			category: "mchs",
             images: [
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/pATlxi7.png",
+                "https://i.imgur.com/XVEzC3X.png",
+                "https://i.imgur.com/2221C5k.png",
+                "https://i.imgur.com/fOnZc4N.png",
+                "https://i.imgur.com/MAfd6Bo.png",
+                "https://i.imgur.com/N2CNMS3.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -129,14 +131,12 @@ const config = {
             name: "ЛАДА ЛАРГУС | ФССП | ГТА 5",
             description: "Качественная модель ЛАДА ЛАРГУС для ФССП с детализированным интерьером и уникальным тюнингом. Модель полностью готова к использованию в игре, с детализированным салоном и кастомными текстурами.",
             price: "499.00₽",
-            image: "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
+            image: "https://i.imgur.com/U2tPqbN.png",
+			category: "civil",
             images: [
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/fTa6l7V.png",
+                "https://i.imgur.com/BPoaxEf.png",
+                "https://i.imgur.com/RLOjmuB.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -151,14 +151,14 @@ const config = {
             name: "ХАВАЛ ДЖОЛИОН V2 | ППС | ГТА 5 | ELS/NON ELS",
             description: "Современная модель ХАВАЛ ДЖОЛИОН V2 для ППС с работающими фарами и поворотниками. Модель полностью готова к использованию в игре, с детализированным салоном и кастомными текстурами.",
             price: "895.00₽",
-            image: "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
+            image: "https://i.imgur.com/wPk673p.png",
+			category: "pps",
             images: [
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/ZYtpUoT.png",
+                "https://i.imgur.com/UfCChHi.png",
+                "https://i.imgur.com/GglHFrq.png",
+                "https://i.imgur.com/Hmx1hHa.png",
+                "https://i.imgur.com/61S47AU.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -173,14 +173,12 @@ const config = {
             name: "Набор одежды для EUP | Гос. Структуры России",
             description: "Полный набор одежды для EUP, включающий все необходимые элементы для государственных структур. Высокое качество текстур и детализации.",
             price: "885.00₽",
-            image: "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png",
+            image: "https://i.imgur.com/HioGTF5.png",
+			category: "all",
             images: [
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png"
+                "https://i.imgur.com/0QjRknE.png",
+                "https://i.imgur.com/EpsJl6c.png",
+                "https://i.imgur.com/HUhv0nq.png"
             ],
             features: [
                 "Полный набор униформы",
@@ -195,14 +193,13 @@ const config = {
             name: "Жезл регулировщика ДПС | SP / FiveM",
             description: "Качественный жезл регулировщика ДПС для использования в SP и FiveM. Детализированная модель с реалистичными текстурами.",
             price: "105.00₽",
-            image: "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
+            image: "https://i.imgur.com/MDLWMaJ.png",
+			category: "dps",
             images: [
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/fiBXqy9.png",
+                "https://i.imgur.com/Z0tQpgA.png",
+                "https://i.imgur.com/ODQw1Ym.png",
+                "https://i.imgur.com/dJpQjjH.png"
             ],
             features: [
                 "Детализированная модель",
@@ -217,14 +214,13 @@ const config = {
             name: "ПАК | 3 Эвакуатора / Gazel+Gazon+GazNN",
             description: "Комплект из 3 эвакуаторов: Gazel, Gazon и GazNN с детализированными текстурами. Полностью рабочие модели с функционалом эвакуатора.",
             price: "1199.00₽",
-            image: "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
+            image: "https://i.imgur.com/xzdEChu.png",
+			category: "civil",
             images: [
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/GuNdK4V.png",
+                "https://i.imgur.com/FxYbaHg.png",
+                "https://i.imgur.com/hvcu8VX.png",
+                "https://i.imgur.com/nOxImBR.png"
             ],
             features: [
                 "3 модели в одном пакете",
@@ -239,14 +235,11 @@ const config = {
             name: "GAZel NN | Эвакуатор | ГТА 5 | ELS/NON ELS",
             description: "Модель GAZel NN в варианте эвакуатора с работающими фарами и поворотниками. Полностью рабочий эвакуатор с функционалом.",
             price: "595.00₽",
-            image: "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
+            image: "https://i.imgur.com/jDdOo9j.png",
+			category: "civil",
             images: [
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/5JAADK1.png",
+                "https://i.imgur.com/6hnJtfS.png"
             ],
             features: [
                 "Рабочий эвакуатор",
@@ -261,14 +254,12 @@ const config = {
             name: "GAZon NEXT | Эвакуатор | ГТА 5 | ELS/NON ELS",
             description: "Модель GAZon NEXT в варианте эвакуатора с детализированным интерьером. Полностью рабочий эвакуатор с функционалом.",
             price: "595.00₽",
-            image: "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
+            image: "https://i.imgur.com/PY15pKz.png",
+			category: "civil",
             images: [
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/pGbwVPz.png",
+                "https://i.imgur.com/4TWC2II.png",
+                "https://i.imgur.com/ZE335n2.png"
             ],
             features: [
                 "Рабочий эвакуатор",
@@ -283,14 +274,13 @@ const config = {
             name: "GAZel | Эвакуатор | ГТА 5 | ELS/NON ELS",
             description: "Классическая модель GAZel в варианте эвакуатора с уникальными текстурами. Полностью рабочий эвакуатор с функционалом.",
             price: "595.00₽",
-            image: "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
+            image: "https://i.imgur.com/zX9xSFa.png",
+			category: "civil",
             images: [
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/nm6fuGS.png",
+                "https://i.imgur.com/rYmu3RC.png",
+                "https://i.imgur.com/jpDsq2w.png",
+                "https://i.imgur.com/ZMEGriz.png"
             ],
             features: [
                 "Рабочий эвакуатор",
@@ -305,14 +295,13 @@ const config = {
             name: "БМВ GS1200 | ДПС | ГТА 5 | ELS/NON ELS",
             description: "Мотоцикл БМВ GS1200 для ДПС с работающими фарами и поворотниками. Детализированная модель с реалистичной физикой.",
             price: "599.00₽",
-            image: "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png",
+            image: "https://i.imgur.com/2DFVuzi.png",
+			category: "dps",
             images: [
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png"
+                "https://i.imgur.com/jP06oLu.png",
+                "https://i.imgur.com/H7Aj7gg.png",
+                "https://i.imgur.com/LJixUPw.png",
+                "https://i.imgur.com/U0IwVAR.png"
             ],
             features: [
                 "Детализированная модель",
@@ -327,14 +316,10 @@ const config = {
             name: "ЗВУКИ СИРЕН ЭЛИНА V2 | ГТА 5",
             description: "Набор звуков сирен ЭЛИНА версии 2 для ГТА 5 с улучшенным качеством. Реалистичные звуки сирен для полиции, скорой помощи и МЧС.",
             price: "199.00₽",
-            image: "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
+            image: "https://i.imgur.com/23Zk7Jw.png",
+			category: "all",
             images: [
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/23Zk7Jw.png"
             ],
             features: [
                 "Улучшенное качество звука",
@@ -349,14 +334,10 @@ const config = {
             name: "ЗВУКИ СИРЕН ЭЛИНА V1 | ГТА 5",
             description: "Классический набор звуков сирен ЭЛИНА версии 1 для ГТА 5. Реалистичные звуки сирен для полиции, скорой помощи и МЧС.",
             price: "199.00₽",
-            image: "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
+            image: "https://i.imgur.com/kqdrpoB.png",
+			category: "all",
             images: [
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/kqdrpoB.png"
             ],
             features: [
                 "Классические звуки сирен",
@@ -371,14 +352,14 @@ const config = {
             name: "МЕРСЕДЕС СПРИНТЕР КЛАССИК | СМП | ГТА 5 | ELS/NON ELS",
             description: "Модель МЕРСЕДЕС СПРИНТЕР КЛАССИК для СМП с детализированным интерьером. Полностью работоспособные фары и поворотники.",
             price: "849.00₽",
-            image: "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
+            image: "https://i.imgur.com/DWi3wWL.png",
+			category: "mchs",
             images: [
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/RvwEKyh.png",
+                "https://i.imgur.com/ASj0hyP.png",
+                "https://i.imgur.com/ZBUkjmC.png",
+                "https://i.imgur.com/xwPEyaA.png",
+                "https://i.imgur.com/ZbGGHq8.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -393,14 +374,13 @@ const config = {
             name: "УАЗ 3962 | СМП | ГТА 5 | ELS/NON ELS",
             description: "Классическая модель УАЗ 3962 для СМП с работающими фарами и поворотниками. Детализированный интерьер и экстерьер.",
             price: "849.00₽",
-            image: "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
+            image: "https://i.imgur.com/QHZ6pUO.png",
+			category: "mchs",
             images: [
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/LVpPXKO.png",
+                "https://i.imgur.com/4VQex18.png",
+                "https://i.imgur.com/RXkURdy.png",
+                "https://i.imgur.com/MoGhT1d.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -415,14 +395,14 @@ const config = {
             name: "ФИАТ ДУКАТО | СМП | ГТА 5 | ELS/NON ELS",
             description: "Модель ФИАТ ДУКАТО для СМП с уникальными текстурами и детализацией. Полностью работоспособные фары и поворотники.",
             price: "799.00₽",
-            image: "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
+            image: "https://i.imgur.com/eQE5MTt.png",
+			category: "mchs",
             images: [
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/g9N1fV9.png",
+                "https://i.imgur.com/7GXtszq.png",
+                "https://i.imgur.com/cdpdInr.png",
+                "https://i.imgur.com/Z8KQT9K.png",
+                "https://i.imgur.com/ReFu6YE.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -437,14 +417,14 @@ const config = {
             name: "ФОРД ТРАНЗИТ | СМП | ГТА 5 | ELS/NON ELS",
             description: "Модель ФОРД ТРАНЗИТ для СМП с работающими фарами и поворотниками. Детализированный интерьер и экстерьер.",
             price: "849.00₽",
-            image: "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png",
+            image: "https://i.imgur.com/Gzi0ofH.png",
+			category: "mchs",
             images: [
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png"
+                "https://i.imgur.com/FR8deKq.png",
+                "https://i.imgur.com/r6UnVBK.png",
+                "https://i.imgur.com/I6Qa8Z9.png",
+                "https://i.imgur.com/9jCQS4X.png",
+                "https://i.imgur.com/JgX9ynG.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
@@ -460,6 +440,7 @@ const config = {
             description: "Модель для игры ГТА 5. Сделана на основе кареты скорой помощи ГАЗель НЕКСТ.СГУ ЭЛИНА Сапфир.",
             price: "849.00₽",
             image: "https://i.imgur.com/SEPZBm3.png",
+			category: "mchs",
             images: [
                 "https://i.imgur.com/q0JNV8x.png",
                 "https://i.imgur.com/cGoK2Tn.png",
@@ -482,6 +463,7 @@ const config = {
             description: "Модель для игры ГТА 5. Сделана на основе кареты скорой помощи ГАЗ 3302.СГУ ЭЛИНА Сапфир.",
             price: "849.00₽",
             image: "https://i.imgur.com/U0lyLYV.png",
+			category: "mchs",
             images: [
                 "https://i.imgur.com/oq2St9z.png",
                 "https://i.imgur.com/oKsi7j0.png",
@@ -503,6 +485,7 @@ const config = {
             description: "Модель для игры ГТА 5. Сделана на основе ГАЗ 3221",
             price: "799.00₽",
             image: "https://i.imgur.com/CdszLoc.png",
+			category: "mchs",
             images: [
                 "https://i.imgur.com/cPjMNXu.png",
                 "https://i.imgur.com/gmmsWLb.png",
@@ -523,6 +506,7 @@ const config = {
             description: "Модель для игры ГТА 5. Сделана на основе автолестницы УРАЛ МЧС.",
             price: "799.00₽",
             image: "https://i.imgur.com/tgu6mWW.png",
+			category: "mchs",
             images: [
                 "https://i.imgur.com/7hUnYdb.png",
                 "https://i.imgur.com/jhHdIIx.png",
@@ -542,6 +526,7 @@ const config = {
             description: "Модель для игры ГТА 5. Сделана на основе автоцистерны УРАЛ НЕКСТ МЧС.СГУ ЭЛИНА Сапфир.",
             price: "799.00₽",
             image: "https://i.imgur.com/GQEXdDa.png",
+			category: "mchs",
             images: [
                 "https://i.imgur.com/AHNuY95.png",
                 "https://i.imgur.com/hylvCS0.png",
@@ -562,6 +547,7 @@ const config = {
             description: "Модель для игры ГТА 5. Сделана на основе автоцистерны MAN TGM МЧС",
             price: "799.00₽",
             image: "https://i.imgur.com/d8naL0v.png",
+			category: "mchs",
             images: [
                 "https://i.imgur.com/A3SxR3y.png",
                 "https://i.imgur.com/AV7yT5J.png",
@@ -584,6 +570,7 @@ const config = {
             description: "Модель ГАЗ ТИГР для ППС/Росгвардии с работающими фарами и поворотниками.",
             price: "799.00₽",
             image: "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
+			category: "pps",
             images: [
                 "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
                 "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
