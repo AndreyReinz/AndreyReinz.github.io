@@ -65,14 +65,14 @@ const config = {
             name: "АМАРОК | ЦОДД | ГТА 5 | ELS/NON ELS",
             description: "Высококачественная модель АМАРОК для ЦОДД с детализированным интерьером и уникальным тюнингом. Полностью работоспособные фары, поворотники и спецсигналы. Модель оптимизирована для использования в GTA 5 и FiveM.",
             price: "795.00₽",
-            image: "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
+            image: "https://faust-shop.ru/gallery_gen/0f96df332e2272101743306c1c9deae9_400x400.png",
             images: [
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://faust-shop.ru/gallery_gen/218b9a94444dbfcf9cecd2ab036ba33b_400x400.png",
+                "https://faust-shop.ru/gallery_gen/3d0769f4011c03893f1542af5f6c4d1c_400x400.png",
+                "https://faust-shop.ru/gallery_gen/86a51f33d41719e6b2494d55804512e2_400x400.png",
+                "https://faust-shop.ru/gallery_gen/f5bc4ddc5a8ff3b22a9171fef1f9ecea_400x400.png",
+                "https://faust-shop.ru/gallery_gen/1092ab58e1b62ece3e4da083e98488e6_400x400.png",
+                "https://faust-shop.ru/gallery_gen/d81814c06d1c1e5ee30cfe3494e90e7e_400x400.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
