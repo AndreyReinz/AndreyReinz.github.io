@@ -179,8 +179,14 @@ function openProductModal(productId) {
             </div>
             
             <div class="modal-buttons">
-                <a href="https://vk.me/faust_shop_official" class="cta-button" target="_blank"><i class="fas fa-shopping-cart"></i> Купить</a>
-                <a href="#" class="cta-button secondary-button" id="closeModalBtn"><i class="fas fa-times"></i> Закрыть</a>
+                <a href="https://vk.me/faust_shop_official" class="cta-button" target="_blank">
+                    <span>Купить</span>
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="#" class="cta-button secondary-button" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                    <span>Закрыть</span>
+                </a>
             </div>
         </div>
     `;
