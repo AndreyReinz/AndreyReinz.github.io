@@ -66,7 +66,7 @@ const config = {
             description: "Высококачественная модель АМАРОК для ЦОДД с детализированным интерьером и уникальным тюнингом. Полностью работоспособные фары, поворотники и спецсигналы. Модель оптимизирована для использования в GTA 5 и FiveM.",
             price: "795.00₽",
             image: "https://i.imgur.com/2YpZBaC.png",
-			category: "civil", "dps",
+			category: "civil",
             images: [
                 "https://i.imgur.com/yKS5luQ.png",
                 "https://i.imgur.com/LDne2rC.png",
