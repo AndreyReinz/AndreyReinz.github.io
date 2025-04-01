@@ -40,7 +40,7 @@ body {
 /* Header */
 header {
     background-color: rgba(34, 17, 51, 0.95);
-    padding: 20px 0;
+    padding: 15px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -69,8 +69,8 @@ header.scrolled {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
     animation: glow 2s infinite alternate;
 }
 
@@ -97,10 +97,10 @@ nav ul {
         }
         
         nav ul li {
-            margin-left: 25px;
+            margin-left: 65px;
             position: relative;
-            padding-left: 50px;
-            padding-top: 7px
+            padding-left: 20px;
+            padding-top: 10px
         }
         
         nav ul li a {
@@ -108,7 +108,7 @@ nav ul {
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
-            font-size: 20px;
+            font-size: 15px;
             position: relative;
         }
         
@@ -134,7 +134,7 @@ nav ul {
 .cta-button {
     display: inline-flex;
     align-items: center;
-    padding: 12px 25px;
+    padding: 10px 30px;
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
     text-decoration: none;
