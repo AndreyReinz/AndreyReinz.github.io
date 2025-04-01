@@ -92,18 +92,17 @@ header.scrolled {
 }
 
 nav ul {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки равной ширины */
+    gap: 10px;
+    width: 100%;
     list-style: none;
-    justify-content: center; /* Центрируем элементы */
-    align-items: center; /* Выравниваем по вертикали */
-    gap: 20px; /* Равные промежутки между элементами */
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
-    margin-left: 0; /* Убираем индивидуальные отступы */
-    position: relative;
-    flex: 1; /* Равномерное распределение пространства */
-    text-align: center; /* Центрируем текст */
+    text-align: center;
 }
 
 nav ul li a {
