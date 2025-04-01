@@ -5,9 +5,9 @@ const config = {
     description: "Магазин уникальных, а главное, качественных моделей для ГТА 5",
     socialLinks: {
         vk: "https://vk.com/faust_shop_official",
-        telegram: "#",
-        youtube: "https://youtube.com",
-        github: "https://github.com"
+        telegram: "https://t.me/AndreyCode",
+        youtube: "https://www.youtube.com/@FaustChannel1",
+        github: "https://github.com/AndreyReinz"
     },
     contacts: {
         email: "info@faust-shop.ru",
@@ -447,6 +447,130 @@ const config = {
                 "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
                 "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
                 "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png"
+            ],
+            features: [
+                "Детализированный экстерьер и интерьер",
+                "Рабочие фары и поворотники",
+                "Поддержка ELS и NON-ELS",
+                "Оптимизированная модель",
+                "Кастомные текстуры",
+                "Реалистичная физика"
+            ]
+        },
+		{
+            name: "ГАЗель НЕКСТ | СМП | ГТА 5 | ELS/NON ELS",
+            description: "Модель для игры ГТА 5. Сделана на основе кареты скорой помощи ГАЗель НЕКСТ.СГУ ЭЛИНА Сапфир.",
+            price: "849.00₽",
+            image: "https://i.imgur.com/SEPZBm3.png",
+            images: [
+                "https://i.imgur.com/q0JNV8x.png",
+                "https://i.imgur.com/cGoK2Tn.png",
+                "https://i.imgur.com/pcz9Kfw.png",
+                "https://i.imgur.com/HsUMOtF.png",
+                "https://i.imgur.com/gK0Jh88.png",
+                "https://i.imgur.com/FvqdboD.png",
+            ],
+            features: [
+                "Детализированный экстерьер и интерьер",
+                "Рабочие фары и поворотники",
+                "Поддержка ELS и NON-ELS",
+                "Оптимизированная модель",
+                "Кастомные текстуры",
+                "Реалистичная физика"
+            ]
+        },
+		{
+            name: "ГАЗ 3302 | СМП | ГТА 5 | ELS/NON ELS",
+            description: "Модель для игры ГТА 5. Сделана на основе кареты скорой помощи ГАЗ 3302.СГУ ЭЛИНА Сапфир.",
+            price: "849.00₽",
+            image: "https://i.imgur.com/U0lyLYV.png",
+            images: [
+                "https://i.imgur.com/oq2St9z.png",
+                "https://i.imgur.com/oKsi7j0.png",
+                "https://i.imgur.com/yrPwGE8.png",
+                "https://i.imgur.com/5175VYE.png",
+                "https://i.imgur.com/KuRa9EX.png",
+            ],
+            features: [
+                "Детализированный экстерьер и интерьер",
+                "Рабочие фары и поворотники",
+                "Поддержка ELS и NON-ELS",
+                "Оптимизированная модель",
+                "Кастомные текстуры",
+                "Реалистичная физика"
+            ]
+        },
+		{
+            name: "ГАЗ 3221 | МЧС | ГТА 5 | ELS/NON ELS",
+            description: "Модель для игры ГТА 5. Сделана на основе ГАЗ 3221",
+            price: "799.00₽",
+            image: "https://i.imgur.com/CdszLoc.png",
+            images: [
+                "https://i.imgur.com/cPjMNXu.png",
+                "https://i.imgur.com/gmmsWLb.png",
+                "https://i.imgur.com/plK7vuk.png",
+                "https://i.imgur.com/WdZy59G.png",
+            ],
+            features: [
+                "Детализированный экстерьер и интерьер",
+                "Рабочие фары и поворотники",
+                "Поддержка ELS и NON-ELS",
+                "Оптимизированная модель",
+                "Кастомные текстуры",
+                "Реалистичная физика"
+            ]
+        },
+		{
+            name: "УРАЛ АЛ | МЧС | ГТА 5 | ELS/NON ELS",
+            description: "Модель для игры ГТА 5. Сделана на основе автолестницы УРАЛ МЧС.",
+            price: "799.00₽",
+            image: "https://i.imgur.com/tgu6mWW.png",
+            images: [
+                "https://i.imgur.com/7hUnYdb.png",
+                "https://i.imgur.com/jhHdIIx.png",
+                "https://i.imgur.com/aWWy6Ij.png",
+            ],
+            features: [
+                "Детализированный экстерьер и интерьер",
+                "Рабочие фары и поворотники",
+                "Поддержка ELS и NON-ELS",
+                "Оптимизированная модель",
+                "Кастомные текстуры",
+                "Реалистичная физика"
+            ]
+        },
+		{
+            name: "УРАЛ НЕКСТ | МЧС | ГТА 5 | ELS/NON ELS",
+            description: "Модель для игры ГТА 5. Сделана на основе автоцистерны УРАЛ НЕКСТ МЧС.СГУ ЭЛИНА Сапфир.",
+            price: "799.00₽",
+            image: "https://i.imgur.com/GQEXdDa.png",
+            images: [
+                "https://i.imgur.com/AHNuY95.png",
+                "https://i.imgur.com/hylvCS0.png",
+                "https://i.imgur.com/QOC7lxY.png",
+                "https://i.imgur.com/xH06gms.png",
+            ],
+            features: [
+                "Детализированный экстерьер и интерьер",
+                "Рабочие фары и поворотники",
+                "Поддержка ELS и NON-ELS",
+                "Оптимизированная модель",
+                "Кастомные текстуры",
+                "Реалистичная физика"
+            ]
+        },
+		{
+            name: "MAN TGM | МЧС | ГТА 5 | ELS/NON ELS",
+            description: "Модель для игры ГТА 5. Сделана на основе автоцистерны MAN TGM МЧС",
+            price: "799.00₽",
+            image: "https://i.imgur.com/d8naL0v.png",
+            images: [
+                "https://i.imgur.com/A3SxR3y.png",
+                "https://i.imgur.com/AV7yT5J.png",
+                "https://i.imgur.com/9cl7my9.png",
+                "https://i.imgur.com/gCK7tfE.png",
+                "https://i.imgur.com/nvae9vV.png",
+                "https://i.imgur.com/fd2N0XE.png"
             ],
             features: [
                 "Детализированный экстерьер и интерьер",
