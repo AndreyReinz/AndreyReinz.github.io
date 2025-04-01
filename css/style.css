@@ -162,7 +162,6 @@ nav ul li a:hover {
     left: 100%;
 }
 
-/* Убираем все предыдущие стили для иконки корзины */
 .cta-button i.fa-shopping-cart {
     margin-left: 10px !important;
 }
@@ -171,12 +170,10 @@ nav ul li a:hover {
     box-shadow: 0 10px 25px rgba(157, 77, 255, 0.6);
 }
 
-/* Убираем специфичные стили для героя */
 .hero .cta-button i.fa-shopping-cart {
     margin-left: 10px !important;
 }
 
-/* Общий стиль для всех иконок в кнопках (если нужно) */
 .cta-button i {
     margin-left: 8px;
     font-size: 14px;
@@ -201,7 +198,6 @@ nav ul li a:hover {
     margin-right: 0;
 }
 
-/* Для кнопок в модальном окне */
 .modal-buttons .cta-button i {
     margin-left: 8px;
 }
@@ -826,14 +822,14 @@ footer {
     border: none;
     color: var(--text-dark);
     cursor: pointer;
-    padding: 0; /* Добавлено для сброса стандартных отступов */
-    line-height: 1; /* Добавлено для выравнивания */
+    padding: 0;
+    line-height: 1;
 }
 
 .close-modal:hover {
     color: var(--primary);
     background-color: rgba(157, 77, 255, 0.1);
-    transform: scale(1.1); /* Добавляем небольшой эффект при наведении */
+    transform: scale(1.1);
 }
 
 .modal-content {
@@ -940,7 +936,7 @@ footer {
 }
 
 .modal-buttons .secondary-button i.fa-times {
-    margin-right: 8px; /* Стандартный отступ */
+    margin-right: 8px;
 }
 
 @media (max-width: 576px) {
