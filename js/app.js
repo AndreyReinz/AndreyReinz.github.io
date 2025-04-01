@@ -98,7 +98,7 @@ function displayProducts(page, containerId, products) {
                 <div class="product-image" style="background-image: url('${product.image}');"></div>
                 <div class="product-info">
                     <h3>${product.name}</h3>
-                    <p>${product.description}</p>
+                    <!-- <p>${product.description}</p> -->
                     <div class="price"><i class="fas fa-tag"></i> ${product.price}</div>
                     <div class="product-buttons">
                         <a href="https://vk.me/faust_shop_official" class="cta-button small-button" target="_blank">Купить</a>
