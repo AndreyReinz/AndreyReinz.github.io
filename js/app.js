@@ -1,15 +1,11 @@
-// Основной код приложения
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация слайдера
     initSlider();
     
-    // Инициализация отзывов
     initReviews();
     
-    // Инициализация товаров
     initProducts();
     
-    // Настройка навигации
     setupNavigation();
     
     // Header scroll effect
@@ -22,29 +18,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Анимация при скролле
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 });
 
-// Инициализация слайдера
 function initSlider() {
     const slider = document.getElementById('slider');
     const dotsContainer = document.getElementById('slider-nav');
     
-    // Очищаем слайдер и точки
     slider.innerHTML = '';
     dotsContainer.innerHTML = '';
     
-    // Добавляем слайды и точки
     config.sliderImages.forEach((image, index) => {
-        // Добавляем слайд
         const slide = document.createElement('div');
         slide.className = 'slide';
         slide.style.backgroundImage = `url('${image}')`;
         slider.appendChild(slide);
         
-        // Добавляем точку
         const dot = document.createElement('div');
         dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
         dot.addEventListener('click', () => showSlide(index));
@@ -59,7 +49,6 @@ function initSlider() {
     }, 10000);
 }
 
-// Показать определенный слайд
 function showSlide(n) {
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.slider-dot');
@@ -74,7 +63,6 @@ function showSlide(n) {
     });
 }
 
-// Инициализация отзывов
 function initReviews() {
     const reviewGrid = document.querySelector('.review-grid');
     reviewGrid.innerHTML = '';
@@ -93,22 +81,17 @@ function initReviews() {
     });
 }
 
-// Инициализация товаров
 function initProducts() {
-    // Показываем 6 популярных товаров на главной
     const featuredProducts = config.products.slice(0, 6);
     displayProducts(1, 'featured-products', featuredProducts);
     
-    // Показываем все товары в каталоге
     displayProducts(1, 'full-catalog', config.products);
 }
 
-// Пагинация
 let currentPage = 1;
 const productsPerPage = 6;
 const totalPages = Math.ceil(config.products.length / productsPerPage);
 
-// Функция для отображения товаров на текущей странице
 function displayProducts(page, containerId, products) {
     const productGrid = document.getElementById(containerId);
     productGrid.innerHTML = '';
@@ -138,7 +121,6 @@ function displayProducts(page, containerId, products) {
         productGrid.appendChild(productCard);
     }
     
-    // Добавляем обработчики событий для кнопок "Подробнее"
     document.querySelectorAll('.view-details').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
@@ -152,7 +134,6 @@ function displayProducts(page, containerId, products) {
     }
 }
 
-// Функция для открытия модального окна с информацией о товаре
 function openProductModal(productId) {
     const product = config.products[productId];
     const modal = document.getElementById('productModal');
@@ -193,19 +174,16 @@ function openProductModal(productId) {
     
     modal.classList.add('active');
     
-    // Добавляем обработчик события для кнопки закрытия
     document.getElementById('closeModalBtn').addEventListener('click', function(e) {
         e.preventDefault();
         modal.classList.remove('active');
     });
 }
 
-// Функция для обновления пагинации
 function updatePagination() {
     const pagination = document.getElementById('pagination');
     pagination.innerHTML = '';
     
-    // Кнопка "Назад"
     if (currentPage > 1) {
         const prevLink = document.createElement('a');
         prevLink.href = '#products';
@@ -223,7 +201,6 @@ function updatePagination() {
         pagination.appendChild(prevLink);
     }
     
-    // Номера страниц
     for (let i = 1; i <= totalPages; i++) {
         const pageLink = document.createElement('a');
         pageLink.href = '#products';
@@ -241,7 +218,6 @@ function updatePagination() {
         pagination.appendChild(pageLink);
     }
     
-    // Кнопка "Вперед"
     if (currentPage < totalPages) {
         const nextLink = document.createElement('a');
         nextLink.href = '#products';
@@ -260,7 +236,6 @@ function updatePagination() {
     }
 }
 
-// Навигация между страницами
 function setupNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -269,11 +244,9 @@ function setupNavigation() {
             e.preventDefault();
             const page = this.getAttribute('data-page');
             
-            // Скрыть все страницы
             document.getElementById('home-page').style.display = 'none';
             document.getElementById('catalog-page').classList.remove('active');
             
-            // Показать выбранную страницу
             if (page === 'home') {
                 document.getElementById('home-page').style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -283,7 +256,6 @@ function setupNavigation() {
                 displayProducts(currentPage, 'full-catalog', config.products);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                // Для других страниц (отзывы, контакты) просто скроллим к ним
                 const targetSection = document.getElementById(page);
                 if (targetSection) {
                     document.getElementById('home-page').style.display = 'block';
@@ -297,7 +269,6 @@ function setupNavigation() {
     });
 }
 
-// Анимация элементов при появлении в области видимости
 function animateOnScroll() {
     const elements = document.querySelectorAll('.product-card, .review-card');
     
@@ -311,7 +282,6 @@ function animateOnScroll() {
     });
 }
 
-// Закрытие модального окна при клике на оверлей или кнопку закрытия
 document.getElementById('productModal').addEventListener('click', function(e) {
     if (e.target === this || e.target.id === 'closeModal') {
         this.classList.remove('active');
