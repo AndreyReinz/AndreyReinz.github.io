@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initProducts();
     setupNavigation();
     setupCategoryButtons();
-    
-    // Header scroll effect
+    setupFilters();
+
     const header = document.getElementById('header');
     window.addEventListener('scroll', function() {
         header.classList.toggle('scrolled', window.scrollY > 50);
     });
-    
+
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 });
@@ -45,7 +45,6 @@ function initSlider() {
         showSlide(currentSlide);
     }, 10000);
     
-    // Очистка интервала при размонтировании
     return () => clearInterval(slideInterval);
 }
 
@@ -86,8 +85,8 @@ function initProducts() {
 function displayProducts(page, containerId, products) {
     const productGrid = document.getElementById(containerId);
     if (!productGrid) return;
-    
-    const filteredProducts = filterProductsByCategory(currentCategory);
+
+    const filteredProducts = filterProducts(products);
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
     const startIndex = (page - 1) * productsPerPage;
     const endIndex = Math.min(startIndex + productsPerPage, filteredProducts.length);
@@ -110,7 +109,6 @@ function displayProducts(page, containerId, products) {
             </div>
         `).join('');
     
-    // Обработчики для кнопок "Подробнее"
     document.querySelectorAll('.view-details').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
@@ -175,7 +173,6 @@ function openProductModal(productId) {
     
     modal.classList.add('active');
     
-    // Обработчики для тегов категорий в модальном окне
     document.querySelectorAll('.modal-categories .category-tag').forEach(tag => {
         tag.addEventListener('click', function(e) {
             e.preventDefault();
@@ -184,9 +181,7 @@ function openProductModal(productId) {
             currentPage = 1;
             
             updateActiveCategoryButton();
-            const filteredProducts = filterProductsByCategory(currentCategory);
-            displayProducts(currentPage, 'full-catalog', filteredProducts);
-            
+            displayProducts(currentPage, 'full-catalog', config.products);
             modal.classList.remove('active');
             window.scrollTo({
                 top: document.getElementById('full-catalog').offsetTop - 150,
@@ -214,38 +209,35 @@ function updatePagination(totalPages) {
     
     pagination.innerHTML = '';
     
-    // Кнопка "Назад"
     if (currentPage > 1) {
         pagination.appendChild(createPageLink(
             '<i class="fas fa-chevron-left"></i>',
             () => {
                 currentPage--;
-                displayProducts(currentPage, 'full-catalog', filterProductsByCategory(currentCategory));
+                displayProducts(currentPage, 'full-catalog', config.products);
                 scrollToCatalog();
             }
         ));
     }
     
-    // Нумерация страниц
     for (let i = 1; i <= totalPages; i++) {
         pagination.appendChild(createPageLink(
             i,
             () => {
                 currentPage = i;
-                displayProducts(currentPage, 'full-catalog', filterProductsByCategory(currentCategory));
+                displayProducts(currentPage, 'full-catalog', config.products);
                 scrollToCatalog();
             },
             i === currentPage
         ));
     }
     
-    // Кнопка "Вперед"
     if (currentPage < totalPages) {
         pagination.appendChild(createPageLink(
             '<i class="fas fa-chevron-right"></i>',
             () => {
                 currentPage++;
-                displayProducts(currentPage, 'full-catalog', filterProductsByCategory(currentCategory));
+                displayProducts(currentPage, 'full-catalog', config.products);
                 scrollToCatalog();
             }
         ));
@@ -296,7 +288,7 @@ function navigateToPage(page) {
         document.getElementById('catalog-page').classList.add('active');
         currentPage = 1;
         currentCategory = 'all';
-        displayProducts(currentPage, 'full-catalog', filterProductsByCategory(currentCategory));
+        displayProducts(currentPage, 'full-catalog', config.products);
         updateActiveCategoryButton();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -323,7 +315,7 @@ function animateOnScroll() {
     });
 }
 
-// Фильтрация продуктов по категории (поддержка нескольких категорий)
+// Фильтрация продуктов по категории
 function filterProductsByCategory(category) {
     if (category === 'all') return config.products;
     return config.products.filter(product => 
@@ -339,7 +331,7 @@ function setupCategoryButtons() {
             currentPage = 1;
             
             updateActiveCategoryButton();
-            displayProducts(currentPage, 'full-catalog', filterProductsByCategory(currentCategory));
+            displayProducts(currentPage, 'full-catalog', config.products);
             
             window.scrollTo({
                 top: document.getElementById('full-catalog').offsetTop - 150,
@@ -380,13 +372,97 @@ function getCategoryName(categoryKey) {
     return categoryNames[categoryKey] || categoryKey;
 }
 
-// Добавьте этот код в конец файла app.js
+// Функция фильтрации продуктов
+function filterProducts(products) {
+    let filtered = [...products];
 
-// Функции для фильтрации
+    // Фильтрация по категории
+    if (currentCategory !== 'all') {
+        filtered = filtered.filter(product => 
+            product.categories && product.categories.includes(currentCategory)
+        );
+    }
+
+    // Фильтрация по цене
+    const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+    const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+    filtered = filtered.filter(product => {
+        const price = parseFloat(product.price.replace(/[^\d.]/g, ''));
+        return price >= minPrice && price <= maxPrice;
+    });
+
+    // Фильтрация по дате
+    const dateFilter = document.getElementById('date-filter').value;
+    const now = new Date();
+    if (filtered.every(product => product.publishDate)) {
+        filtered = filtered.filter(product => {
+            const publishDate = new Date(product.publishDate);
+            if (dateFilter === 'week' && (now - publishDate) > 7 * 24 * 60 * 60 * 1000) return false;
+            if (dateFilter === 'month' && (now - publishDate) > 30 * 24 * 60 * 60 * 1000) return false;
+            if (dateFilter === 'year' && (now - publishDate) > 365 * 24 * 60 * 60 * 1000) return false;
+            return true;
+        });
+    }
+
+    // Сортировка
+    const sortValue = document.getElementById('sort-filter').value;
+    switch (sortValue) {
+        case 'price-asc':
+            filtered.sort((a, b) => parseFloat(a.price.replace(/[^\d.]/g, '')) - parseFloat(b.price.replace(/[^\d.]/g, '')));
+            break;
+        case 'price-desc':
+            filtered.sort((a, b) => parseFloat(b.price.replace(/[^\d.]/g, '')) - parseFloat(a.price.replace(/[^\d.]/g, '')));
+            break;
+        case 'name-asc':
+            filtered.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case 'name-desc':
+            filtered.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case 'newest':
+            if (filtered.every(product => product.publishDate)) {
+                filtered.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+            }
+            break;
+        case 'oldest':
+            if (filtered.every(product => product.publishDate)) {
+                filtered.sort((a, b) => new Date(a.publishDate) - new Date(b.publishDate));
+            }
+            break;
+    }
+
+    return filtered;
+}
+
+// Настройка фильтров
+function setupFilters() {
+    const applyBtn = document.getElementById('apply-filters');
+    const resetBtn = document.getElementById('reset-filters');
+    const dateFilter = document.getElementById('date-filter');
+    const sortFilter = document.getElementById('sort-filter');
+    const minPrice = document.getElementById('min-price');
+    const maxPrice = document.getElementById('max-price');
+
+    if (!applyBtn || !resetBtn || !dateFilter || !sortFilter || !minPrice || !maxPrice) {
+        console.error('One or more filter elements not found');
+        return;
+    }
+
+    applyBtn.addEventListener('click', applyFilters);
+    resetBtn.addEventListener('click', resetFilters);
+    dateFilter.addEventListener('change', applyFilters);
+    sortFilter.addEventListener('change', applyFilters);
+    minPrice.addEventListener('keypress', (e) => { if (e.key === 'Enter') applyFilters(); });
+    maxPrice.addEventListener('keypress', (e) => { if (e.key === 'Enter') applyFilters(); });
+}
+
 function applyFilters() {
     currentPage = 1;
-    const filteredProducts = filterProducts();
-    displayProducts(currentPage, 'full-catalog', filteredProducts);
+    displayProducts(currentPage, 'full-catalog', config.products);
+    window.scrollTo({
+        top: document.getElementById('full-catalog').offsetTop - 150,
+        behavior: 'smooth'
+    });
 }
 
 function resetFilters() {
@@ -394,71 +470,6 @@ function resetFilters() {
     document.getElementById('max-price').value = '';
     document.getElementById('date-filter').value = 'all';
     document.getElementById('sort-filter').value = 'default';
-    
     currentPage = 1;
-    displayProducts(currentPage, 'full-catalog', filterProductsByCategory(currentCategory));
+    displayProducts(currentPage, 'full-catalog', config.products);
 }
-
-function filterProducts() {
-    let products = filterProductsByCategory(currentCategory);
-    
-    // Фильтрация по цене
-    const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
-    const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
-    
-    products = products.filter(product => {
-        const price = parseFloat(product.price.replace(/[^\d.]/g, ''));
-        return price >= minPrice && price <= maxPrice;
-    });
-    
-    // Сортировка
-    const sortValue = document.getElementById('sort-filter').value;
-    
-    switch(sortValue) {
-        case 'price-asc':
-            products.sort((a, b) => {
-                const priceA = parseFloat(a.price.replace(/[^\d.]/g, ''));
-                const priceB = parseFloat(b.price.replace(/[^\d.]/g, ''));
-                return priceA - priceB;
-            });
-            break;
-        case 'price-desc':
-            products.sort((a, b) => {
-                const priceA = parseFloat(a.price.replace(/[^\d.]/g, ''));
-                const priceB = parseFloat(b.price.replace(/[^\d.]/g, ''));
-                return priceB - priceA;
-            });
-            break;
-        case 'name-asc':
-            products.sort((a, b) => a.name.localeCompare(b.name));
-            break;
-        case 'name-desc':
-            products.sort((a, b) => b.name.localeCompare(a.name));
-            break;
-        case 'newest':
-            // Предполагаем, что новые товары добавлены в конец массива
-            products.reverse();
-            break;
-        case 'oldest':
-            // Оставляем как есть - старые товары в начале
-            break;
-    }
-    
-    return products;
-}
-
-// Обработчики событий для фильтров
-document.getElementById('apply-filters').addEventListener('click', applyFilters);
-document.getElementById('reset-filters').addEventListener('click', resetFilters);
-
-// Применять фильтры при изменении селектов
-document.getElementById('date-filter').addEventListener('change', applyFilters);
-document.getElementById('sort-filter').addEventListener('change', applyFilters);
-
-// Применять фильтры при нажатии Enter в полях цены
-document.getElementById('min-price').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') applyFilters();
-});
-document.getElementById('max-price').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') applyFilters();
-});
