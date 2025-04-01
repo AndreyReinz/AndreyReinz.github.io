@@ -947,3 +947,44 @@ footer {
         flex-direction: column;
     }
 }
+
+/* Категории */
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    background-color: var(--bg-light);
+    color: var(--text);
+    border: 1px solid var(--bg-lighter);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.category-btn:hover {
+    background-color: var(--primary-dark);
+    color: white;
+    border-color: var(--primary-dark);
+}
+
+.category-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .categories {
+        flex-direction: column;
+        align-items: center;
+    }
+}
