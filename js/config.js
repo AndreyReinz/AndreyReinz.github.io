@@ -1549,6 +1549,498 @@ products: [
             "Реалистичная физика"
         ]
     },
+        {
+        id: "hyundai-solaris-dps",
+        name: "ХЕНДАИ СОЛЯРИС | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Hyundai Solaris для ДПС с компактными размерами и полным функционалом.",
+        price: "899.00₽",
+        image: "https://example.com/hyundaisolaris.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/hyundaisolaris_1.jpg",
+            "https://example.com/hyundaisolaris_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "uaz-patriot-dps-vai",
+        name: "УАЗ ПАТРИОТ | ДПС/ВАИ | ГТА 5 | ELS/NON ELS",
+        description: "Модель УАЗ Патриот для ДПС/ВАИ с повышенной проходимостью и спецсигналами.",
+        price: "749.00₽",
+        image: "https://example.com/uazpatriotdps.jpg",
+        categories: ["dps", "vai"],
+        images: [
+            "https://example.com/uazpatriotdps_1.jpg",
+            "https://example.com/uazpatriotdps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ford-explorer-dps-vai",
+        name: "ФОРД ЭКСПЛОРЕР | ДПС/ВАИ | ГТА 5 | ELS/NON ELS",
+        description: "Модель Ford Explorer для ДПС/ВАИ с полным приводом и спецсигналами.",
+        price: "749.00₽",
+        image: "https://example.com/fordexplorerdps.jpg",
+        categories: ["dps", "vai"],
+        images: [
+            "https://example.com/fordexplorerdps_1.jpg",
+            "https://example.com/fordexplorerdps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "lada-priora-dps",
+        name: "ЛАДА ПРИОРА | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Lada Priora для ДПС с классическим дизайном и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/ladapriora.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/ladapriora_1.jpg",
+            "https://example.com/ladapriora_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "lada-granta-dps",
+        name: "ЛАДА ГРАНТА | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Lada Granta для ДПС с компактными размерами и полным функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/ladagrantadps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/ladagrantadps_1.jpg",
+            "https://example.com/ladagrantadps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "vw-amarok-dps",
+        name: "ФОЛЬКСВАГЕН АМАРОК | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Volkswagen Amarok для ДПС с повышенной проходимостью и спецсигналами.",
+        price: "999.00₽",
+        image: "https://example.com/vwamarok.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/vwamarok_1.jpg",
+            "https://example.com/vwamarok_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "bmw-r1200rt-dps",
+        name: "БМВ R1200 RT | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Мотоцикл BMW R1200 RT для ДПС с работающими спецсигналами и детализированной моделью.",
+        price: "599.00₽",
+        image: "https://example.com/bmwr1200rt.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/bmwr1200rt_1.jpg",
+            "https://example.com/bmwr1200rt_2.jpg"
+        ],
+        features: [
+            "Детализированная модель",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "kia-rio-dps",
+        name: "КИА РИО | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Kia Rio для ДПС с компактными размерами и полным функционалом.",
+        price: "649.00₽",
+        image: "https://example.com/kia-rio-dps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/kia-rio-dps_1.jpg",
+            "https://example.com/kia-rio-dps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "vw-polo-dps",
+        name: "ФОЛЬКСВАГЕН ПОЛО | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Volkswagen Polo для ДПС с компактными размерами и спецсигналами.",
+        price: "649.00₽",
+        image: "https://example.com/vwpolodps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/vwpolodps_1.jpg",
+            "https://example.com/vwpolodps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "bmw-x5-dps",
+        name: "БМВ Х5 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель BMW X5 для ДПС с премиальным интерьером и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/bmwx5dps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/bmwx5dps_1.jpg",
+            "https://example.com/bmwx5dps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ford-focus-dps",
+        name: "ФОРД ФОКУС | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Ford Focus для ДПС с компактными размерами и полным функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/fordfocusdps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/fordfocusdps_1.jpg",
+            "https://example.com/fordfocusdps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "lada-vesta-dps",
+        name: "ЛАДА ВЕСТА | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Lada Vesta для ДПС с современным дизайном и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/ladavestadps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/ladavestadps_1.jpg",
+            "https://example.com/ladavestadps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "skoda-octavia-v3-dps",
+        name: "ШКОДА ОКТАВИЯ V3 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Skoda Octavia V3 для ДПС с современным дизайном и полным функционалом.",
+        price: "899.00₽",
+        image: "https://example.com/skodaoctaviav3.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/skodaoctaviav3_1.jpg",
+            "https://example.com/skodaoctaviav3_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "skoda-octavia-v2-dps",
+        name: "ШКОДА ОКТАВИЯ V2 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Skoda Octavia V2 для ДПС с полным функционалом и спецсигналами.",
+        price: "799.00₽",
+        image: "https://example.com/skodaoctaviav2.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/skodaoctaviav2_1.jpg",
+            "https://example.com/skodaoctaviav2_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "skoda-octavia-dps",
+        name: "ШКОДА ОКТАВИЯ | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Skoda Octavia для ДПС с комфортным салоном и спецсигналами.",
+        price: "799.00₽",
+        image: "https://example.com/skodaoctaviadps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/skodaoctaviadps_1.jpg",
+            "https://example.com/skodaoctaviadps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "toyota-camry-dps",
+        name: "ТОЙОТА КАМРИ | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Toyota Camry для ДПС с премиальным интерьером и полным функционалом.",
+        price: "749.00₽",
+        image: "https://example.com/toyotacamrydps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/toyotacamrydps_1.jpg",
+            "https://example.com/toyotacamrydps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "mercedes-sprinter-classic",
+        name: "МЕРСЕДЕС СПРИНТЕР КЛАССИК | ГТА 5",
+        description: "Классическая модель Mercedes Sprinter без спецокраски.",
+        price: "499.00₽",
+        image: "https://example.com/mercedessprinter.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/mercedessprinter_1.jpg",
+            "https://example.com/mercedessprinter_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "skoda-octavia-2009",
+        name: "ШКОДА ОКТАВИЯ 2009 | ГТА 5",
+        description: "Модель Skoda Octavia 2009 года без спецокраски.",
+        price: "399.00₽",
+        image: "https://example.com/skodaoctavia2009civil.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/skodaoctavia2009civil_1.jpg",
+            "https://example.com/skodaoctavia2009civil_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "moskvich3-civil",
+        name: "МОСКВИЧ 3 | ГТА 5 | ELS/NON ELS",
+        description: "Модель Москвич 3 без спецокраски с полным функционалом.",
+        price: "999.00₽",
+        image: "https://example.com/moskvich3civil.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/moskvich3civil_1.jpg",
+            "https://example.com/moskvich3civil_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "reno-logan-civil",
+        name: "РЕНО ЛОГАН | ГТА 5",
+        description: "Модель Renault Logan без спецокраски.",
+        price: "399.00₽",
+        image: "https://example.com/renologancivil.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/renologancivil_1.jpg",
+            "https://example.com/renologancivil_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "kamaz-65115",
+        name: "КАМАЗ 65115 | ГТА 5",
+        description: "Модель Камаз 65115 без спецокраски.",
+        price: "499.00₽",
+        image: "https://example.com/kamaz65115.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/kamaz65115_1.jpg",
+            "https://example.com/kamaz65115_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "haval-jolion-civil",
+        name: "ХАВАЛ ДЖОЛИОН | ГТА 5",
+        description: "Модель Haval Jolion без спецокраски.",
+        price: "799.00₽",
+        image: "https://example.com/havaljolioncivil.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/havaljolioncivil_1.jpg",
+            "https://example.com/havaljolioncivil_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "haval-f7-civil",
+        name: "ХАВАЛ F7 | ГТА 5",
+        description: "Модель Haval F7 без спецокраски.",
+        price: "699.00₽",
+        image: "https://example.com/havalf7civil.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/havalf7civil_1.jpg",
+            "https://example.com/havalf7civil_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "gazel-next-civil",
+        name: "ГАЗель НЕКСТ | ГТА 5",
+        description: "Модель ГАЗель NEXT без спецокраски.",
+        price: "499.00₽",
+        image: "https://example.com/gazelnextcivil.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/gazelnextcivil_1.jpg",
+            "https://example.com/gazelnextcivil_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "chevrolet-cobalt-civil",
+        name: "ШЕВРОЛЕ КОБАЛЬТ | ГТА 5",
+        description: "Модель Chevrolet Cobalt без спецокраски.",
+        price: "399.00₽",
+        image: "https://example.com/chevroletcobalt.jpg",
+        categories: ["civil"],
+        images: [
+            "https://example.com/chevroletcobalt_1.jpg",
+            "https://example.com/chevroletcobalt_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
     {
         id: "gaz-tigr-rosgvardia",
         name: "ГАЗ ТИГР | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
