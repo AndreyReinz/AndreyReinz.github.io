@@ -379,3 +379,86 @@ function getCategoryName(categoryKey) {
     };
     return categoryNames[categoryKey] || categoryKey;
 }
+
+// Добавьте этот код в конец файла app.js
+
+// Функции для фильтрации
+function applyFilters() {
+    currentPage = 1;
+    const filteredProducts = filterProducts();
+    displayProducts(currentPage, 'full-catalog', filteredProducts);
+}
+
+function resetFilters() {
+    document.getElementById('min-price').value = '';
+    document.getElementById('max-price').value = '';
+    document.getElementById('date-filter').value = 'all';
+    document.getElementById('sort-filter').value = 'default';
+    
+    currentPage = 1;
+    displayProducts(currentPage, 'full-catalog', filterProductsByCategory(currentCategory));
+}
+
+function filterProducts() {
+    let products = filterProductsByCategory(currentCategory);
+    
+    // Фильтрация по цене
+    const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+    const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+    
+    products = products.filter(product => {
+        const price = parseFloat(product.price.replace(/[^\d.]/g, ''));
+        return price >= minPrice && price <= maxPrice;
+    });
+    
+    // Сортировка
+    const sortValue = document.getElementById('sort-filter').value;
+    
+    switch(sortValue) {
+        case 'price-asc':
+            products.sort((a, b) => {
+                const priceA = parseFloat(a.price.replace(/[^\d.]/g, ''));
+                const priceB = parseFloat(b.price.replace(/[^\d.]/g, ''));
+                return priceA - priceB;
+            });
+            break;
+        case 'price-desc':
+            products.sort((a, b) => {
+                const priceA = parseFloat(a.price.replace(/[^\d.]/g, ''));
+                const priceB = parseFloat(b.price.replace(/[^\d.]/g, ''));
+                return priceB - priceA;
+            });
+            break;
+        case 'name-asc':
+            products.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case 'name-desc':
+            products.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case 'newest':
+            // Предполагаем, что новые товары добавлены в конец массива
+            products.reverse();
+            break;
+        case 'oldest':
+            // Оставляем как есть - старые товары в начале
+            break;
+    }
+    
+    return products;
+}
+
+// Обработчики событий для фильтров
+document.getElementById('apply-filters').addEventListener('click', applyFilters);
+document.getElementById('reset-filters').addEventListener('click', resetFilters);
+
+// Применять фильтры при изменении селектов
+document.getElementById('date-filter').addEventListener('change', applyFilters);
+document.getElementById('sort-filter').addEventListener('change', applyFilters);
+
+// Применять фильтры при нажатии Enter в полях цены
+document.getElementById('min-price').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') applyFilters();
+});
+document.getElementById('max-price').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') applyFilters();
+});
