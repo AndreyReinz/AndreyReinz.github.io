@@ -99,6 +99,8 @@ nav ul {
         nav ul li {
             margin-left: 25px;
             position: relative;
+            padding-left: 50px;
+            padding-top: 7px
         }
         
         nav ul li a {
@@ -106,7 +108,7 @@ nav ul {
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
-            font-size: 16px;
+            font-size: 20px;
             position: relative;
         }
         
@@ -145,6 +147,7 @@ nav ul {
     box-shadow: 0 4px 15px rgba(157, 77, 255, 0.4);
     position: relative;
     overflow: hidden;
+    margin-top: -9px
 }
 
 .cta-button::before {
