@@ -11,6 +11,11 @@
     --bg-lighter: #2a2a2a;
 }
 
+.icon-spaced {
+    margin-right: 8px;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -173,13 +178,37 @@ nav ul li a:hover {
 
 /* Общий стиль для всех иконок в кнопках (если нужно) */
 .cta-button i {
-    margin-left: 10px;
+    margin-left: 8px;
     font-size: 14px;
     transition: all 0.3s ease;
 }
 
 .modal-buttons .cta-button i.fa-shopping-cart {
     margin-left: 10px !important;
+}
+
+.cta-button i.fa-arrow-left,
+.cta-button i.fa-shopping-cart,
+.cta-button i.fa-list,
+.cta-button i.fa-pencil-alt,
+.cta-button i.fa-customize {
+    margin-right: 8px;
+    margin-left: 0;
+}
+
+.cta-button i.fa-arrow-right {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+/* Для кнопок в модальном окне */
+.modal-buttons .cta-button i {
+    margin-left: 8px;
+}
+
+.modal-buttons .cta-button i.fa-times {
+    margin-right: 8px;
+    margin-left: 0;
 }
 
 /* Hero Section */
