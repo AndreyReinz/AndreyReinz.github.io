@@ -1269,6 +1269,286 @@ products: [
             "Реалистичная физика"
         ]
     },
+     {
+        id: "hyundai-sonata-2008-dps",
+        name: "ХЕНДАИ СОНАТА 2008 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Hyundai Sonata 2008 года для ДПС с детализированным салоном и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/hyundaisonata.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/hyundaisonata_1.jpg",
+            "https://example.com/hyundaisonata_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "skoda-octavia-2009-dps",
+        name: "ШКОДА ОКТАВИЯ 2009 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Skoda Octavia 2009 года для ДПС с полным функционалом и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/skodaoctavia2009.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/skodaoctavia2009_1.jpg",
+            "https://example.com/skodaoctavia2009_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "moskvich3-dps",
+        name: "МОСКВИЧ 3 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Москвич 3 для ДПС с современным дизайном и спецсигналами.",
+        price: "1199.00₽",
+        image: "https://example.com/moskvich3dps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/moskvich3dps_1.jpg",
+            "https://example.com/moskvich3dps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ford-mondeo-dps",
+        name: "ФОРД МОНДЕО | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Ford Mondeo для ДПС с комфортным салоном и полным функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/fordmondeo.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/fordmondeo_1.jpg",
+            "https://example.com/fordmondeo_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "haval-jolion-dps",
+        name: "ХАВАЛ ДЖОЛИОН | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Haval Jolion для ДПС с современным дизайном и спецсигналами.",
+        price: "899.00₽",
+        image: "https://example.com/havaljoliondps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/havaljoliondps_1.jpg",
+            "https://example.com/havaljoliondps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ford-focus-2010-dps",
+        name: "ФОРД ФОКУС 2010 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Ford Focus 2010 года для ДПС с компактными размерами и полным функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/fordfocus2010.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/fordfocus2010_1.jpg",
+            "https://example.com/fordfocus2010_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "toyota-camry-v70-dps",
+        name: "ТОЙОТА КАМРИ V70 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Toyota Camry V70 для ДПС с комфортным салоном и спецсигналами.",
+        price: "799.00₽",
+        image: "https://example.com/toyotacamryv70.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/toyotacamryv70_1.jpg",
+            "https://example.com/toyotacamryv70_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "hyundai-accent-dps",
+        name: "ХЕНДАИ АЦЕНТ | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Hyundai Accent для ДПС с компактными размерами и полным функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/hyundaiaccent.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/hyundaiaccent_1.jpg",
+            "https://example.com/hyundaiaccent_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "audi-a6-dps",
+        name: "АУДИ А6 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Audi A6 для ДПС с премиальным интерьером и спецсигналами.",
+        price: "799.00₽",
+        image: "https://example.com/audia6dps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/audia6dps_1.jpg",
+            "https://example.com/audia6dps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "mercedes-gle-dps",
+        name: "МЕРСЕДЕС-БЕНЗ GLE | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Mercedes-Benz GLE для ДПС с премиальным интерьером и полным функционалом.",
+        price: "1099.00₽",
+        image: "https://example.com/mercedesgledps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/mercedesgledps_1.jpg",
+            "https://example.com/mercedesgledps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "vaz-2115-dps",
+        name: "ВАЗ 2115 | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель ВАЗ 2115 для ДПС с классическим дизайном и спецсигналами.",
+        price: "599.00₽",
+        image: "https://example.com/vaz2115.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/vaz2115_1.jpg",
+            "https://example.com/vaz2115_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "haval-f7-dps-vai",
+        name: "ХАВАЛ Ф7 | ДПС/ВАИ | ГТА 5 | ELS/NON ELS",
+        description: "Модель Haval F7 для ДПС/ВАИ с современным дизайном и полным функционалом.",
+        price: "1199.00₽",
+        image: "https://example.com/havalf7.jpg",
+        categories: ["dps", "vai"],
+        images: [
+            "https://example.com/havalf7_1.jpg",
+            "https://example.com/havalf7_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "bmw-g30-dps-vai",
+        name: "БМВ G30 | ДПС/ВАИ | ГТА 5 | ELS/NON ELS",
+        description: "Модель BMW G30 для ДПС/ВАИ с премиальным интерьером и спецсигналами.",
+        price: "799.00₽",
+        image: "https://example.com/bmwg30.jpg",
+        categories: ["dps", "vai"],
+        images: [
+            "https://example.com/bmwg30_1.jpg",
+            "https://example.com/bmwg30_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "reno-logan-dps",
+        name: "РЕНО ЛОГАН | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Renault Logan для ДПС с компактными размерами и полным функционалом.",
+        price: "749.00₽",
+        image: "https://example.com/renologandps.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/renologandps_1.jpg",
+            "https://example.com/renologandps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
     {
         id: "gaz-tigr-rosgvardia",
         name: "ГАЗ ТИГР | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
