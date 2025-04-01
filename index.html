@@ -90,38 +90,39 @@
     </div>
     
     <!-- Страница каталога -->
+<!-- Страница каталога -->
 <div id="catalog-page" class="catalog-page">
     <div class="container">
-        <a href="#" class="cta-button secondary-button back-button nav-link" data-page="home">
-            <i class="fas fa-arrow-left icon-spaced"></i> На главную
-        </a>
+        <a href="#" class="cta-button secondary-button back-button nav-link" data-page="home"><i class="fas fa-arrow-left icon-spaced"></i> На главную</a>
         <h2 class="section-title">ВЕСЬ КАТАЛОГ ТОВАРОВ</h2>
         
-        <!-- Контейнер для категорий и фильтров -->
-        <div class="catalog-controls">
-            <!-- Блок категорий -->
-            <div class="categories">
-                <button class="category-btn active" data-category="all">Все товары</button>
-                <button class="category-btn" data-category="dps">ДПС</button>
-                <button class="category-btn" data-category="pps">ППС / Росгвардия</button>
-                <button class="category-btn" data-category="mchs">МЧС</button>
-                <button class="category-btn" data-category="fso">ФСО</button>
-                <button class="category-btn" data-category="skrf">СКРФ</button>
-                <button class="category-btn" data-category="smp">СМП</button>
-                <button class="category-btn" data-category="civil">Гражданские</button>
-                <button class="category-btn" data-category="fsin">ФСИН / ФССП</button>
-                <button class="category-btn" data-category="vai">ВАИ</button>
-                <button class="category-btn" data-category="vp">ВП</button>
-                <button class="category-btn" data-category="mods">Модификации</button>
-                <button class="category-btn" data-category="packs">Сборки / Паки</button>
-                <button class="category-btn" data-category="foreign">Зарубежные</button>
+        <!-- Фильтры и категории -->
+        <div class="filters-and-categories">
+            <!-- Блок с кнопками категорий -->
+            <div class="categories-wrapper">
+                <div class="categories">
+                    <button class="category-btn active" data-category="all">Все товары</button>
+                    <button class="category-btn" data-category="dps">ДПС</button>
+                    <button class="category-btn" data-category="pps">ППС / Росгвардия</button>
+                    <button class="category-btn" data-category="mchs">МЧС</button>
+                    <button class="category-btn" data-category="fso">ФСО</button>
+                    <button class="category-btn" data-category="skrf">СКРФ</button>
+                    <button class="category-btn" data-category="smp">СМП</button>
+                    <button class="category-btn" data-category="civil">Гражданские</button>
+                    <button class="category-btn" data-category="fsin">ФСИН / ФССП</button>
+                    <button class="category-btn" data-category="vai">ВАИ</button>
+                    <button class="category-btn" data-category="vp">ВП</button>
+                    <button class="category-btn" data-category="mods">Модификации</button>
+                    <button class="category-btn" data-category="packs">Сборки / Паки</button>
+                    <button class="category-btn" data-category="foreign">Зарубежные</button>
+                </div>
             </div>
-
-            <!-- Блок фильтров -->
+            
+            <!-- Блок с фильтрами -->
             <div class="filters-container">
-                <div class```html
                 <div class="filter-section">
-                    <h3>Фильтры</h3>
+                    <h3><i class="fas fa-filter"></i> Фильтры</h3>
+                    
                     <div class="filter-group">
                         <label>Цена:</label>
                         <div class="price-range">
@@ -130,9 +131,10 @@
                             <input type="number" id="max-price" placeholder="До" min="0">
                         </div>
                     </div>
+                    
                     <div class="filter-group">
                         <label>Дата публикации:</label>
-                        <select id="date-filter">
+                        <select id="date-filter" class="filter-select">
                             <option value="all">Все</option>
                             <option value="week">За неделю</option>
                             <option value="month">За месяц</option>
@@ -141,9 +143,10 @@
                             <option value="oldest">Сначала старые</option>
                         </select>
                     </div>
+                    
                     <div class="filter-group">
                         <label>Сортировка:</label>
-                        <select id="sort-filter">
+                        <select id="sort-filter" class="filter-select">
                             <option value="default">По умолчанию</option>
                             <option value="price-asc">Цена (по возрастанию)</option>
                             <option value="price-desc">Цена (по убыванию)</option>
@@ -151,16 +154,25 @@
                             <option value="name-desc">Название (Я-А)</option>
                         </select>
                     </div>
-                    <button id="apply-filters" class="filter-button">Применить</button>
-                    <button id="reset-filters" class="filter-button secondary">Сбросить</button>
+                    
+                    <div class="filter-buttons">
+                        <button id="apply-filters" class="filter-button">
+                            <i class="fas fa-check"></i> Применить
+                        </button>
+                        <button id="reset-filters" class="filter-button secondary">
+                            <i class="fas fa-undo"></i> Сбросить
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Конец блока с фильтрами и категориями -->
         
         <div class="product-grid" id="full-catalog">
             <!-- Products will be added by JavaScript -->
         </div>
         
+        <!-- Пагинация -->
         <div class="pagination" id="pagination">
             <!-- Pages will be added by JavaScript -->
         </div>
