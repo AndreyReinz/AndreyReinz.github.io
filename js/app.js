@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     initSlider();
     
@@ -20,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
+    setupCategoryButtons();
 });
 
 function initSlider() {
@@ -41,7 +41,6 @@ function initSlider() {
         dotsContainer.appendChild(dot);
     });
     
-    // Auto slide change every 10 seconds
     let currentSlide = 0;
     setInterval(() => {
         currentSlide = (currentSlide + 1) % config.sliderImages.length;
@@ -57,7 +56,6 @@ function showSlide(n) {
     currentSlide = (n + slides.length) % slides.length;
     slider.style.transform = `translateX(-${currentSlide * 100}%)`;
     
-    // Update dots
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
@@ -89,18 +87,21 @@ function initProducts() {
 }
 
 let currentPage = 1;
+let currentCategory = 'all';
 const productsPerPage = 6;
-const totalPages = Math.ceil(config.products.length / productsPerPage);
 
 function displayProducts(page, containerId, products) {
     const productGrid = document.getElementById(containerId);
     productGrid.innerHTML = '';
     
+    const filteredProducts = filterProductsByCategory(currentCategory);
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    
     const startIndex = (page - 1) * productsPerPage;
-    const endIndex = Math.min(startIndex + productsPerPage, products.length);
+    const endIndex = Math.min(startIndex + productsPerPage, filteredProducts.length);
     
     for (let i = startIndex; i < endIndex; i++) {
-        const product = products[i];
+        const product = filteredProducts[i];
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.style.animationDelay = `${(i % productsPerPage) * 0.1}s`;
@@ -184,6 +185,9 @@ function updatePagination() {
     const pagination = document.getElementById('pagination');
     pagination.innerHTML = '';
     
+    const filteredProducts = filterProductsByCategory(currentCategory);
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    
     if (currentPage > 1) {
         const prevLink = document.createElement('a');
         prevLink.href = '#products';
@@ -192,7 +196,7 @@ function updatePagination() {
         prevLink.addEventListener('click', (e) => {
             e.preventDefault();
             currentPage--;
-            displayProducts(currentPage, 'full-catalog', config.products);
+            displayProducts(currentPage, 'full-catalog', filteredProducts);
             window.scrollTo({
                 top: document.getElementById('catalog-page').offsetTop - 100,
                 behavior: 'smooth'
@@ -201,7 +205,7 @@ function updatePagination() {
         pagination.appendChild(prevLink);
     }
     
-    for (let i = 1; i <= totalPages; i++) {
+    for let i = 1; i <= totalPages; i++) {
         const pageLink = document.createElement('a');
         pageLink.href = '#products';
         pageLink.className = `page-link ${i === currentPage ? 'active' : ''}`;
@@ -209,7 +213,7 @@ function updatePagination() {
         pageLink.addEventListener('click', (e) => {
             e.preventDefault();
             currentPage = i;
-            displayProducts(currentPage, 'full-catalog', config.products);
+            displayProducts(currentPage, 'full-catalog', filteredProducts);
             window.scrollTo({
                 top: document.getElementById('catalog-page').offsetTop - 100,
                 behavior: 'smooth'
@@ -226,7 +230,7 @@ function updatePagination() {
         nextLink.addEventListener('click', (e) => {
             e.preventDefault();
             currentPage++;
-            displayProducts(currentPage, 'full-catalog', config.products);
+            displayProducts(currentPage, 'full-catalog', filteredProducts);
             window.scrollTo({
                 top: document.getElementById('catalog-page').offsetTop - 100,
                 behavior: 'smooth'
@@ -253,7 +257,8 @@ function setupNavigation() {
             } else if (page === 'catalog') {
                 document.getElementById('catalog-page').classList.add('active');
                 currentPage = 1;
-                displayProducts(currentPage, 'full-catalog', config.products);
+                const filteredProducts = filterProductsByCategory(currentCategory);
+                displayProducts(currentPage, 'full-catalog', filteredProducts);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 const targetSection = document.getElementById(page);
@@ -287,3 +292,42 @@ document.getElementById('productModal').addEventListener('click', function(e) {
         this.classList.remove('active');
     }
 });
+
+function filterProductsByCategory(category) {
+    if (category === 'all') {
+        return config.products;
+    }
+    return config.products.filter(product => product.category === category);
+}
+
+function setupCategoryButtons() {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            currentCategory = this.getAttribute('data-category');
+            currentPage = 1;
+            
+            updateActiveCategoryButton();
+            
+            const filteredProducts = filterProductsByCategory(currentCategory);
+            displayProducts(currentPage, 'full-catalog', filteredProducts);
+            
+            window.scrollTo({
+                top: document.getElementById('full-catalog').offsetTop - 150,
+                behavior: 'smooth'
+            });
+        });
+    });
+}
+
+function updateActiveCategoryButton/circle {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    categoryButtons.forEach(button => {
+        if (button.getAttribute('data-category') === currentCategory) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    });
+}
