@@ -68,6 +68,7 @@ products: [
         price: "795.00₽",
         image: "https://i.imgur.com/2YpZBaC.png",
         categories: ["civil", "dps"],
+        publishDate: "2025-03-15",
         images: [
             "https://i.imgur.com/yKS5luQ.png",
             "https://i.imgur.com/LDne2rC.png",
