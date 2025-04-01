@@ -330,7 +330,7 @@ products: [
         description: "Набор звуков сирен ЭЛИНА версии 2 для ГТА 5 с улучшенным качеством. Реалистичные звуки сирен для полиции, скорой помощи и МЧС.",
         price: "199.00₽",
         image: "https://i.imgur.com/23Zk7Jw.png",
-        categories: ["all", "dps", "pps", "mchs"],
+        categories: ["mods"],
         images: [
             "https://i.imgur.com/23Zk7Jw.png"
         ],
@@ -349,7 +349,7 @@ products: [
         description: "Классический набор звуков сирен ЭЛИНА версии 1 для ГТА 5. Реалистичные звуки сирен для полиции, скорой помощи и МЧС.",
         price: "199.00₽",
         image: "https://i.imgur.com/kqdrpoB.png",
-        categories: ["all", "dps", "pps", "mchs"],
+        categories: ["mods"],
         images: [
             "https://i.imgur.com/kqdrpoB.png"
         ],
