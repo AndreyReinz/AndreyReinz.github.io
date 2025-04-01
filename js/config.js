@@ -202,7 +202,7 @@ products: [
         description: "Качественный жезл регулировщика ДПС для использования в SP и FiveM. Детализированная модель с реалистичными текстурами.",
         price: "105.00₽",
         image: "https://i.imgur.com/MDLWMaJ.png",
-        categories: ["dps"],
+        categories: ["mods"],
         images: [
             "https://i.imgur.com/fiBXqy9.png",
             "https://i.imgur.com/Z0tQpgA.png",
