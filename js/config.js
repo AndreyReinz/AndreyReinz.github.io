@@ -66,6 +66,7 @@ const config = {
             description: "Высококачественная модель АМАРОК для ЦОДД с детализированным интерьером и уникальным тюнингом. Полностью работоспособные фары, поворотники и спецсигналы. Модель оптимизирована для использования в GTA 5 и FiveM.",
             price: "795.00₽",
             image: "https://faust-shop.ru/gallery_gen/0f96df332e2272101743306c1c9deae9_400x400.png",
+	    category: "dps", // Добавленная категория
             images: [
                 "https://faust-shop.ru/gallery_gen/218b9a94444dbfcf9cecd2ab036ba33b_400x400.png",
                 "https://faust-shop.ru/gallery_gen/3d0769f4011c03893f1542af5f6c4d1c_400x400.png",
