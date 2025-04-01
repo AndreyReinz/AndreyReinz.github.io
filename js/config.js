@@ -87,14 +87,11 @@ const config = {
             name: "ШЕВРОЛЕ КОБАЛЬТ | ПОЛИЦИЯ КАЗАХСТАНА | ГТА 5 | ELS/NON ELS",
             description: "Реалистичная модель ШЕВРОЛЕ КОБАЛЬТ для полиции Казахстана с работающими фарами и поворотниками. Модель полностью готова к использованию в игре, с детализированным салоном и кастомными текстурами.",
             price: "595.00₽",
-            image: "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
+            image: "https://i.imgur.com/xIXaA9S.png",
             images: [
-                "https://faust-shop.ru/gallery_gen/055ec3c244e987018e439610d848f26b.png",
-                "https://faust-shop.ru/gallery_gen/9ce2194dcd26e0832cbf20df1a92807e.png",
-                "https://faust-shop.ru/gallery_gen/08c4e47ffc813c4bfeefcf25fa25ef4b.png",
-                "https://faust-shop.ru/gallery_gen/99a4df6fe2b249308fa65e8ac9e6462f.png",
-                "https://faust-shop.ru/gallery_gen/54f2179796717ea0cd27c4dfd112a66b.png",
-                "https://faust-shop.ru/gallery_gen/0252bea540f16fe06cdef44dccba1271.png"
+                "https://i.imgur.com/Dh2rbDN.png",
+                "https://i.imgur.com/ZwgThsi.png",
+                "https://i.imgur.com/scaAH9V.png"
             ],
             features: [
                 "Аутентичная полицейская раскраска",
