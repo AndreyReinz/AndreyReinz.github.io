@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 let currentPage = 1;
 let currentCategory = 'all';
-const productsPerPage = 6;
+const productsPerPage = 9;
 
 // Инициализация слайдера
 function initSlider() {
