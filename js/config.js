@@ -589,6 +589,686 @@ products: [
             "Реалистичная физика"
         ]
     },
+     {
+        id: "ural-4320-mchs",
+        name: "УРАЛ 4320 | МЧС | ГТА 5 | ELS/NON ELS",
+        description: "Модель УРАЛ 4320 для МЧС с детализированным интерьером и экстерьером. Полностью работоспособные фары и спецсигналы.",
+        price: "799.00₽",
+        image: "https://example.com/ural4320.jpg",
+        categories: ["mchs"],
+        images: [
+            "https://example.com/ural4320_1.jpg",
+            "https://example.com/ural4320_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "kamaz-43118-mchs",
+        name: "КАМАЗ 43118 | МЧС | ГТА 5 | ELS/NON ELS",
+        description: "Модель КАМАЗ 43118 для МЧС с работающими спецсигналами и детализированным салоном.",
+        price: "799.00₽",
+        image: "https://example.com/kamaz43118.jpg",
+        categories: ["mchs"],
+        images: [
+            "https://example.com/kamaz43118_1.jpg",
+            "https://example.com/kamaz43118_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "kamaz-6520-mchs",
+        name: "КАМАЗ 6520 | МЧС | ГТА 5 | ELS/NON ELS",
+        description: "Модель КАМАЗ 6520 для МЧС с уникальными текстурами и полным функционалом.",
+        price: "799.00₽",
+        image: "https://example.com/kamaz6520.jpg",
+        categories: ["mchs"],
+        images: [
+            "https://example.com/kamaz6520_1.jpg",
+            "https://example.com/kamaz6520_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "vw-transporter-fso",
+        name: "ФОЛЬКСВАГЕН ТРАНСПОРТЕР | ФСО | ГТА 5 | ELS/NON ELS",
+        description: "Модель Фольксваген Транспортер для ФСО с детализированным салоном и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/vwtransporter.jpg",
+        categories: ["fso"],
+        images: [
+            "https://example.com/vwtransporter_1.jpg",
+            "https://example.com/vwtransporter_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "mercedes-benz-250-fso",
+        name: "МЕРСЕДЕС-БЕНЗ 250 | ФСО | ГТА 5 | ELS/NON ELS",
+        description: "Модель Mercedes-Benz 250 для ФСО с премиальным интерьером и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/mercedes250.jpg",
+        categories: ["fso"],
+        images: [
+            "https://example.com/mercedes250_1.jpg",
+            "https://example.com/mercedes250_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "mercedes-gle-fso",
+        name: "МЕРСЕДЕС-БЕНЗ GLE | ФСО | ГТА 5 | ELS/NON ELS",
+        description: "Модель Mercedes-Benz GLE для ФСО с современным дизайном и полным функционалом.",
+        price: "599.00₽",
+        image: "https://example.com/mercedesgle.jpg",
+        categories: ["fso"],
+        images: [
+            "https://example.com/mercedesgle_1.jpg",
+            "https://example.com/mercedesgle_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "mercedes-e200-fso",
+        name: "Мерседес-Бенз Е200 | ФСО | ГТА 5 | ELS/NON ELS",
+        description: "Модель Mercedes-Benz E200 для ФСО с премиальным интерьером и спецсигналами.",
+        price: "599.00₽",
+        image: "https://example.com/mercedese200.jpg",
+        categories: ["fso"],
+        images: [
+            "https://example.com/mercedese200_1.jpg",
+            "https://example.com/mercedese200_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "mercedes-g-dps",
+        name: "МЕРСЕДЕС-БЕНЗ G-Класс | ДПС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Mercedes-Benz G-Class для ДПС с бронированным корпусом и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/mercedesg.jpg",
+        categories: ["dps"],
+        images: [
+            "https://example.com/mercedesg_1.jpg",
+            "https://example.com/mercedesg_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "audi-a8-fso",
+        name: "АУДИ А8 | ФСО | ГТА 5 | ELS/NON ELS",
+        description: "Модель Audi A8 для ФСО с премиальным интерьером и полным функционалом.",
+        price: "599.00₽",
+        image: "https://example.com/audia8.jpg",
+        categories: ["fso"],
+        images: [
+            "https://example.com/audia8_1.jpg",
+            "https://example.com/audia8_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "aurus-limo-fso",
+        name: "АУРУС ЛИМО | ФСО | ГТА 5 | ELS/NON ELS",
+        description: "Модель Aurus Limo для ФСО с эксклюзивным дизайном и спецсигналами.",
+        price: "849.00₽",
+        image: "https://example.com/auruslimo.jpg",
+        categories: ["fso"],
+        images: [
+            "https://example.com/auruslimo_1.jpg",
+            "https://example.com/auruslimo_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "aurus-senat-fso",
+        name: "АУРУС СЕНАТ | ФСО | ГТА 5 | ELS/NON ELS",
+        description: "Модель Aurus Senat для ФСО с премиальным интерьером и полным функционалом.",
+        price: "849.00₽",
+        image: "https://example.com/aurussenat.jpg",
+        categories: ["fso"],
+        images: [
+            "https://example.com/aurussenat_1.jpg",
+            "https://example.com/aurussenat_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ford-transit-skrf",
+        name: "ФОРД ТРАНЗИТ | СКРФ | ГТА 5 | ELS/NON ELS",
+        description: "Модель Ford Transit для СКРФ с детализированным салоном и спецсигналами.",
+        price: "899.00₽",
+        image: "https://example.com/fordtransit.jpg",
+        categories: ["skrf"],
+        images: [
+            "https://example.com/fordtransit_1.jpg",
+            "https://example.com/fordtransit_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "vw-polo-skrf",
+        name: "ФОЛЬКСВАГЕН ПОЛО | СКРФ | ГТА 5 | ELS/NON ELS",
+        description: "Модель Volkswagen Polo для СКРФ с компактными размерами и полным функционалом.",
+        price: "749.00₽",
+        image: "https://example.com/vwpolo.jpg",
+        categories: ["skrf"],
+        images: [
+            "https://example.com/vwpolo_1.jpg",
+            "https://example.com/vwpolo_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "uaz-patriot-skrf",
+        name: "УАЗ ПАТРИОТ | СКРФ | ГТА 5 | ELS/NON ELS",
+        description: "Модель УАЗ Патриот для СКРФ с повышенной проходимостью и спецсигналами.",
+        price: "799.00₽",
+        image: "https://example.com/uazpatriot.jpg",
+        categories: ["skrf"],
+        images: [
+            "https://example.com/uazpatriot_1.jpg",
+            "https://example.com/uazpatriot_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "toyota-camry-skrf",
+        name: "ТОЙОТА КАМРИ | СКРФ | ГТА 5 | ELS/NON ELS",
+        description: "Модель Toyota Camry для СКРФ с комфортным салоном и полным функционалом.",
+        price: "799.00₽",
+        image: "https://example.com/toyotacamry.jpg",
+        categories: ["skrf"],
+        images: [
+            "https://example.com/toyotacamry_1.jpg",
+            "https://example.com/toyotacamry_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "moskvich3-rosgvardia",
+        name: "МОСКВИЧ 3 | РОСГВАРДИЯ / ППС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Москвич 3 для Росгвардии/ППС с современным дизайном и спецсигналами.",
+        price: "1199.00₽",
+        image: "https://example.com/moskvich3.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/moskvich3_1.jpg",
+            "https://example.com/moskvich3_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "haval-jolion-rosgvardia",
+        name: "ХАВАЛ ДЖОЛИОН | ППС/РОСГВАРДИЯ | ГТА 5 | ELS/NON ELS",
+        description: "Модель Haval Jolion для ППС/Росгвардии с современным дизайном и полным функционалом.",
+        price: "899.00₽",
+        image: "https://example.com/havaljolion.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/havaljolion_1.jpg",
+            "https://example.com/havaljolion_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "mercedes-gle-pps",
+        name: "МЕРСЕДЕС-БЕНЗ GLE | ППС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Mercedes-Benz GLE для ППС с премиальным интерьером и спецсигналами.",
+        price: "899.00₽",
+        image: "https://example.com/mercedesglepps.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/mercedesglepps_1.jpg",
+            "https://example.com/mercedesglepps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "reno-logan-rosgvardia",
+        name: "РЕНО ЛОГАН | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
+        description: "Модель Renault Logan для ППС/Росгвардии с компактными размерами и полным функционалом.",
+        price: "749.00₽",
+        image: "https://example.com/renologan.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/renologan_1.jpg",
+            "https://example.com/renologan_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ford-explorer-pps",
+        name: "ФОРД ЭКСПЛОРЕР | ППС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Ford Explorer для ППС с повышенной проходимостью и спецсигналами.",
+        price: "749.00₽",
+        image: "https://example.com/fordexplorer.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/fordexplorer_1.jpg",
+            "https://example.com/fordexplorer_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "uaz-patriot-v2-multicat",
+        name: "УАЗ ПАТРИОТ V2 | ППС/Росгвардия/МЧС | ГТА 5 | ELS/NON ELS",
+        description: "Модель УАЗ Патриот V2 для нескольких ведомств с универсальным дизайном и функционалом.",
+        price: "899.00₽",
+        image: "https://example.com/uazpatriotv2.jpg",
+        categories: ["pps", "mchs"],
+        images: [
+            "https://example.com/uazpatriotv2_1.jpg",
+            "https://example.com/uazpatriotv2_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "gazon-next-multicat",
+        name: "ГАЗон НЕКСТ | ППС/Росгвардия/ФСИН | ГТА 5 | ELS/NON ELS",
+        description: "Модель ГАЗон NEXT для нескольких ведомств с универсальным дизайном и функционалом.",
+        price: "799.00₽",
+        image: "https://example.com/gazonnext.jpg",
+        categories: ["pps", "fsin"],
+        images: [
+            "https://example.com/gazonnext_1.jpg",
+            "https://example.com/gazonnext_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "gazel-next-multicat",
+        name: "ГАЗель НЕКСТ | ППС/Росгвардия/МЧС/ФСИН | ГТА 5 | ELS/NON ELS",
+        description: "Модель ГАЗель NEXT для нескольких ведомств с универсальным дизайном и функционалом.",
+        price: "899.00₽",
+        image: "https://example.com/gazelnext.jpg",
+        categories: ["pps", "mchs", "fsin"],
+        images: [
+            "https://example.com/gazelnext_1.jpg",
+            "https://example.com/gazelnext_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ural-4320-multicat",
+        name: "УРАЛ 4320 | ППС/Росгвардия/ФСИН | ГТА 5 | ELS/NON ELS",
+        description: "Модель УРАЛ 4320 для нескольких ведомств с повышенной проходимостью и функционалом.",
+        price: "799.00₽",
+        image: "https://example.com/ural4320multicat.jpg",
+        categories: ["pps", "fsin"],
+        images: [
+            "https://example.com/ural4320multicat_1.jpg",
+            "https://example.com/ural4320multicat_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "gaz-3221-multicat",
+        name: "ГАЗ 3221 | ППС/Росгвардия/ВП | ГТА 5 | ELS/NON ELS",
+        description: "Модель ГАЗ 3221 для нескольких ведомств с универсальным дизайном и функционалом.",
+        price: "799.00₽",
+        image: "https://example.com/gaz3221.jpg",
+        categories: ["pps", "vp"],
+        images: [
+            "https://example.com/gaz3221_1.jpg",
+            "https://example.com/gaz3221_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "lada-largus-pps",
+        name: "ЛАДА ЛАРГУС | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
+        description: "Модель Lada Largus для ППС/Росгвардии с компактными размерами и полным функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/ladalargus.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/ladalargus_1.jpg",
+            "https://example.com/ladalargus_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "paz-3205-multicat",
+        name: "ПАЗ 3205 | ППС/Росгвардия/МЧС | ГТА 5 | ELS/NON ELS",
+        description: "Модель ПАЗ 3205 для нескольких ведомств с вместительным салоном и спецсигналами.",
+        price: "749.00₽",
+        image: "https://example.com/paz3205.jpg",
+        categories: ["pps", "mchs"],
+        images: [
+            "https://example.com/paz3205_1.jpg",
+            "https://example.com/paz3205_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "kia-rio-pps",
+        name: "КИА РИО | ППС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Kia Rio для ППС с компактными размерами и полным функционалом.",
+        price: "649.00₽",
+        image: "https://example.com/kiaRio.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/kiaRio_1.jpg",
+            "https://example.com/kiaRio_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "vw-polo-pps",
+        name: "ВОЛЬКСВАГЕН ПОЛО | ППС | ГТА 5 | ELS/NON ELS",
+        description: "Модель Volkswagen Polo для ППС с компактными размерами и спецсигналами.",
+        price: "649.00₽",
+        image: "https://example.com/vwpolopps.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/vwpolopps_1.jpg",
+            "https://example.com/vwpolopps_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "uaz-hunter-pps",
+        name: "УАЗ ХАНТЕР | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
+        description: "Модель УАЗ Хантер для ППС/Росгвардии с повышенной проходимостью и функционалом.",
+        price: "649.00₽",
+        image: "https://example.com/uazhunter.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/uazhunter_1.jpg",
+            "https://example.com/uazhunter_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "ford-focus-pps",
+        name: "ФОРД ФОКУС | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
+        description: "Модель Ford Focus для ППС/Росгвардии с компактными размерами и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/fordfocus.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/fordfocus_1.jpg",
+            "https://example.com/fordfocus_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "lada-granta-pps",
+        name: "ЛАДА ГРАНТА | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
+        description: "Модель Lada Granta для ППС/Росгвардии с компактными размерами и полным функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/ladagranta.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/ladagranta_1.jpg",
+            "https://example.com/ladagranta_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "uaz-patriot-multicat",
+        name: "УАЗ ПАТРИОТ | ППС/Росгвардия/МЧС | ГТА 5 | ELS/NON ELS",
+        description: "Модель УАЗ Патриот для нескольких ведомств с универсальным дизайном и функционалом.",
+        price: "699.00₽",
+        image: "https://example.com/uazpatriotmulticat.jpg",
+        categories: ["pps", "mchs"],
+        images: [
+            "https://example.com/uazpatriotmulticat_1.jpg",
+            "https://example.com/uazpatriotmulticat_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
+    {
+        id: "uaz-452-pps",
+        name: "УАЗ 452 БУХАНКА | ППС | ГТА 5 | ELS/NON ELS",
+        description: "Модель УАЗ 452 Буханка для ППС с уникальным дизайном и спецсигналами.",
+        price: "699.00₽",
+        image: "https://example.com/uaz452.jpg",
+        categories: ["pps"],
+        images: [
+            "https://example.com/uaz452_1.jpg",
+            "https://example.com/uaz452_2.jpg"
+        ],
+        features: [
+            "Детализированный экстерьер и интерьер",
+            "Рабочие фары и поворотники",
+            "Поддержка ELS и NON-ELS",
+            "Оптимизированная модель",
+            "Кастомные текстуры",
+            "Реалистичная физика"
+        ]
+    },
     {
         id: "gaz-tigr-rosgvardia",
         name: "ГАЗ ТИГР | ППС/Росгвардия | ГТА 5 | ELS/NON ELS",
