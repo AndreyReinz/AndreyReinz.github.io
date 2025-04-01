@@ -239,49 +239,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Фильтры -->
-<div class="filters-container">
-    <div class="filter-section">
-        <h3>Фильтры</h3>
-        
-        <div class="filter-group">
-            <label>Цена:</label>
-            <div class="price-range">
-                <input type="number" id="min-price" placeholder="От" min="0">
-                <span>-</span>
-                <input type="number" id="max-price" placeholder="До" min="0">
-            </div>
-        </div>
-        
-        <div class="filter-group">
-            <label>Дата публикации:</label>
-            <select id="date-filter">
-                <option value="all">Все</option>
-                <option value="week">За неделю</option>
-                <option value="month">За месяц</option>
-                <option value="year">За год</option>
-                <option value="newest">Сначала новые</option>
-                <option value="oldest">Сначала старые</option>
-            </select>
-        </div>
-        
-        <div class="filter-group">
-            <label>Сортировка:</label>
-            <select id="sort-filter">
-                <option value="default">По умолчанию</option>
-                <option value="price-asc">Цена (по возрастанию)</option>
-                <option value="price-desc">Цена (по убыванию)</option>
-                <option value="name-asc">Название (А-Я)</option>
-                <option value="name-desc">Название (Я-А)</option>
-            </select>
-        </div>
-        
-        <button id="apply-filters" class="filter-button">Применить</button>
-        <button id="reset-filters" class="filter-button secondary">Сбросить</button>
-    </div>
-</div>
-    
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
 </body>
