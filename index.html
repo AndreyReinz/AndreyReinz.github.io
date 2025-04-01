@@ -3,243 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAUST SHOP - Модели для GTA 5</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Noir Project - FiveM Roleplay Servers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo nav-link" data-page="home">
-                    <img src="images/logo.png" alt="FAUST SHOP Logo">
-                    FAUST SHOP
-                </a>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="nav-link" data-page="home">Главная</a></li>
-                        <li><a href="#" class="nav-link" data-page="catalog">Товары</a></li>
-                        <li><a href="#reviews" class="nav-link" data-page="reviews">Отзывы</a></li>
-                        <li><a href="#contacts" class="nav-link" data-page="contacts">Контакты</a></li>
-                        <li><a href="https://vk.com/faust_shop_official" class="cta-button pulse" target="_blank">Сделать заказ <i class="fas fa-arrow-right icon-spaced"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Noir Project Logo">
+                <span class="logo-text">Noir Project</span>
+            </a>
+            <nav>
+                <ul id="mainNav">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#servers">Серверы</a></li>
+                    <li><a href="#activities">Чем заняться</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#subscription">Подписки</a></li>
+                    <li><a href="#how-to-play">Как начать</a></li>
+                    <li><a href="#server-status">Статус серверов</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
-    
-    <!-- Главная страница -->
-    <div id="home-page">
-        <section class="hero">
-            <div class="container">
-                <h1>МОДЕЛИ ДЛЯ GTA 5</h1>
-                <p>Faust shop - магазин уникальных, а главное, качественных моделей для ГТА 5. Помимо уже имеющихся машин, вы можете заказать абсолютно любую на свой вкус.</p>
+
+    <!-- Главный экран -->
+    <section class="hero" id="home">
+        <div class="triangles-bg" id="trianglesBg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Noir Project - твой мир ролевых игр</h1>
+                <p>Уникальные ролевые серверы в FiveM с глубокой проработкой механик и атмосферой настоящего города. Выбери свою роль и создай свою историю.</p>
                 <div class="cta-buttons">
-                <a href="#" class="cta-button floating nav-link" data-page="catalog">
-                <i class="fas fa-shopping-cart icon-spaced"></i> Каталог
+                    <a href="#how-to-play" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Начать играть
+                    </a>
+                    <a href="#servers" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i> Подробнее
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О серверах -->
+    <section class="section" id="servers">
+        <div class="section-title">
+            <h2>Наши серверы</h2>
+            <p>Выбери сервер по своему вкусу и начни свою уникальную историю</p>
+        </div>
+        <div class="servers-container">
+            <div class="server-card">
+                <h3><i class="fas fa-flag-usa"></i> Noir USA</h3>
+                <p>Погрузитесь в атмосферу американского мегаполиса с его уникальной культурой и законами. Сервер предлагает полную имитацию жизни в США с реалистичными департаментами полиции, системами правосудия и криминальными группировками.</p>
+                <div class="server-features">
+                    <h4>Особенности:</h4>
+                    <ul>
+                        <li>Реалистичная система полиции и правосудия</li>
+                        <li>Развитая экономика и бизнес-система</li>
+                        <li>Уникальные криминальные организации</li>
+                        <li>Глубокие социальные взаимодействия</li>
+                        <li>Регулярные ивенты и обновления</li>
+                    </ul>
+                </div>
+                <a href="https://discord.gg/CGhrtWfM" class="server-link" target="_blank">
+                    Присоединиться <i class="fas fa-arrow-right"></i>
                 </a>
-                    <a href="https://vk.me/faust_shop_official" class="cta-button secondary-button floating" target="_blank"><i class="fas fa-customize icon-spaced"></i> ЗАКАЗАТЬ МОДЕЛЬ</a>
-                </div>
             </div>
-        </section>
-        
-        <!-- Gallery Slider -->
-        <div class="gallery-slider">
-            <div class="slider-container" id="slider">
-                <!-- Slides will be added by JavaScript -->
-            </div>
-            <div class="slider-nav" id="slider-nav">
-                <!-- Dots will be added by JavaScript -->
-            </div>
-        </div>
-        
-        <!-- Featured Products -->
-        <section class="featured-products">
-            <div class="container">
-                <h2 class="section-title">ПОПУЛЯРНЫЕ ТОВАРЫ</h2>
-                <div class="product-grid" id="featured-products">
-                    <!-- Products will be added by JavaScript -->
-                </div>
-        <div class="view-all">
-           <a href="#" class="cta-button nav-link" data-page="catalog">
-             <i class="fas fa-list icon-spaced"></i> Смотреть все товары
-           </a>
-        </div>
-            </div>
-        </section>
-        
-        <section id="order" class="order-section">
-            <div class="container">
-                <div class="order-content">
-                    <h2 class="section-title">ЗАКАЗАТЬ ИНДИВИДУАЛЬНУЮ МОДЕЛЬ</h2>
-                    <p>Здесь представлен список готовых моделей, которые уже есть в продаже. Вы всегда можете заказать любые модели, согласно своим предпочтениям.</p>
-                    <a href="https://vk.com/faust_shop_official" class="cta-button floating" target="_blank"><i class="fas fa-pencil-alt icon-spaced"></i> Оставить заявку</a>
-                </div>
-            </div>
-        </section>
-        
-        <section id="reviews" class="reviews">
-            <div class="container">
-                <h2 class="section-title">ОТЗЫВЫ НАШИХ КЛИЕНТОВ</h2>
-                <div class="review-grid">
-                    <!-- Reviews will be added by JavaScript -->
-                </div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Страница каталога -->
-<!-- Страница каталога -->
-<div id="catalog-page" class="catalog-page">
-    <div class="container">
-        <a href="#" class="cta-button secondary-button back-button nav-link" data-page="home"><i class="fas fa-arrow-left icon-spaced"></i> На главную</a>
-        <h2 class="section-title">ВЕСЬ КАТАЛОГ ТОВАРОВ</h2>
-        
-        <!-- Фильтры и категории -->
-        <div class="filters-and-categories">
-            <!-- Блок с кнопками категорий -->
-            <div class="categories-wrapper">
-                <div class="categories">
-                    <button class="category-btn active" data-category="all">Все товары</button>
-                    <button class="category-btn" data-category="dps">ДПС</button>
-                    <button class="category-btn" data-category="pps">ППС / Росгвардия</button>
-                    <button class="category-btn" data-category="mchs">МЧС</button>
-                    <button class="category-btn" data-category="fso">ФСО</button>
-                    <button class="category-btn" data-category="skrf">СКРФ</button>
-                    <button class="category-btn" data-category="smp">СМП</button>
-                    <button class="category-btn" data-category="civil">Гражданские</button>
-                    <button class="category-btn" data-category="fsin">ФСИН / ФССП</button>
-                    <button class="category-btn" data-category="vai">ВАИ</button>
-                    <button class="category-btn" data-category="vp">ВП</button>
-                    <button class="category-btn" data-category="mods">Модификации</button>
-                    <button class="category-btn" data-category="packs">Сборки / Паки</button>
-                    <button class="category-btn" data-category="foreign">Зарубежные</button>
-                </div>
-            </div>
-            
-            <!-- Блок с фильтрами -->
-            <div class="filters-container">
-                <div class="filter-section">
-                    <h3><i class="fas fa-filter"></i> Фильтры</h3>
-                    
-                    <div class="filter-group">
-                        <label>Цена:</label>
-                        <div class="price-range">
-                            <input type="number" id="min-price" placeholder="От" min="0">
-                            <span>-</span>
-                            <input type="number" id="max-price" placeholder="До" min="0">
-                        </div>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label>Дата публикации:</label>
-                        <select id="date-filter" class="filter-select">
-                            <option value="all">Все</option>
-                            <option value="week">За неделю</option>
-                            <option value="month">За месяц</option>
-                            <option value="year">За год</option>
-                            <option value="newest">Сначала новые</option>
-                            <option value="oldest">Сначала старые</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label>Сортировка:</label>
-                        <select id="sort-filter" class="filter-select">
-                            <option value="default">По умолчанию</option>
-                            <option value="price-asc">Цена (по возрастанию)</option>
-                            <option value="price-desc">Цена (по убыванию)</option>
-                            <option value="name-asc">Название (А-Я)</option>
-                            <option value="name-desc">Название (Я-А)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-buttons">
-                        <button id="apply-filters" class="filter-button">
-                            <i class="fas fa-check"></i> Применить
-                        </button>
-                        <button id="reset-filters" class="filter-button secondary">
-                            <i class="fas fa-undo"></i> Сбросить
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Конец блока с фильтрами и категориями -->
-        
-        <div class="product-grid" id="full-catalog">
-            <!-- Products will be added by JavaScript -->
-        </div>
-        
-        <!-- Пагинация -->
-        <div class="pagination" id="pagination">
-            <!-- Pages will be added by JavaScript -->
-        </div>
-    </div>
-</div>
-    
-    <footer id="contacts">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>О НАС</h3>
-                    <p>Faust shop - магазин уникальных, а главное, качественных моделей для ГТА 5. Помимо уже имеющихся машин, вы можете заказать абсолютно любую на свой вкус.</p>
-                    <div class="social-links">
-                        <a href="https://vk.com/faust_shop_official" target="_blank"><i class="fab fa-vk"></i></a>
-                        <a href="https://t.me/AndreyCode" target="_blank"><i class="fab fa-telegram"></i></a>
-                        <a href="https://www.youtube.com/@FaustChannel1/videos" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://github.com/AndreyReinz" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>НАВИГАЦИЯ</h3>
+            <div class="server-card">
+                <h3><i class="fas fa-flag"></i> Noir Russia</h3>
+                <p>Настоящая Москва в GTA 5 у твоих ног: лови бандитов, колеси по городу. Уникальный сервер, воссоздающий атмосферу российского мегаполиса с его особенностями и колоритом. От реалистичных госструктур до криминального подполья.</p>
+                <div class="server-features">
+                    <h4>Особенности:</h4>
                     <ul>
-                        <li><a href="#" class="nav-link" data-page="home">Главная</a></li>
-                        <li><a href="#" class="nav-link" data-page="catalog">Товары</a></li>
-                        <li><a href="#reviews" class="nav-link" data-page="reviews">Отзывы</a></li>
-                        <li><a href="#contacts" class="nav-link" data-page="contacts">Контакты</a></li>
-                        <li><a href="#order" class="nav-link" data-page="order">Сделать заказ</a></li>
+                        <li>Аутентичная российская атмосфера</li>
+                        <li>Детализированные госструктуры</li>
+                        <li>Уникальные криминальные схемы</li>
+                        <li>Развитая система бизнеса и работы</li>
+                        <li>Регулярные сюжетные линии и обновления</li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>КОНТАКТЫ</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> kadr.vgf@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</li>
-                        <li><a href="https://t.me/AndreyCode" target="_blank"><i class="fab fa-telegram"></i> Andrey Reinz</a></li>
-                        <li><a href="https://vk.com/faust_shop_official" target="_blank"><i class="fab fa-vk"></i> vk.com/faust_shop</a></li>
-                        <li><a href="https://www.youtube.com/@FaustChannel1" target="_blank"><i class="fab fa-youtube"></i> YouTube канал</a></li>
-                        <li><a href="https://github.com/AndreyReinz" target="_blank"><i class="fab fa-github"></i> Разработчик сайта</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>РАБОЧЕЕ ВРЕМЯ</h3>
-                    <p><i class="fas fa-clock"></i> Пн-Пт: 10:00 - 20:00</p>
-                    <p><i class="fas fa-clock"></i> Сб-Вс: 12:00 - 18:00</p>
-                    <a href="https://vk.com/faust_shop_official" class="cta-button" target="_blank">Связаться с нами</a>
-                </div>
+                <a href="https://discord.gg/jTcMTEx8Xf" class="server-link" target="_blank">
+                    Присоединиться <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
-            
-            <div class="copyright">
-                <p>© 2023-2025 FAUST SHOP. Все права защищены.</p>
+        </div>
+    </section>
+
+    <!-- Чем заняться -->
+    <section class="section dark" id="activities">
+        <div class="section-title">
+            <h2>Чем заняться на сервере</h2>
+            <p>Создай своего персонажа и построй свою уникальную историю</p>
+        </div>
+        <div class="activities-grid">
+            <!-- Activity cards here (same as in your original code) -->
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section class="section" id="gallery">
+        <div class="section-title">
+            <h2>Галерея</h2>
+            <p>Посмотрите на жизнь наших серверов в действии</p>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-slider" id="gallerySlider">
+                <div class="gallery-slide">
+                    <img src="https://i.imgur.com/s0vR3zs.png" alt="Noir Project Screenshot">
+                </div>
+                <!-- Other slides here -->
             </div>
+            <div class="gallery-controls">
+                <button class="gallery-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="gallery-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="gallery-dots" id="galleryDots"></div>
+        </div>
+    </section>
+
+    <!-- Подписки -->
+    <section class="section dark" id="subscription">
+        <div class="section-title">
+            <h2>Премиум подписки</h2>
+            <p>Получите эксклюзивные преимущества на наших серверах</p>
+        </div>
+        <div class="plans-container">
+            <!-- Plan cards here (same as in your original code) -->
+        </div>
+    </section>
+
+    <!-- Модальные окна подписок -->
+    <div class="modal" id="plusModal">
+        <!-- Modal content here (same as in your original code) -->
+    </div>
+
+    <div class="modal" id="premiumModal">
+        <!-- Modal content here (same as in your original code) -->
+    </div>
+
+    <!-- Как начать играть -->
+    <section class="section" id="how-to-play">
+        <div class="helix-container">
+            <svg class="helix" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path class="helix-path" d="M50,10 C70,10 90,25 90,50 C90,75 70,90 50,90 C30,90 10,75 10,50 C10,25 30,10 50,10 Z" />
+                <path class="helix-path" d="M50,20 C65,20 80,30 80,50 C80,70 65,80 50,80 C35,80 20,70 20,50 C20,30 35,20 50,20 Z" />
+                <path class="helix-path" d="M50,30 C60,30 70,35 70,50 C70,65 60,70 50,70 C40,70 30,65 30,50 C30,35 40,30 50,30 Z" />
+            </svg>
+        </div>
+        <div class="section-title">
+            <h2>Как начать играть</h2>
+            <p>Всего несколько простых шагов отделяют вас от игры</p>
+        </div>
+        <div class="steps-container">
+            <!-- Steps here (same as in your original code) -->
+        </div>
+    </section>
+
+    <!-- Статус серверов -->
+    <section class="section dark" id="server-status">
+        <div class="section-title">
+            <h2>Статус серверов</h2>
+            <p>Актуальная информация о работе наших серверов</p>
+        </div>
+        <div class="servers-online">
+            <!-- Server status cards here (same as in your original code) -->
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <!-- Footer content here (same as in your original code) -->
+        </div>
+        <div class="copyright">
+            &copy; 2023-2025 Noir Project. Все права защищены.
         </div>
     </footer>
-    
-    <!-- Модальное окно товара -->
-    <div class="modal-overlay" id="productModal">
-        <div class="product-modal">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <div class="modal-content" id="modalContent">
-                <!-- Контент будет заполнен через JavaScript -->
-            </div>
-        </div>
-    </div>
-    <script src="js/config.js"></script>
-    <script src="js/app.js"></script>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
