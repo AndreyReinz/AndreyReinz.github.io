@@ -812,10 +812,10 @@ footer {
 
 .close-modal {
     position: absolute;
-    top: 15px; /* Возвращаем стандартный отступ */
-    right: 15px; /* Возвращаем стандартный отступ */
-    font-size: 1.5rem; /* Стандартный размер */
-    width: 40px; /* Стандартный размер */
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -826,6 +826,8 @@ footer {
     border: none;
     color: var(--text-dark);
     cursor: pointer;
+    padding: 0; /* Добавлено для сброса стандартных отступов */
+    line-height: 1; /* Добавлено для выравнивания */
 }
 
 .close-modal:hover {
