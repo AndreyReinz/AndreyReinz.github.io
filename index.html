@@ -3,450 +3,1212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noir Project - FiveM Roleplay Servers</title>
+    <title>Andrey Reinz | Frontend & GTA V Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --white: #f5f5f5;
+            --red: #ff2e4d;
+            --dark-red: #cc1a35;
+            --gray: #333333;
+            --light-gray: #aaaaaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Яркий геометрический фон */
+        .geometry-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            overflow: hidden;
+        }
+
+        .geometry-shape {
+            position: absolute;
+            background-color: transparent;
+            border: 1px solid var(--white);
+            opacity: 0.7;
+            animation: float 25s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(100px, -100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 46, 77, 0.2) 0%, rgba(10, 10, 10, 1) 60%);
+            z-index: -1;
+        }
+
+        /* Защита от копирования */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        header {
+            padding: 3rem 2rem;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 46, 77, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--light-gray);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .tagline {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            position: relative;
+        }
+
+        .tagline::before, .tagline::after {
+            content: '';
+            position: absolute;
+            width: 30%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tagline::before {
+            top: -20px;
+        }
+
+        .tagline::after {
+            bottom: -20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+        }
+
+        nav a:hover {
+            color: var(--white);
+            background-color: var(--red);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
+        }
+
+        nav a.active {
+            background-color: var(--red);
+            color: var(--white);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--red);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 4rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            flex: 0 0 350px;
+            height: 400px;
+            background-color: var(--dark-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 46, 77, 0.2) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .skills-container {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category h3 i {
+            font-size: 1.3rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill {
+            background-color: rgba(255, 46, 77, 0.1);
+            padding: 0.7rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 46, 77, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill:hover {
+            background-color: var(--red);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
+        }
+
+        .skill i {
+            font-size: 0.9rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--dark-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 46, 77, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 46, 77, 0.3) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .project-description {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--red);
+        }
+
+        .project-features ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .project-features li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .project-features li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .project-tag {
+            background-color: rgba(255, 46, 77, 0.2);
+            color: var(--red);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 46, 77, 0.3);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details i {
+            color: var(--red);
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--dark-gray);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 46, 77, 0.4);
+        }
+
+        .contact-link:hover::before {
+            opacity: 1;
+        }
+
+        .contact-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--dark-gray);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 2px rgba(255, 46, 77, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 46, 77, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--gray);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 46, 77, 0.6);
+        }
+
+        /* Стили для уведомлений */
+        .alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            background-color: var(--red);
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .alert.show {
+            opacity: 1;
+        }
+        
+        .alert.success {
+            background-color: #2ecc71;
+        }
+        
+        .alert.error {
+            background-color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            nav {
+                gap: 1rem;
+            }
+            
+            .about-image {
+                flex: 0 0 100%;
+                height: 300px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .contact-form {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Шапка сайта -->
+    <!-- Яркий геометрический фон -->
+    <div class="geometry-background" id="geometryBackground"></div>
+    <div class="gradient-overlay"></div>
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Уведомление -->
+    <div id="alert" class="alert">
+        <i class="fas fa-check-circle"></i>
+        <span id="alertMessage">Сообщение отправлено!</span>
+    </div>
+
     <header>
-        <div class="header-container">
-            <a href="#" class="logo">
-                <img src="images/logo.png" alt="Noir Project Logo">
-                <span class="logo-text">Noir Project</span>
-            </a>
-            <nav>
-                <ul id="mainNav">
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#servers">Серверы</a></li>
-                    <li><a href="#activities">Чем заняться</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
-                    <li><a href="#subscription">Подписки</a></li>
-                    <li><a href="#how-to-play">Как начать</a></li>
-                    <li><a href="#server-status">Статус серверов</a></li>
-                </ul>
-            </nav>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+        <h1>Andrey <span class="highlight">Reinz</span></h1>
+        <h2>Frontend Developer & GTA V <span class="highlight">FiveM/RAGE MP</span> Developer</h2>
+        <p class="tagline">Создаю инновационные решения на стыке веб-технологий и игровых модификаций</p>
+        <nav>
+            <a href="#about" class="active">Обо мне</a>
+            <a href="#skills">Навыки</a>
+            <a href="#projects">Проекты</a>
+            <a href="#contact">Контакты</a>
+        </nav>
     </header>
 
-    <!-- Главный экран -->
-    <section class="hero" id="home">
-        <div class="triangles-bg" id="trianglesBg"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Noir Project - твой мир ролевых игр</h1>
-                <p>Уникальные ролевые серверы в FiveM с глубокой проработкой механик и атмосферой настоящего города. Выбери свою роль и создай свою историю.</p>
-                <div class="cta-buttons">
-                    <a href="#how-to-play" class="btn btn-primary">
-                        <i class="fas fa-play"></i> Начать играть
-                    </a>
-                    <a href="#servers" class="btn btn-secondary">
-                        <i class="fas fa-info-circle"></i> Подробнее
-                    </a>
+    <section id="about">
+        <h2 class="section-title">Обо <span class="highlight">мне</span></h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Приветствую! Меня зовут Andrey Reinz, и я профессиональный фронтенд-разработчик с более чем 5-летним опытом создания современных веб-приложений. Моя страсть к программированию сочетается с увлечением игровой индустрией, что привело меня к специализации на разработке модов для GTA V на платформах FiveM и RAGE MP.</p>
+                
+                <p>Мой путь в IT начался с изучения веб-технологий, где я освоил весь стек современных фронтенд-инструментов. Со временем я обнаружил, что могу сочетать свои навыки веб-разработки с любовью к играм, создавая сложные системы для ролевых серверов GTA V.</p>
+                
+                <p>Особое внимание я уделяю созданию интуитивно понятных пользовательских интерфейсов, которые значительно улучшают игровой опыт. Мои системы отличаются стабильностью, производительностью и вниманием к деталям.</p>
+                
+                <p>В последнее время я сосредоточился на разработке комплексных решений для ролевых серверов, включая системы регистрации оружия с админ-панелью, duty-системы для фракций, кастомные экономические системы и многое другое. Каждый мой проект - это тщательно продуманное решение, учитывающее потребности как игроков, так и администраторов серверов.</p>
+                
+                <p>Я постоянно совершенствую свои навыки, изучаю новые технологии и подходы к разработке. Моя цель - создавать продукты, которые не только функциональны, но и доставляют удовольствие от использования.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://i.imgur.com/HlHwA32.png" alt="Andrey Reinz">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Мои <span class="highlight">навыки</span></h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Frontend</h3>
+                <div class="skills">
+                    <div class="skill"><i class="fab fa-html5"></i> HTML5</div>
+                    <div class="skill"><i class="fab fa-css3-alt"></i> CSS3</div>
+                    <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill"><i class="fas fa-code"></i> TypeScript</div>
+                    <div class="skill"><i class="fab fa-react"></i> React</div>
+                    <div class="skill"><i class="fab fa-vuejs"></i> Vue.js</div>
+                    <div class="skill"><i class="fab fa-sass"></i> Sass</div>
+                    <div class="skill"><i class="fas fa-mobile-alt"></i> Responsive Design</div>
+                    <div class="skill"><i class="fas fa-paint-brush"></i> UI/UX</div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-gamepad"></i> GTA V Modding</h3>
+                <div class="skills">
+                    <div class="skill"><i class="fas fa-database"></i> FiveM</div>
+                    <div class="skill"><i class="fas fa-server"></i> RAGE MP</div>
+                    <div class="skill"><i class="fas fa-file-code"></i> Lua</div>
+                    <div class="skill"><i class="fas fa-cogs"></i> C#</div>
+                    <div class="skill"><i class="fas fa-users-cog"></i> Roleplay Systems</div>
+                    <div class="skill"><i class="fas fa-shield-alt"></i> Anti-Cheat</div>
+                    <div class="skill"><i class="fas fa-tools"></i> Custom Scripts</div>
+                    <div class="skill"><i class="fas fa-id-card"></i> Character Systems</div>
+                    <div class="skill"><i class="fas fa-car"></i> Vehicle Systems</div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> Другие навыки</h3>
+                <div class="skills">
+                    <div class="skill"><i class="fab fa-node-js"></i> Node.js</div>
+                    <div class="skill"><i class="fas fa-database"></i> SQL/NoSQL</div>
+                    <div class="skill"><i class="fab fa-git-alt"></i> Git</div>
+                    <div class="skill"><i class="fas fa-cube"></i> Webpack</div>
+                    <div class="skill"><i class="fas fa-plug"></i> REST API</div>
+                    <div class="skill"><i class="fas fa-terminal"></i> CLI</div>
+                    <div class="skill"><i class="fas fa-cloud"></i> Deployment</div>
+                    <div class="skill"><i class="fas fa-bug"></i> Debugging</div>
+                    <div class="skill"><i class="fas fa-project-diagram"></i> Architecture</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- О серверах -->
-    <section class="section" id="servers">
-        <div class="section-title">
-            <h2>Наши серверы</h2>
-            <p>Выбери сервер по своему вкусу и начни свою уникальную историю</p>
-        </div>
-        <div class="servers-container">
-            <div class="server-card">
-                <h3><i class="fas fa-flag-usa"></i> Noir USA</h3>
-                <p>Погрузитесь в атмосферу американского мегаполиса с его уникальной культурой и законами. Сервер предлагает полную имитацию жизни в США с реалистичными департаментами полиции, системами правосудия и криминальными группировками.</p>
-                <div class="server-features">
-                    <h4>Особенности:</h4>
-                    <ul>
-                        <li>Реалистичная система полиции и правосудия</li>
-                        <li>Развитая экономика и бизнес-система</li>
-                        <li>Уникальные криминальные организации</li>
-                        <li>Глубокие социальные взаимодействия</li>
-                        <li>Регулярные ивенты и обновления</li>
-                    </ul>
+    <section id="projects">
+        <h2 class="section-title">Мои <span class="highlight">проекты</span></h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://i.imgur.com/g8Ti72R.png" alt="Weapon Registration System">
                 </div>
-                <a href="https://discord.gg/CGhrtWfM" class="server-link" target="_blank">
-                    Присоединиться <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="server-card">
-                <h3><i class="fas fa-flag"></i> Noir Russia</h3>
-                <p>Настоящая Москва в GTA 5 у твоих ног: лови бандитов, колеси по городу. Уникальный сервер, воссоздающий атмосферу российского мегаполиса с его особенностями и колоритом. От реалистичных госструктур до криминального подполья.</p>
-                <div class="server-features">
-                    <h4>Особенности:</h4>
-                    <ul>
-                        <li>Аутентичная российская атмосфера</li>
-                        <li>Детализированные госструктуры</li>
-                        <li>Уникальные криминальные схемы</li>
-                        <li>Развитая система бизнеса и работы</li>
-                        <li>Регулярные сюжетные линии и обновления</li>
-                    </ul>
-                </div>
-                <a href="https://discord.gg/jTcMTEx8Xf" class="server-link" target="_blank">
-                    Присоединиться <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Чем заняться -->
-    <section class="section dark" id="activities">
-        <div class="section-title">
-            <h2>Чем заняться на сервере</h2>
-            <p>Создай своего персонажа и построй свою уникальную историю</p>
-        </div>
-        <div class="activities-grid">
-            <div class="activity-card">
-                <div class="activity-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <h3>Гражданская жизнь</h3>
-                <p>Создайте своего персонажа, найдите работу, заведите семью и стройте карьеру в различных сферах деятельности.</p>
-            </div>
-            <div class="activity-card">
-                <div class="activity-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Служба в полиции</h3>
-                <p>Вступите в ряды правоохранительных органов, патрулируйте улицы, расследуйте преступления и поддерживайте порядок.</p>
-            </div>
-            <div class="activity-card">
-                <div class="activity-icon">
-                    <i class="fas fa-ambulance"></i>
-                </div>
-                <h3>Работа медиком</h3>
-                <p>Спасайте жизни в качестве врача или парамедика, оперативно реагируйте на вызовы и оказывайте медицинскую помощь.</p>
-            </div>
-            <div class="activity-card">
-                <div class="activity-icon">
-                    <i class="fas fa-skull"></i>
-                </div>
-                <h3>Криминальный мир</h3>
-                <p>Погрузитесь в криминальный подполье, создавайте банды, занимайтесь незаконной деятельностью и избегайте правосудия.</p>
-            </div>
-            <div class="activity-card">
-                <div class="activity-icon">
-                    <i class="fas fa-theater-masks"></i>
-                </div>
-                <h3>Ролевые события</h3>
-                <p>Участвуйте в организованных событиях, от концертов и фестивалей до масштабных кризисных ситуаций.</p>
-            </div>
-            <div class="activity-card">
-                <div class="activity-icon">
-                    <i class="fas fa-taxi"></i>
-                </div>
-                <h3>Работа водителем</h3>
-                <p>Станьте таксистом, водителем автобуса, перевозите пассажиров и грузы по городу.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Галерея -->
-    <section class="section" id="gallery">
-        <div class="section-title">
-            <h2>Галерея</h2>
-            <p>Посмотрите на жизнь наших серверов в действии</p>
-        </div>
-        <div class="gallery-container">
-            <div class="gallery-slider" id="gallerySlider">
-                <div class="gallery-slide">
-                    <img src="assets/screenshots/screenshot1.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="assets/screenshots/screenshot2.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="assets/screenshots/screenshot3.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="assets/screenshots/screenshot4.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://i.imgur.com/jQ8LV78.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://i.imgur.com/SEXXe1e.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://i.imgur.com/gmH7Gu9.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://i.imgur.com/6Y0oXbK.png" alt="Noir Project Screenshot">
-                </div>
-                <div class="gallery-slide">
-                    <img src="assets/screenshots/screenshot5.png" alt="Noir Project Screenshot">
-                </div>
-            </div>
-            <div class="gallery-controls">
-                <button class="gallery-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-                <button class="gallery-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="gallery-dots" id="galleryDots"></div>
-        </div>
-    </section>
-
-    <!-- Подписки -->
-    <section class="section dark" id="subscription">
-        <div class="section-title">
-            <h2>Премиум подписки</h2>
-            <p>Получите эксклюзивные преимущества на наших серверах</p>
-        </div>
-        <div class="plans-container">
-            <div class="plan-card">
-                <div class="plan-header">
-                    <h3>Noir Plus</h3>
-                    <div class="price">600 ₽</div>
-                    <div class="period">в месяц</div>
-                </div>
-                <div class="plan-features">
-                    <ul>
-                        <li>Доступ ко всем департаментам</li>
-                        <li>Эксклюзивный значок</li>
-                        <li>Снятие одного варна в месяц</li>
-                        <li>Участие в бета-тестировании</li>
-                        <li>Приоритетные ситуации</li>
-                    </ul>
-                </div>
-                <div class="plan-actions">
-                    <a href="https://boosty.to/noirproject" class="plan-btn" target="_blank">
-                        Приобрести
-                    </a>
-                    <button class="plan-details-btn" data-plan="plus">
-                        Подробнее
-                    </button>
-                </div>
-            </div>
-            <div class="plan-card popular">
-                <div class="plan-header">
-                    <h3>Noir Premium</h3>
-                    <div class="price">1 100 ₽</div>
-                    <div class="period">в месяц</div>
-                </div>
-                <div class="plan-features">
-                    <ul>
-                        <li>Все возможности Noir Plus</li>
-                        <li>Доступ к Noclip</li>
-                        <li>Две модификации автомобилей</li>
-                        <li>Эксклюзивный статус</li>
-                        <li>Приоритет без запроса</li>
-                        <li>До 5 персонажей</li>
-                    </ul>
-                </div>
-                <div class="plan-actions">
-                    <a href="https://boosty.to/noirproject" class="plan-btn" target="_blank">
-                        Приобрести
-                    </a>
-                    <button class="plan-details-btn" data-plan="premium">
-                        Подробнее
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Модальные окна подписок -->
-    <div class="modal" id="plusModal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h3 class="modal-title">Noir Plus - Полное описание</h3>
-            <div class="modal-features">
-                <ul>
-                    <li><strong>Доступ ко всем департаментам</strong> - Возможность вступить в любой государственный департамент без ограничений</li>
-                    <li><strong>Эксклюзивный значок</strong> - Уникальный значок рядом с вашим ником, выделяющий вас среди других игроков</li>
-                    <li><strong>Снятие одного варна в месяц</strong> - Возможность снять один варн с вашего аккаунта раз в 30 дней</li>
-                    <li><strong>Участие в бета-тестировании</strong> - Ранний доступ к новым функциям и возможность влиять на развитие сервера</li>
-                    <li><strong>Приоритетные ситуации</strong> - Приоритет при создании ситуаций и обработке заявок от администрации</li>
-                    <li><strong>Дополнительный слот для персонажа</strong> - Возможность создать до 3 персонажей вместо стандартных 2</li>
-                    <li><strong>Эксклюзивные предметы</strong> - Доступ к уникальным предметам одежды и аксессуарам</li>
-                    <li><strong>Приоритет в очереди</strong> - Гарантированное место на сервере даже в часы пиковой нагрузки</li>
-                </ul>
-            </div>
-            <a href="https://boosty.to/noirproject" class="plan-btn" target="_blank" style="margin-top: 20px; display: block; text-align: center;">
-                Приобрести подписку
-            </a>
-        </div>
-    </div>
-
-    <div class="modal" id="premiumModal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h3 class="modal-title">Noir Premium - Полное описание</h3>
-            <div class="modal-features">
-                <ul>
-                    <li><strong>Все возможности Noir Plus</strong> - Полный набор функций из подписки Noir Plus</li>
-                    <li><strong>Доступ к Noclip</strong> - Возможность использовать режим полета для создания контента и исследования мира</li>
-                    <li><strong>Две модификации автомобилей</strong> - Возможность дважды изменить внешний вид любого личного автомобиля</li>
-                    <li><strong>Эксклюзивный статус</strong> - Особый статус в Discord и на сервере, выделяющий вас как премиум-игрока</li>
-                    <li><strong>Приоритет без запроса</strong> - Автоматический приоритет во всех ситуациях без необходимости запрашивать его</li>
-                    <li><strong>До 5 персонажей</strong> - Возможность создать до 5 уникальных персонажей</li>
-                    <li><strong>Персональный менеджер</strong> - Личный помощник по любым вопросам, связанным с сервером</li>
-                    <li><strong>Эксклюзивные транспортные средства</strong> - Доступ к уникальным моделям автомобилей и мотоциклов</li>
-                    <li><strong>VIP-дом</strong> - Особый класс жилья с улучшенной планировкой и локацией</li>
-                    <li><strong>Быстрый доступ к администрации</strong> - Приоритетный канал связи с администрацией сервера</li>
-                </ul>
-            </div>
-            <a href="https://boosty.to/noirproject" class="plan-btn" target="_blank" style="margin-top: 20px; display: block; text-align: center;">
-                Приобрести подписку
-            </a>
-        </div>
-    </div>
-
-    <!-- Как начать играть -->
-    <section class="section" id="how-to-play">
-        <div class="helix-container">
-            <svg class="helix" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path class="helix-path" d="M50,10 C70,10 90,25 90,50 C90,75 70,90 50,90 C30,90 10,75 10,50 C10,25 30,10 50,10 Z" />
-                <path class="helix-path" d="M50,20 C65,20 80,30 80,50 C80,70 65,80 50,80 C35,80 20,70 20,50 C20,30 35,20 50,20 Z" />
-                <path class="helix-path" d="M50,30 C60,30 70,35 70,50 C70,65 60,70 50,70 C40,70 30,65 30,50 C30,35 40,30 50,30 Z" />
-            </svg>
-        </div>
-        <div class="section-title">
-            <h2>Как начать играть</h2>
-            <p>Всего несколько простых шагов отделяют вас от игры</p>
-        </div>
-        <div class="steps-container">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Скачайте FiveM</h3>
-                    <p>Перейдите на официальный сайт FiveM и скачайте клиент для вашей платформы. FiveM - это модификация для GTA V, позволяющая играть на пользовательских серверах.</p>
-                    <div class="cta-buttons" style="margin-top: 15px; justify-content: flex-start;">
-                        <a href="https://fivem.net/" class="btn btn-primary" target="_blank" style="margin-right: 10px;">
-                            <i class="fas fa-download"></i> Скачать FiveM
-                        </a>
+                <div class="project-info">
+                    <h3 class="project-title">Система регистрации оружия</h3>
+                    <p class="project-description">Комплексное решение для регистрации и отслеживания оружия на ролевых серверах GTA V с расширенной админ-панелью и логированием действий.</p>
+                    
+                    <div class="project-features">
+                        <h4>Основные функции:</h4>
+                        <ul>
+                            <li>Регистрация оружия с привязкой к персонажу</li>
+                            <li>Полноценная админ-панель с разграничением прав</li>
+                            <li>Система проверок и аудита</li>
+                            <li>Интеграция с экономической системой сервера</li>
+                            <li>Логирование всех действий с оружием</li>
+                            <li>Кастомный UI для игроков и администраторов</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-tags">
+                        <span class="project-tag">FiveM</span>
+                        <span class="project-tag">Lua</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">MySQL</span>
                     </div>
                 </div>
             </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Запустите FiveM</h3>
-                    <p>После установки запустите FiveM и войдите с помощью вашего аккаунта. Убедитесь, что у вас есть лицензионная копия GTA V, так как она требуется для игры.</p>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://i.imgur.com/SPb69sC.jpeg" alt="Duty System">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Duty системы для фракций</h3>
+                    <p class="project-description">Набор кастомных duty-систем для различных фракций (полиция, EMS, государственные организации) с уникальными функциями для каждой.</p>
+                    
+                    <div class="project-features">
+                        <h4>Основные функции:</h4>
+                        <ul>
+                            <li>Индивидуальные системы для каждой фракции</li>
+                            <li>Автоматическое снаряжение при входе в duty</li>
+                            <li>Система рангов и привилегий</li>
+                            <li>Интеграция с другими системами сервера</li>
+                            <li>Кастомные интерфейсы для разных фракций</li>
+                            <li>Система отчетности и статистики</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-tags">
+                        <span class="project-tag">RAGE MP</span>
+                        <span class="project-tag">C#</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Vue.js</span>
+                        <span class="project-tag">MongoDB</span>
+                    </div>
                 </div>
             </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Найдите наши серверы</h3>
-                    <p>В главном меню FiveM перейдите во вкладку "Серверы" и найдите "Noir Russia" или "Noir USA" в поиске. Вы также можете подключиться напрямую через IP.</p>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://i.imgur.com/Sr2mmWa.png" alt="RP Server UI">
                 </div>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h3>Присоединитесь к Discord</h3>
-                    <p>Для полного доступа к возможностям сервера присоединитесь к нашему Discord-сообществу, где вы сможете получить помощь и узнать последние новости.</p>
-                    <div class="cta-buttons" style="margin-top: 15px; justify-content: flex-start;">
-                        <a href="https://discord.gg/jTcMTEx8Xf" class="btn btn-primary" target="_blank" style="margin-right: 10px;">
-                            <i class="fab fa-discord"></i> Россия
-                        </a>
-                        <a href="https://discord.gg/CGhrtWfM" class="btn btn-primary" target="_blank">
-                            <i class="fab fa-discord"></i> США
-                        </a>
+                <div class="project-info">
+                    <h3 class="project-title">RP Server UI Framework</h3>
+                    <p class="project-description">Фреймворк для создания пользовательских интерфейсов на ролевых серверах с поддержкой тем оформления и модульной архитектурой.</p>
+                    
+                    <div class="project-features">
+                        <h4>Основные функции:</h4>
+                        <ul>
+                            <li>Готовые UI-компоненты для RP-серверов</li>
+                            <li>Поддержка тем оформления (light/dark/custom)</li>
+                            <li>Адаптация под разные разрешения экрана</li>
+                            <li>Интеграция с основными RP-системами</li>
+                            <li>Модульная архитектура для легкого расширения</li>
+                            <li>Оптимизация производительности</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-tags">
+                        <span class="project-tag">FiveM</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Vue.js</span>
+                        <span class="project-tag">Sass</span>
+                        <span class="project-tag">Webpack</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Статус серверов -->
-    <section class="section dark" id="server-status">
-        <div class="section-title">
-            <h2>Статус серверов</h2>
-            <p>Актуальная информация о работе наших серверов</p>
-        </div>
-        <div class="servers-online">
-            <div class="server-online-card">
-                <h3><i class="fas fa-flag"></i> Noir Russia</h3>
-                <div class="online-status">
-                    <div class="online-dot" id="russia-status"></div>
-                    <span id="russia-status-text">Проверка статуса...</span>
+    <section id="contact">
+        <h2 class="section-title">Мои <span class="highlight">контакты</span></h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p>Если вы заинтересованы в сотрудничестве, хотите заказать разработку системы для вашего сервера или просто обсудить потенциальный проект, я всегда открыт для общения.</p>
+                <p>Мои системы помогут вывести ваш сервер на новый уровень качества и функциональности, предоставив игрокам уникальный и продуманный игровой опыт.</p>
+                
+                <div class="contact-details">
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <span>kadr.vgf@gmail.com</span>
+                    </div>
                 </div>
-                <div class="server-info">
-                    <p><strong>IP адрес:</strong> <span class="server-ip">5.175.247.62:30120</span></p>
-                    <p><strong>Игроков онлайн:</strong> <span id="russia-players">...</span></p>
-                    <p><strong>Версия:</strong> 1.5.2</p>
-                    <p><strong>Режим:</strong> Ролевой (RP)</p>
+                
+                <div class="contact-links">
+                    <a href="https://github.com/AndreyReinz" class="contact-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://steamcommunity.com/id/AndreyReinz/" class="contact-link" target="_blank"><i class="fab fa-steam"></i></a>
+                    <a href="https://t.me/AndreyCode" class="contact-link" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://discord.gg/jTcMTEx8Xf" class="contact-link" target="_blank"><i class="fab fa-discord"></i></a>
                 </div>
-                <a href="fivem://connect/5.175.247.62:30120" class="btn btn-primary" style="margin-top: 15px;">
-                    <i class="fas fa-play"></i> Подключиться
-                </a>
             </div>
-            <div class="server-online-card">
-                <h3><i class="fas fa-flag-usa"></i> Noir USA</h3>
-                <div class="online-status">
-                    <div class="online-dot" id="usa-status"></div>
-                    <span id="usa-status-text">Проверка статуса...</span>
-                </div>
-                <div class="server-info">
-                    <p><strong>IP адрес:</strong> <span class="server-ip">116.202.52.220:25000</span></p>
-                    <p><strong>Игроков онлайн:</strong> <span id="usa-players">...</span></p>
-                    <p><strong>Версия:</strong> 1.4.8</p>
-                    <p><strong>Режим:</strong> Ролевой (RP)</p>
-                </div>
-                <a href="fivem://connect/116.202.52.220:25000" class="btn btn-primary" style="margin-top: 15px;">
-                    <i class="fas fa-play"></i> Подключиться
-                </a>
+            
+            <div class="contact-form">
+                <form id="contactForm" action="https://formsubmit.co/kadr.vgf@gmail.com" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
+                    <input type="hidden" name="_template" value="box">
+                    <input type="hidden" name="_subject" value="Новое сообщение с сайта Andrey Reinz">
+                    
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Тема</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" id="submitBtn">Отправить сообщение</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Подвал -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <img src="images/logo.png" alt="Noir Project Logo">
-                    <span class="footer-logo-text">Noir Project</span>
-                </div>
-                <p>Noir Project - это два уникальных ролевых сервера в FiveM с глубокой проработкой мира и механик, где каждый игрок может создать свою уникальную историю.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h3>Серверы</h3>
-                <ul>
-                    <li><a href="https://discord.gg/jTcMTEx8Xf" target="_blank">Noir Russia</a></li>
-                    <li><a href="https://discord.gg/CGhrtWfM" target="_blank">Noir USA</a></li>
-                    <li><a href="https://boosty.to/noirproject" target="_blank">Boosty</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Навигация</h3>
-                <ul>
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#servers">Серверы</a></li>
-                    <li><a href="#activities">Чем заняться</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
-                    <li><a href="#subscription">Подписки</a></li>
-                    <li><a href="#how-to-play">Как начать</a></li>
-                    <li><a href="#server-status">Статус серверов</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Контакты</h3>
-                <ul>
-                    <li><a href="mailto:kadr.vgf@gmail.com">kadr.vgf@gmail.com</a></li>
-                    <li><a href="https://boosty.to/noirproject" target="_blank">Поддержать проект</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; 2023-2025 OOO 'State Protocol Development' Noir Project. Все права защищены.
-        </div>
+        <p>&copy; 2020-2025 Andrey Reinz. Все права защищены.</p>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // Create bright geometric background
+        // Create bright geometric background
+        function createGeometryBackground() {
+            const geometryBackground = document.getElementById('geometryBackground');
+            const shapeCount = 30;
+            const shapes = ['triangle', 'square', 'pentagon', 'hexagon'];
+            const colors = ['rgba(255,255,255,0.7)', 'rgba(255,46,77,0.5)', 'rgba(255,255,255,0.5)'];
+            
+            for (let i = 0; i < shapeCount; i++) {
+                const shape = document.createElement('div');
+                shape.className = 'geometry-shape';
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 50 + 20;
+                
+                // Random animation duration
+                const duration = Math.random() * 30 + 20;
+                
+                // Random delay
+                const delay = Math.random() * 10;
+                
+                // Random shape
+                const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+                
+                // Apply styles
+                shape.style.left = `${left}%`;
+                shape.style.top = `${top}%`;
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size}px`;
+                shape.style.animationDuration = `${duration}s`;
+                shape.style.animationDelay = `${delay}s`;
+                shape.style.borderColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Add shape specific styles
+                if (shapeType === 'triangle') {
+                    shape.style.width = '0';
+                    shape.style.height = '0';
+                    shape.style.borderLeft = `${size/2}px solid transparent`;
+                    shape.style.borderRight = `${size/2}px solid transparent`;
+                    shape.style.borderBottom = `${size}px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
+                    shape.style.background = 'transparent';
+                } else if (shapeType === 'pentagon') {
+                    shape.style.clipPath = 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)';
+                } else if (shapeType === 'hexagon') {
+                    shape.style.clipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
+                }
+                
+                geometryBackground.appendChild(shape);
+            }
+        }
+
+        // Защита от копирования и инструментов разработчика
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showAlert('Правая кнопка мыши отключена');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // Блокировка F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U, Ctrl+Shift+J
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'C') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                (e.ctrlKey && e.key === 'u') ||
+                (e.key === 'I' && e.shiftKey && e.altKey)) {
+                e.preventDefault();
+                showAlert('Эта функция отключена');
+            }
+        });
+
+        function showAlert(message, isSuccess = false) {
+            const alert = document.getElementById('alert');
+            const alertMessage = document.getElementById('alertMessage');
+            alertMessage.textContent = message;
+            alert.className = `alert ${isSuccess ? 'success' : 'error'} show`;
+            alert.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${alertMessage.textContent}`;
+            
+            setTimeout(() => {
+                alert.className = 'alert';
+            }, 5000);
+        }
+
+        // Intersection Observer for section animations
+        function setupIntersectionObserver() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Update active nav link
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // Smooth scrolling for navigation links
+        function setupSmoothScrolling() {
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+        
+        // Back to top button
+        function setupBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Form submission with email sending and 12-hour cooldown
+        function setupForm() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const COOLDOWN_HOURS = 12;
+            const COOLDOWN_KEY = 'lastFormSubmitTime';
+            
+            // Check if form can be submitted
+            function canSubmitForm() {
+                const lastSubmitTime = localStorage.getItem(COOLDOWN_KEY);
+                if (!lastSubmitTime) return true;
+                
+                const now = Date.now();
+                const cooldownEnd = parseInt(lastSubmitTime) + (COOLDOWN_HOURS * 60 * 60 * 1000);
+                return now > cooldownEnd;
+            }
+            
+            // Show time remaining until next submit
+            function showCooldownMessage() {
+                const lastSubmitTime = localStorage.getItem(COOLDOWN_KEY);
+                if (!lastSubmitTime) return;
+                
+                const now = Date.now();
+                const cooldownEnd = parseInt(lastSubmitTime) + (COOLDOWN_HOURS * 60 * 60 * 1000);
+                const timeLeft = cooldownEnd - now;
+                
+                if (timeLeft > 0) {
+                    const hoursLeft = Math.ceil(timeLeft / (60 * 60 * 1000));
+                    showAlert(`Вы можете отправить следующее сообщение через ${hoursLeft} часов`, false);
+                }
+            }
+            
+            // Update button state based on cooldown
+            function updateSubmitButton() {
+                if (canSubmitForm()) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Отправить сообщение';
+                } else {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = 'Повторная отправка через 12 часов';
+                    showCooldownMessage();
+                }
+            }
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (!canSubmitForm()) {
+                    showCooldownMessage();
+                    return;
+                }
+                
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+                
+                try {
+                    const formData = new FormData(form);
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    // Save submission time
+                    localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
+                    
+                    showAlert('Сообщение отправлено! Я свяжусь с вами в ближайшее время.', true);
+                    form.reset();
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    showAlert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.', false);
+                } finally {
+                    updateSubmitButton();
+                }
+            });
+            
+            // Initialize button state
+            updateSubmitButton();
+            
+            // Optional: Update cooldown timer every minute
+            setInterval(updateSubmitButton, 60000);
+        }
+        
+        // Initialize everything when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createGeometryBackground();
+            setupIntersectionObserver();
+            setupSmoothScrolling();
+            setupBackToTop();
+            setupForm();
+        });
+    </script>
 </body>
 </html>
