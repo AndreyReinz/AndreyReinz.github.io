@@ -29,8 +29,5 @@ Exploring WebAssembly & Rust for frontend.
 📫 Let’s Connect!
 Open to collaborations, freelance work, and innovative projects.
 
-🔗 GitHub: [Your GitHub Link]
-🌐 Portfolio: [Your Website]
-📧 Email: [Your Email]
-
+🌐 Portfolio: andreyreinz.github.io
 Code with passion, ship with precision. 💻✨
