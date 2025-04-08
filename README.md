@@ -1,17 +1,36 @@
-Waving hand Hi there, I'm Tommy
-It's not a bug - it's a feature 🔥
+✨ About Me
+Hi! I'm Andrey Reinz, a Frontend Developer specializing in modern, high-performance web applications. I love turning complex ideas into intuitive, blazing-fast interfaces with clean code and cutting-edge tech.
 
-Discord GitHub followers Website TG
-Discord activity card
-Discord logo Steam logo Email Threads logo Instagram logo Spotify logo
+🛠️ Tech Stack
+Languages: JavaScript/TypeScript
 
-✨I'm a Web & Game Developer
-I'm a full-stack developer and video game developer based in Atlanta, GA, specializing in building web applications and creating immersive experiences with Unreal Engine 5.
+Frameworks: React, SolidJS, Svelte
 
-🔭 Latest Project: Tornado Emergency
-🌱 Currently Learning: Unreal Engine 5.
-👯 I’m looking to collaborate on open-source projects.
-🥅 2025 Goals: Expand the features and realism of my storm chasing game.
-⚡ Fun fact: I love to chase storms virtually and in real life!
-Languages and Tools:
-Arch Linux Zed BunJS LynxJS SolidJS React TailwindCSS UnoCSS Unreal Engine PostgreSQL Docker Git Perforce
+Styling: TailwindCSS, UnoCSS, CSS Modules
+
+Build Tools: Vite, BunJS, Webpack
+
+Backend Touch: Node.js, Express, PostgreSQL
+
+Tools: Git, Docker, Zed, Arch Linux
+
+🔥 What I Bring to the Table
+✔ Performance-first mindset – Optimized renders, lazy loading, and minimal JS.
+✔ Pixel-perfect UI/UX – From Figma to flawless implementation.
+✔ Clean, maintainable code – SOLID principles, TypeScript, and scalable architecture.
+✔ Passion for open-source – Love contributing and collaborating on cool projects.
+
+🚀 Current Focus
+
+Learning advanced animations (GSAP, Framer Motion).
+
+Exploring WebAssembly & Rust for frontend.
+
+📫 Let’s Connect!
+Open to collaborations, freelance work, and innovative projects.
+
+🔗 GitHub: [Your GitHub Link]
+🌐 Portfolio: [Your Website]
+📧 Email: [Your Email]
+
+Code with passion, ship with precision. 💻✨
