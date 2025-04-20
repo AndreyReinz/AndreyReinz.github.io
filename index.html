@@ -34,7 +34,6 @@
             -webkit-user-select: none;
         }
 
-        /* Яркий геометрический фон */
         .geometry-background {
             position: fixed;
             top: 0;
@@ -81,7 +80,6 @@
             z-index: -1;
         }
 
-        /* Защита от копирования */
         body::after {
             content: "";
             position: fixed;
@@ -651,7 +649,6 @@
             box-shadow: 0 8px 20px rgba(255, 46, 77, 0.6);
         }
 
-        /* Стили для уведомлений */
         .alert {
             position: fixed;
             top: 20px;
@@ -719,14 +716,12 @@
     </style>
 </head>
 <body>
-    <!-- Яркий геометрический фон -->
     <div class="geometry-background" id="geometryBackground"></div>
     <div class="gradient-overlay"></div>
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Уведомление -->
     <div id="alert" class="alert">
         <i class="fas fa-check-circle"></i>
         <span id="alertMessage">Сообщение отправлено!</span>
@@ -961,8 +956,7 @@
     </footer>
 
     <script>
-        // Create bright geometric background
-        // Create bright geometric background
+
         function createGeometryBackground() {
             const geometryBackground = document.getElementById('geometryBackground');
             const shapeCount = 30;
@@ -973,23 +967,23 @@
                 const shape = document.createElement('div');
                 shape.className = 'geometry-shape';
                 
-                // Random position
+
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
                 
-                // Random size
+
                 const size = Math.random() * 50 + 20;
                 
-                // Random animation duration
+
                 const duration = Math.random() * 30 + 20;
                 
-                // Random delay
+
                 const delay = Math.random() * 10;
                 
-                // Random shape
+
                 const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
                 
-                // Apply styles
+
                 shape.style.left = `${left}%`;
                 shape.style.top = `${top}%`;
                 shape.style.width = `${size}px`;
@@ -998,7 +992,7 @@
                 shape.style.animationDelay = `${delay}s`;
                 shape.style.borderColor = colors[Math.floor(Math.random() * colors.length)];
                 
-                // Add shape specific styles
+
                 if (shapeType === 'triangle') {
                     shape.style.width = '0';
                     shape.style.height = '0';
@@ -1016,14 +1010,14 @@
             }
         }
 
-        // Защита от копирования и инструментов разработчика
+
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             showAlert('Правая кнопка мыши отключена');
         });
 
         document.addEventListener('keydown', function(e) {
-            // Блокировка F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U, Ctrl+Shift+J
+
             if (e.key === 'F12' || 
                 (e.ctrlKey && e.shiftKey && e.key === 'I') || 
                 (e.ctrlKey && e.shiftKey && e.key === 'C') || 
@@ -1047,7 +1041,7 @@
             }, 5000);
         }
 
-        // Intersection Observer for section animations
+
         function setupIntersectionObserver() {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav a');
@@ -1062,7 +1056,7 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Update active nav link
+
                         navLinks.forEach(link => {
                             link.classList.remove('active');
                             if (link.getAttribute('href') === `#${entry.target.id}`) {
@@ -1078,7 +1072,7 @@
             });
         }
         
-        // Smooth scrolling for navigation links
+
         function setupSmoothScrolling() {
             document.querySelectorAll('nav a').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -1095,7 +1089,7 @@
             });
         }
         
-        // Back to top button
+
         function setupBackToTop() {
             const backToTop = document.getElementById('backToTop');
             
@@ -1115,14 +1109,14 @@
             });
         }
         
-        // Form submission with email sending and 12-hour cooldown
+
         function setupForm() {
             const form = document.getElementById('contactForm');
             const submitBtn = document.getElementById('submitBtn');
             const COOLDOWN_HOURS = 12;
             const COOLDOWN_KEY = 'lastFormSubmitTime';
             
-            // Check if form can be submitted
+
             function canSubmitForm() {
                 const lastSubmitTime = localStorage.getItem(COOLDOWN_KEY);
                 if (!lastSubmitTime) return true;
@@ -1132,7 +1126,7 @@
                 return now > cooldownEnd;
             }
             
-            // Show time remaining until next submit
+
             function showCooldownMessage() {
                 const lastSubmitTime = localStorage.getItem(COOLDOWN_KEY);
                 if (!lastSubmitTime) return;
@@ -1147,7 +1141,7 @@
                 }
             }
             
-            // Update button state based on cooldown
+
             function updateSubmitButton() {
                 if (canSubmitForm()) {
                     submitBtn.disabled = false;
@@ -1180,7 +1174,7 @@
                         }
                     });
                     
-                    // Save submission time
+
                     localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
                     
                     showAlert('Сообщение отправлено! Я свяжусь с вами в ближайшее время.', true);
@@ -1194,14 +1188,14 @@
                 }
             });
             
-            // Initialize button state
+
             updateSubmitButton();
             
-            // Optional: Update cooldown timer every minute
+
             setInterval(updateSubmitButton, 60000);
         }
         
-        // Initialize everything when the DOM is loaded
+
         document.addEventListener('DOMContentLoaded', () => {
             createGeometryBackground();
             setupIntersectionObserver();
