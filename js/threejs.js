@@ -36,7 +36,7 @@ function init3DModel() {
     scene.add(directionalLight);
     
     const loader = new THREE.GLTFLoader();
-    const modelPath = 'assets/models/saturn.glb';
+    const modelPath = '../models/saturn.glb';
     
     loader.load(
         modelPath,
