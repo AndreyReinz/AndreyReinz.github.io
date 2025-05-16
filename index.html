@@ -3,1206 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrey Reinz | Frontend & GTA V Developer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #0a0a0a;
-            --dark-gray: #1a1a1a;
-            --white: #f5f5f5;
-            --red: #ff2e4d;
-            --dark-red: #cc1a35;
-            --gray: #333333;
-            --light-gray: #aaaaaa;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            background-color: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .geometry-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-            overflow: hidden;
-        }
-
-        .geometry-shape {
-            position: absolute;
-            background-color: transparent;
-            border: 1px solid var(--white);
-            opacity: 0.7;
-            animation: float 25s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translate(100px, -100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .gradient-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(255, 46, 77, 0.2) 0%, rgba(10, 10, 10, 1) 60%);
-            z-index: -1;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        header {
-            padding: 3rem 2rem;
-            text-align: center;
-            animation: fadeIn 1.5s ease-out;
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 46, 77, 0.3);
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            color: var(--light-gray);
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        .highlight {
-            color: var(--red);
-            font-weight: 600;
-        }
-
-        .tagline {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            position: relative;
-        }
-
-        .tagline::before, .tagline::after {
-            content: '';
-            position: absolute;
-            width: 30%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--red), transparent);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tagline::before {
-            top: -20px;
-        }
-
-        .tagline::after {
-            bottom: -20px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.1rem;
-            position: relative;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-            border-radius: 30px;
-        }
-
-        nav a:hover {
-            color: var(--white);
-            background-color: var(--red);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
-        }
-
-        nav a.active {
-            background-color: var(--red);
-            color: var(--white);
-        }
-
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            position: relative;
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--red), transparent);
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background-color: var(--red);
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: flex;
-            gap: 4rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-text p {
-            margin-bottom: 1.8rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            font-size: 1.1rem;
-        }
-
-        .about-image {
-            flex: 0 0 350px;
-            height: 400px;
-            background-color: var(--dark-gray);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 46, 77, 0.2) 0%, transparent 100%);
-            z-index: 1;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .skills-container {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .skill-category {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--dark-gray);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.5s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-        }
-
-        .skill-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--red);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-category h3 i {
-            font-size: 1.3rem;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .skill {
-            background-color: rgba(255, 46, 77, 0.1);
-            padding: 0.7rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 46, 77, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .skill:hover {
-            background-color: var(--red);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
-        }
-
-        .skill i {
-            font-size: 0.9rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background-color: var(--dark-gray);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.5s ease;
-            position: relative;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 46, 77, 0.2);
-        }
-
-        .project-image {
-            height: 200px;
-            background-color: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--light-gray);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 46, 77, 0.3) 0%, transparent 100%);
-            z-index: 1;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
-        }
-
-        .project-info {
-            padding: 2rem;
-            position: relative;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .project-description {
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-features {
-            margin-bottom: 1.5rem;
-        }
-
-        .project-features h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--red);
-        }
-
-        .project-features ul {
-            list-style-type: none;
-            padding-left: 1rem;
-        }
-
-        .project-features li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        .project-features li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--red);
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-        }
-
-        .project-tag {
-            background-color: rgba(255, 46, 77, 0.2);
-            color: var(--red);
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(255, 46, 77, 0.3);
-        }
-
-        .contact-content {
-            display: flex;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-info p {
-            margin-bottom: 1.8rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            font-size: 1.1rem;
-        }
-
-        .contact-details {
-            margin-bottom: 2rem;
-        }
-
-        .contact-details div {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-details i {
-            color: var(--red);
-            font-size: 1.2rem;
-            width: 30px;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background-color: var(--dark-gray);
-            border-radius: 50%;
-            color: var(--white);
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .contact-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 46, 77, 0.4);
-        }
-
-        .contact-link:hover::before {
-            opacity: 1;
-        }
-
-        .contact-link i {
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--dark-gray);
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--light-gray);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            color: var(--white);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--red);
-            box-shadow: 0 0 0 2px rgba(255, 46, 77, 0.2);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--red) 0%, var(--dark-red) 100%);
-            color: var(--white);
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 46, 77, 0.6);
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--light-gray);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--gray);
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--red), transparent);
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--red);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
-            z-index: 99;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 46, 77, 0.6);
-        }
-
-        .alert {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 15px 25px;
-            background-color: var(--red);
-            color: white;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .alert.show {
-            opacity: 1;
-        }
-        
-        .alert.success {
-            background-color: #2ecc71;
-        }
-        
-        .alert.error {
-            background-color: #e74c3c;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 1.3rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            nav {
-                gap: 1rem;
-            }
-            
-            .about-image {
-                flex: 0 0 100%;
-                height: 300px;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-content {
-                flex-direction: column;
-            }
-            
-            .contact-form {
-                width: 100%;
-            }
-        }
-    </style>
+    <title>Andrey Reinz - Frontend Developer</title>
+    
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <div class="geometry-background" id="geometryBackground"></div>
-    <div class="gradient-overlay"></div>
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
+    <div class="preloader">
+        <div class="preloader-snowflake">
+            <i class="fas fa-snowflake"></i>
+        </div>
+        <div class="preloader-bar">
+            <div class="preloader-progress"></div>
+        </div>
+        <div class="preloader-text">Загрузка ресурсов...</div>
     </div>
-
-    <div id="alert" class="alert">
-        <i class="fas fa-check-circle"></i>
-        <span id="alertMessage">Сообщение отправлено!</span>
+    
+    <div class="welcome-intro">
+        <div class="welcome-text">Welcome</div>
+        <div class="welcome-text">to</div>
+        <div class="welcome-text">WEB-PROFILE</div>
     </div>
-
-    <header>
-        <h1>Andrey <span class="highlight">Reinz</span></h1>
-        <h2>Frontend Developer & GTA V <span class="highlight">FiveM/RAGE MP</span> Developer</h2>
-        <p class="tagline">Создаю инновационные решения на стыке веб-технологий и игровых модификаций</p>
-        <nav>
-            <a href="#about" class="active">Обо мне</a>
-            <a href="#skills">Навыки</a>
-            <a href="#projects">Проекты</a>
-            <a href="#contact">Контакты</a>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2 class="section-title">Обо <span class="highlight">мне</span></h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Приветствую! Меня зовут Andrey Reinz, и я профессиональный фронтенд-разработчик с более чем 5-летним опытом создания современных веб-приложений. Моя страсть к программированию сочетается с увлечением игровой индустрией, что привело меня к специализации на разработке модов для GTA V на платформах FiveM и RAGE MP.</p>
-                
-                <p>Мой путь в IT начался с изучения веб-технологий, где я освоил весь стек современных фронтенд-инструментов. Со временем я обнаружил, что могу сочетать свои навыки веб-разработки с любовью к играм, создавая сложные системы для ролевых серверов GTA V.</p>
-                
-                <p>Особое внимание я уделяю созданию интуитивно понятных пользовательских интерфейсов, которые значительно улучшают игровой опыт. Мои системы отличаются стабильностью, производительностью и вниманием к деталям.</p>
-                
-                <p>В последнее время я сосредоточился на разработке комплексных решений для ролевых серверов, включая системы регистрации оружия с админ-панелью, duty-системы для фракций, кастомные экономические системы и многое другое. Каждый мой проект - это тщательно продуманное решение, учитывающее потребности как игроков, так и администраторов серверов.</p>
-                
-                <p>Я постоянно совершенствую свои навыки, изучаю новые технологии и подходы к разработке. Моя цель - создавать продукты, которые не только функциональны, но и доставляют удовольствие от использования.</p>
+    
+    <div class="name-intro">
+        <div class="intro-name">ANDREY REINZ</div>
+    </div>
+    
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="assets/videos/background.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео тег.
+    </video>
+    
+    <div class="video-overlay"></div>
+    
+    <canvas id="particles-js" class="particles-js-canvas-el"></canvas>
+    
+    <div class="content">
+        <section class="main-screen" id="home">
+            <div class="name-container">
+                <h1 class="name-title" id="nameTitle">
+                    <span class="name-letter">A</span>
+                    <span class="name-letter">n</span>
+                    <span class="name-letter">d</span>
+                    <span class="name-letter">r</span>
+                    <span class="name-letter">e</span>
+                    <span class="name-letter">y</span>
+                    <span class="name-letter"> </span>
+                    <span class="name-letter">R</span>
+                    <span class="name-letter">e</span>
+                    <span class="name-letter">i</span>
+                    <span class="name-letter">n</span>
+                    <span class="name-letter">z</span>
+                </h1>
+                <h2 class="subtitle">Frontend Developer & FiveM Scripter</h2>
+                <h2 class="subtitle">CEO OniX Development</h2>
             </div>
-            <div class="about-image">
-                <img src="https://i.imgur.com/HlHwA32.png" alt="Andrey Reinz">
+            <div class="scroll-down" onclick="scrollToSection('about')">
+                <i class="fas fa-chevron-down"></i>
             </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2 class="section-title">Мои <span class="highlight">навыки</span></h2>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3><i class="fas fa-code"></i> Frontend</h3>
+        </section>
+        
+        <section class="portfolio-section" id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    Привет! Я Андрей - профессиональный фронтенд разработчик с более чем 3-летним опытом создания современных веб-приложений. 
+                    Специализируюсь на создании интерактивных пользовательских интерфейсов с плавными анимациями и безупречным UX.
+                </p>
+                <p class="about-text">
+                    Также я профессионально разрабатываю скрипты для FiveM, создавая уникальные игровые механики, реалистичные системы 
+                    и интуитивные интерфейсы для RP серверов GTA V.
+                </p>
                 <div class="skills">
-                    <div class="skill"><i class="fab fa-html5"></i> HTML5</div>
-                    <div class="skill"><i class="fab fa-css3-alt"></i> CSS3</div>
-                    <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
-                    <div class="skill"><i class="fas fa-code"></i> TypeScript</div>
-                    <div class="skill"><i class="fab fa-react"></i> React</div>
-                    <div class="skill"><i class="fab fa-vuejs"></i> Vue.js</div>
-                    <div class="skill"><i class="fab fa-sass"></i> Sass</div>
-                    <div class="skill"><i class="fas fa-mobile-alt"></i> Responsive Design</div>
-                    <div class="skill"><i class="fas fa-paint-brush"></i> UI/UX</div>
+                    <div class="skill">HTML5</div>
+                    <div class="skill">CSS3</div>
+                    <div class="skill">JavaScript</div>
+                    <div class="skill">React</div>
+                    <div class="skill">Vue.js</div>
+                    <div class="skill">Lua</div>
+                    <div class="skill">FiveM</div>
+                    <div class="skill">UI/UX Design</div>
                 </div>
             </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-gamepad"></i> GTA V Modding</h3>
-                <div class="skills">
-                    <div class="skill"><i class="fas fa-database"></i> FiveM</div>
-                    <div class="skill"><i class="fas fa-server"></i> RAGE MP</div>
-                    <div class="skill"><i class="fas fa-file-code"></i> Lua</div>
-                    <div class="skill"><i class="fas fa-cogs"></i> C#</div>
-                    <div class="skill"><i class="fas fa-users-cog"></i> Roleplay Systems</div>
-                    <div class="skill"><i class="fas fa-shield-alt"></i> Anti-Cheat</div>
-                    <div class="skill"><i class="fas fa-tools"></i> Custom Scripts</div>
-                    <div class="skill"><i class="fas fa-id-card"></i> Character Systems</div>
-                    <div class="skill"><i class="fas fa-car"></i> Vehicle Systems</div>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-tools"></i> Другие навыки</h3>
-                <div class="skills">
-                    <div class="skill"><i class="fab fa-node-js"></i> Node.js</div>
-                    <div class="skill"><i class="fas fa-database"></i> SQL/NoSQL</div>
-                    <div class="skill"><i class="fab fa-git-alt"></i> Git</div>
-                    <div class="skill"><i class="fas fa-cube"></i> Webpack</div>
-                    <div class="skill"><i class="fas fa-plug"></i> REST API</div>
-                    <div class="skill"><i class="fas fa-terminal"></i> CLI</div>
-                    <div class="skill"><i class="fas fa-cloud"></i> Deployment</div>
-                    <div class="skill"><i class="fas fa-bug"></i> Debugging</div>
-                    <div class="skill"><i class="fas fa-project-diagram"></i> Architecture</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Мои <span class="highlight">проекты</span></h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://i.imgur.com/g8Ti72R.png" alt="Weapon Registration System">
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">Система регистрации оружия</h3>
-                    <p class="project-description">Комплексное решение для регистрации и отслеживания оружия на ролевых серверах GTA V с расширенной админ-панелью и логированием действий.</p>
-                    
-                    <div class="project-features">
-                        <h4>Основные функции:</h4>
-                        <ul>
-                            <li>Регистрация оружия с привязкой к персонажу</li>
-                            <li>Полноценная админ-панель с разграничением прав</li>
-                            <li>Система проверок и аудита</li>
-                            <li>Интеграция с экономической системой сервера</li>
-                            <li>Логирование всех действий с оружием</li>
-                            <li>Кастомный UI для игроков и администраторов</li>
-                        </ul>
+        </section>
+        
+        <!-- проекты -->
+        <section class="portfolio-section" id="projects">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-modal="modal-1">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 3.5C14.5 3.5 14.5 5.5 12 5.5C9.5 5.5 9.5 3.5 9.5 3.5H7.5L4.20711 6.79289C3.81658 7.18342 3.81658 7.81658 4.20711 8.20711L6.5 10.5V20.5H17.5V10.5L19.7929 8.20711C20.1834 7.81658 20.1834 7.18342 19.7929 6.79289L16.5 3.5H14.5Z"/>
+                        </svg>
                     </div>
-                    
-                    <div class="project-tags">
-                        <span class="project-tag">FiveM</span>
-                        <span class="project-tag">Lua</span>
-                        <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">React</span>
-                        <span class="project-tag">MySQL</span>
+                    <h3>FiveM Roleplay UI</h3>
+                    <p>Комплексный пользовательский интерфейс для ролевых серверов FiveM с системой инвентаря, HUD, диалогов и кастомизацией персонажа.</p>
+                    <div class="tags">
+                        <span class="tag">Lua</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">FiveM</span>
                     </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://i.imgur.com/SPb69sC.jpeg" alt="Duty System">
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">Duty системы для фракций</h3>
-                    <p class="project-description">Набор кастомных duty-систем для различных фракций (полиция, EMS, государственные организации) с уникальными функциями для каждой.</p>
-                    
-                    <div class="project-features">
-                        <h4>Основные функции:</h4>
-                        <ul>
-                            <li>Индивидуальные системы для каждой фракции</li>
-                            <li>Автоматическое снаряжение при входе в duty</li>
-                            <li>Система рангов и привилегий</li>
-                            <li>Интеграция с другими системами сервера</li>
-                            <li>Кастомные интерфейсы для разных фракций</li>
-                            <li>Система отчетности и статистики</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="project-tags">
-                        <span class="project-tag">RAGE MP</span>
-                        <span class="project-tag">C#</span>
-                        <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">Vue.js</span>
-                        <span class="project-tag">MongoDB</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://i.imgur.com/Sr2mmWa.png" alt="RP Server UI">
-                </div>
-                <div class="project-info">
-                    <h3 class="project-title">RP Server UI Framework</h3>
-                    <p class="project-description">Фреймворк для создания пользовательских интерфейсов на ролевых серверах с поддержкой тем оформления и модульной архитектурой.</p>
-                    
-                    <div class="project-features">
-                        <h4>Основные функции:</h4>
-                        <ul>
-                            <li>Готовые UI-компоненты для RP-серверов</li>
-                            <li>Поддержка тем оформления (light/dark/custom)</li>
-                            <li>Адаптация под разные разрешения экрана</li>
-                            <li>Интеграция с основными RP-системами</li>
-                            <li>Модульная архитектура для легкого расширения</li>
-                            <li>Оптимизация производительности</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="project-tags">
-                        <span class="project-tag">FiveM</span>
-                        <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">Vue.js</span>
-                        <span class="project-tag">Sass</span>
-                        <span class="project-tag">Webpack</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Мои <span class="highlight">контакты</span></h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <p>Если вы заинтересованы в сотрудничестве, хотите заказать разработку системы для вашего сервера или просто обсудить потенциальный проект, я всегда открыт для общения.</p>
-                <p>Мои системы помогут вывести ваш сервер на новый уровень качества и функциональности, предоставив игрокам уникальный и продуманный игровой опыт.</p>
-                
-                <div class="contact-details">
-                    <div>
-                        <i class="fas fa-envelope"></i>
-                        <span>kadr.vgf@gmail.com</span>
+                    <div class="shine"></div>
+                    <div class="background">
+                        <div class="tiles">
+                            <div class="tile tile-1"></div>
+                            <div class="tile tile-2"></div>
+                            <div class="tile tile-3"></div>
+                            <div class="tile tile-4"></div>
+                            <div class="tile tile-5"></div>
+                            <div class="tile tile-6"></div>
+                            <div class="tile tile-7"></div>
+                            <div class="tile tile-8"></div>
+                            <div class="tile tile-9"></div>
+                            <div class="tile tile-10"></div>
+                        </div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
                     </div>
                 </div>
                 
-                <div class="contact-links">
-                    <a href="https://github.com/AndreyReinz" class="contact-link" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://steamcommunity.com/id/AndreyReinz/" class="contact-link" target="_blank"><i class="fab fa-steam"></i></a>
-                    <a href="https://t.me/AndreyCode" class="contact-link" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://discord.gg/jTcMTEx8Xf" class="contact-link" target="_blank"><i class="fab fa-discord"></i></a>
+                <div class="project-card" data-modal="modal-2">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.5 9.5V5.5C4.5 4.94772 4.94772 4.5 5.5 4.5H9.5C10.0523 4.5 10.5 4.94772 10.5 5.5V9.5C10.5 10.0523 10.0523 10.5 9.5 10.5H5.5C4.94772 10.5 4.5 10.0523 4.5 9.5Z"/>
+                            <path d="M13.5 18.5V14.5C13.5 13.9477 13.9477 13.5 14.5 13.5H18.5C19.0523 13.5 19.5 13.9477 19.5 14.5V18.5C19.5 19.0523 19.0523 19.5 18.5 19.5H14.5C13.9477 19.5 13.5 19.0523 13.5 18.5Z"/>
+                            <path d="M4.5 19.5L7.5 13.5L10.5 19.5H4.5Z"/>
+                            <path d="M16.5 4.5C18.1569 4.5 19.5 5.84315 19.5 7.5C19.5 9.15685 18.1569 10.5 16.5 10.5C14.8431 10.5 13.5 9.15685 13.5 7.5C13.5 5.84315 14.8431 4.5 16.5 4.5Z"/>
+                        </svg>
+                    </div>
+                    <h3>Reg gun System</h3>
+                    <p>Скрипт который помогает выдовать оружие по заявки для игроков.</p>
+                    <div class="tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">GSAP</span>
+                    </div>
+                    <div class="shine"></div>
+                    <div class="background">
+                        <div class="tiles">
+                            <div class="tile tile-1">КУПИ</div>
+                            <div class="tile tile-2">СУКА</div>
+                            <div class="tile tile-3">НУ ЖЕ БЛЯТЬ</div>
+                            <div class="tile tile-4">Buy</div>
+                            <div class="tile tile-5"></div>
+                            <div class="tile tile-6">Please</div>
+                            <div class="tile tile-7"></div>
+                            <div class="tile tile-8">Love</div>
+                            <div class="tile tile-9"></div>
+                            <div class="tile tile-10">tatoo</div>
+                        </div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-modal="modal-3">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3L3 8L12 13L21 8L12 3Z"/>
+                            <path d="M3 8L12 13L21 8"/>
+                            <path d="M3 16L12 21L21 16"/>
+                            <path d="M3 12L12 17L21 12"/>
+                        </svg>
+                    </div>
+                    <h3>Car Dealer System</h3>
+                    <p>Комплексная система автосалонов для FiveM с возможностью тест-драйва, покупки, кастомизации и кредитования.</p>
+                    <div class="tags">
+                        <span class="tag">Lua</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">FiveM</span>
+                    </div>
+                    <div class="shine"></div>
+                    <div class="background">
+                        <div class="tiles">
+                            <div class="tile tile-1"></div>
+                            <div class="tile tile-2"></div>
+                            <div class="tile tile-3"></div>
+                            <div class="tile tile-4"></div>
+                            <div class="tile tile-5"></div>
+                            <div class="tile tile-6"></div>
+                            <div class="tile tile-7"></div>
+                            <div class="tile tile-8"></div>
+                            <div class="tile tile-9"></div>
+                            <div class="tile tile-10"></div>
+                        </div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="contact-form">
-                <form id="contactForm" action="https://formsubmit.co/kadr.vgf@gmail.com" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
-                    <input type="hidden" name="_template" value="box">
-                    <input type="hidden" name="_subject" value="Новое сообщение с сайта Andrey Reinz">
-                    
+        </section>
+        
+        <section class="about-photo-section" id="photo">
+            <h2 class="section-title"></h2>
+            <div class="photo-container">
+                <div class="photo-wrapper">
+                    <img src="assets/images/profile.jpg" alt="Andrey Reinz" loading="lazy">
+                </div>
+                <div class="photo-content">
+                    <h2>Andrey Reinz</h2>
+                    <p>Frontend разработчик и FiveM скриптер с 2023 года. Специализируюсь на создании современных веб-интерфейсов и игровых систем для мультиплеера GTA V.</p>
+                    <p>Моя цель - создавать продукты, которые не только функциональны, но и доставляют удовольствие от использования. Я уделяю внимание каждой детали, от пользовательского опыта до производительности.</p>
+                    <p>Работаю с такими технологиями как JavaScript, React, Vue.js, Lua, FiveM API и многими другими.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="gallery-section" id="gallery">
+            <h2 class="section-title">3D Gallery</h2>
+            <div class="gallery-container">
+                <div class="model-viewer" id="modelViewer">
+                    <div class="model-controls">
+                        <button class="model-btn" id="rotateBtn"><i class="fas fa-sync-alt"></i></button>
+                        <button class="model-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
+                        <button class="model-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
+                    </div>
+                    <div class="model-info">Используйте колесо мыши для масштабирования, ЛКМ для вращения</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="requests-section" id="requests">
+            <h2 class="section-title">Заявки</h2>
+            <div class="request-container">
+                <form class="request-form" id="requestForm">
                     <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+                        <label for="request-name">Ваше имя</label>
+                        <input type="text" id="request-name" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
+                        <label for="request-email">Ваш Email</label>
+                        <input type="email" id="request-email" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Тема</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required>
+                        <label for="request-service">Тип услуги</label>
+                        <select id="request-service" class="form-control" required>
+                            <option value="">Выберите услугу</option>
+                            <option value="web">Веб-разработка</option>
+                            <option value="fivem">FiveM скриптинг</option>
+                            <option value="ui">UI/UX дизайн</option>
+                            <option value="other">Другое</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="message">Сообщение</label>
-                        <textarea id="message" name="message" class="form-control" required></textarea>
+                        <label for="request-message">Описание проекта</label>
+                        <textarea id="request-message" class="form-control" required></textarea>
                     </div>
-                    <button type="submit" class="btn" id="submitBtn">Отправить сообщение</button>
+                    <div class="form-group">
+                        <label for="request-budget">Бюджет (USD)</label>
+                        <input type="number" id="request-budget" class="form-control" min="0">
+                    </div>
+                    <button type="submit" class="btn">Отправить заявку</button>
                 </form>
             </div>
+        </section>
+        
+        <!-- Футер -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://discord.gg/q4gddeEehT" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="https://steamcommunity.com/id/AndreyReinz/" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i> Steam</a></li>
+                        <li><a href="kadr.vgf@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Соцсети</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/AndreyReinz" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="https://t.me/yourtelegram" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> Telegram</a></li>
+                        <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Информация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-home"></i> Главная</a></li>
+                        <li><a href="#projects"><i class="fas fa-code"></i> Проекты</a></li>
+                        <li><a href="#requests"><i class="fas fa-paper-plane"></i> Заявки</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023-2025 Andrey Reinz. Все права защищены.</p>
+            </div>
+        </footer>
+        
+        <div class="music-controls">
+            <div class="volume-control">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
+                <i class="fas fa-volume-up"></i>
+            </div>
+            <button class="music-toggle" id="musicToggle">
+                <i class="fas fa-music"></i>
+            </button>
         </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2020-2025 Andrey Reinz. Все права защищены.</p>
-    </footer>
-
-    <script>
-
-        function createGeometryBackground() {
-            const geometryBackground = document.getElementById('geometryBackground');
-            const shapeCount = 30;
-            const shapes = ['triangle', 'square', 'pentagon', 'hexagon'];
-            const colors = ['rgba(255,255,255,0.7)', 'rgba(255,46,77,0.5)', 'rgba(255,255,255,0.5)'];
-            
-            for (let i = 0; i < shapeCount; i++) {
-                const shape = document.createElement('div');
-                shape.className = 'geometry-shape';
-                
-
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                
-
-                const size = Math.random() * 50 + 20;
-                
-
-                const duration = Math.random() * 30 + 20;
-                
-
-                const delay = Math.random() * 10;
-                
-
-                const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
-                
-
-                shape.style.left = `${left}%`;
-                shape.style.top = `${top}%`;
-                shape.style.width = `${size}px`;
-                shape.style.height = `${size}px`;
-                shape.style.animationDuration = `${duration}s`;
-                shape.style.animationDelay = `${delay}s`;
-                shape.style.borderColor = colors[Math.floor(Math.random() * colors.length)];
-                
-
-                if (shapeType === 'triangle') {
-                    shape.style.width = '0';
-                    shape.style.height = '0';
-                    shape.style.borderLeft = `${size/2}px solid transparent`;
-                    shape.style.borderRight = `${size/2}px solid transparent`;
-                    shape.style.borderBottom = `${size}px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
-                    shape.style.background = 'transparent';
-                } else if (shapeType === 'pentagon') {
-                    shape.style.clipPath = 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)';
-                } else if (shapeType === 'hexagon') {
-                    shape.style.clipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
-                }
-                
-                geometryBackground.appendChild(shape);
-            }
-        }
-
-
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            showAlert('Правая кнопка мыши отключена');
-        });
-
-        document.addEventListener('keydown', function(e) {
-
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'C') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-                (e.ctrlKey && e.key === 'u') ||
-                (e.key === 'I' && e.shiftKey && e.altKey)) {
-                e.preventDefault();
-                showAlert('Эта функция отключена');
-            }
-        });
-
-        function showAlert(message, isSuccess = false) {
-            const alert = document.getElementById('alert');
-            const alertMessage = document.getElementById('alertMessage');
-            alertMessage.textContent = message;
-            alert.className = `alert ${isSuccess ? 'success' : 'error'} show`;
-            alert.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${alertMessage.textContent}`;
-            
-            setTimeout(() => {
-                alert.className = 'alert';
-            }, 5000);
-        }
-
-
-        function setupIntersectionObserver() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-            
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        
-
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${entry.target.id}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-            
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        }
         
-
-        function setupSmoothScrolling() {
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 20,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        }
-        
-
-        function setupBackToTop() {
-            const backToTop = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-            
-            backToTop.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-        
-
-        function setupForm() {
-            const form = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const COOLDOWN_HOURS = 12;
-            const COOLDOWN_KEY = 'lastFormSubmitTime';
-            
-
-            function canSubmitForm() {
-                const lastSubmitTime = localStorage.getItem(COOLDOWN_KEY);
-                if (!lastSubmitTime) return true;
+        <button class="back-to-top" id="backToTop" title="Go to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+    
+    <div class="modal-overlay" id="modal-1">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content">
+                <h2>FiveM Roleplay UI</h2>
+                <p>Комплексный пользовательский интерфейс для ролевых серверов FiveM с системой инвентаря, HUD, диалогов и кастомизацией персонажа. Проект разработан с использованием Lua и JavaScript, с акцентом на производительность и удобство использования.</p>
                 
-                const now = Date.now();
-                const cooldownEnd = parseInt(lastSubmitTime) + (COOLDOWN_HOURS * 60 * 60 * 1000);
-                return now > cooldownEnd;
-            }
-            
-
-            function showCooldownMessage() {
-                const lastSubmitTime = localStorage.getItem(COOLDOWN_KEY);
-                if (!lastSubmitTime) return;
+                <div class="modal-features">
+                    <h3>Основные особенности:</h3>
+                    <ul>
+                        <li>Полностью настраиваемый интерфейс</li>
+                        <li>Система инвентаря с drag-and-drop</li>
+                        <li>Динамический HUD с показателями здоровья, брони и голода</li>
+                        <li>Система диалогов с ветвлениями</li>
+                        <li>Кастомизация персонажа в реальном времени</li>
+                        <li>Оптимизированная производительность</li>
+                    </ul>
+                </div>
                 
-                const now = Date.now();
-                const cooldownEnd = parseInt(lastSubmitTime) + (COOLDOWN_HOURS * 60 * 60 * 1000);
-                const timeLeft = cooldownEnd - now;
+                <div class="tags">
+                    <span class="tag">Lua</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">FiveM</span>
+                </div>
                 
-                if (timeLeft > 0) {
-                    const hoursLeft = Math.ceil(timeLeft / (60 * 60 * 1000));
-                    showAlert(`Вы можете отправить следующее сообщение через ${hoursLeft} часов`, false);
-                }
-            }
-            
-
-            function updateSubmitButton() {
-                if (canSubmitForm()) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Отправить сообщение';
-                } else {
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = 'Повторная отправка через 12 часов';
-                    showCooldownMessage();
-                }
-            }
-            
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
+                <div class="modal-links">
+                    <a href="#" class="demo-link">Демо</a>
+                    <a href="#" class="code-link">Исходный код</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modal-2">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content">
+                <h2>Winter Portfolio</h2>
+                <p>Кинематографичное портфолио с зимней тематикой, интерактивными элементами и плавными анимациями. Проект создан с использованием GSAP для сложных анимаций и Three.js для 3D элементов.</p>
                 
-                if (!canSubmitForm()) {
-                    showCooldownMessage();
-                    return;
-                }
+                <div class="modal-features">
+                    <h3>Основные особенности:</h3>
+                    <ul>
+                        <li>Параллакс-эффекты и плавные переходы</li>
+                        <li>3D элементы с использованием Three.js</li>
+                        <li>Сложные анимации с GSAP</li>
+                        <li>Адаптивный дизайн для всех устройств</li>
+                        <li>Оптимизированная загрузка ресурсов</li>
+                        <li>Интерактивные элементы управления</li>
+                    </ul>
+                </div>
                 
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+                <div class="tags">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">GSAP</span>
+                </div>
                 
-                try {
-                    const formData = new FormData(form);
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-
-                    localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
-                    
-                    showAlert('Сообщение отправлено! Я свяжусь с вами в ближайшее время.', true);
-                    form.reset();
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    showAlert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.', false);
-                } finally {
-                    updateSubmitButton();
-                }
-            });
-            
-
-            updateSubmitButton();
-            
-
-            setInterval(updateSubmitButton, 60000);
-        }
-        
-
-        document.addEventListener('DOMContentLoaded', () => {
-            createGeometryBackground();
-            setupIntersectionObserver();
-            setupSmoothScrolling();
-            setupBackToTop();
-            setupForm();
-        });
-    </script>
+                <div class="modal-links">
+                    <a href="#" class="demo-link">Демо</a>
+                    <a href="#" class="code-link">Исходный код</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modal-3">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content">
+                <h2>Car Dealer System</h2>
+                <p>Комплексная система автосалонов для FiveM с возможностью тест-драйва, покупки, кастомизации и кредитования. Система включает в себя административную панель, систему учета и интеграцию с экономикой сервера.</p>
+                
+                <div class="modal-features">
+                    <h3>Основные особенности:</h3>
+                    <ul>
+                        <li>Полноценная система автосалонов</li>
+                        <li>Тест-драйв перед покупкой</li>
+                        <li>Глубокая кастомизация транспортных средств</li>
+                        <li>Система кредитования с различными условиями</li>
+                        <li>Интеграция с экономикой сервера</li>
+                        <li>Административная панель управления</li>
+                    </ul>
+                </div>
+                
+                <div class="tags">
+                    <span class="tag">Lua</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">UI/UX</span>
+                    <span class="tag">FiveM</span>
+                </div>
+                
+                <div class="modal-links">
+                    <a href="#" class="demo-link">Демо</a>
+                    <a href="#" class="code-link">Исходный код</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <audio loop id="bgMusic">
+        <source src="assets/audio/background.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+    
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/threejs.js"></script>
 </body>
 </html>

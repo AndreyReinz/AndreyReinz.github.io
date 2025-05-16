@@ -1,237 +1,300 @@
-// Mobile menu toggle
+// Инициализация приложения DOM
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
+    initTheme();
+    
+    initMusicPlayer();
+    
+    initBackToTop();
+    
+    initPreloader();
+    
+    initModals();
+    
+    initSectionAnimations();
+    
+    initRequestForm();
+});
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
-        mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
-            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+function initTheme() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+    
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+        
+        updateThreeJSBackground();
     });
+}
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
+function initMusicPlayer() {
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    const volumeSlider = document.getElementById('volumeSlider');
+    
+    bgMusic.volume = volumeSlider.value / 100;
+    
+    volumeSlider.addEventListener('input', function() {
+        bgMusic.volume = this.value / 100;
+    });
+    
+    musicToggle.addEventListener('click', function() {
+        if (bgMusic.paused) {
+            bgMusic.play().then(() => {
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+            }).catch(error => {
+                console.error("Audio playback failed:", error);
+            });
+        } else {
+            bgMusic.pause();
+            musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+        }
+    });
+}
+
+function initBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTop.style.display = 'flex';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    });
+    
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+function initPreloader() {
+    const preloader = document.querySelector('.preloader');
+    const preloaderProgress = document.querySelector('.preloader-progress');
+    const preloaderText = document.querySelector('.preloader-text');
+    const welcomeIntro = document.querySelector('.welcome-intro');
+    const nameIntro = document.querySelector('.name-intro');
+    const content = document.querySelector('.content');
+
+    const loadingTexts = [
+        "Загрузка ресурсов...",
+        "Оптимизация анимаций...",
+        "Подготовка 3D моделей...",
+        "Инициализация интерфейса...",
+        "Почти готово..."
+    ];
+
+    let progress = 0;
+    let textIndex = 0;
+
+    const loadInterval = setInterval(() => {
+        progress += 2;
+        preloaderProgress.style.width = `${progress}%`;
+
+        if (progress % 20 === 0 && textIndex < loadingTexts.length) {
+            preloaderText.style.opacity = 0;
+            setTimeout(() => {
+                preloaderText.textContent = loadingTexts[textIndex];
+                preloaderText.style.opacity = 1;
+                textIndex++;
+            }, 300);
+        }
+
+        if (progress >= 100) {
+            clearInterval(loadInterval);
+            preloader.classList.add('fade-out');
             
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+            setTimeout(() => {
+                welcomeIntro.classList.add('active');
+                const welcomeTexts = document.querySelectorAll('.welcome-text');
                 
-                // Close mobile menu if open
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                welcomeTexts.forEach((text, index) => {
+                    setTimeout(() => {
+                        text.classList.add('active');
+                    }, index * 500);
+                });
+
+                setTimeout(() => {
+                    welcomeIntro.classList.add('fade-out');
+                    
+                    setTimeout(() => {
+                        nameIntro.classList.add('active');
+                        
+                        setTimeout(() => {
+                            nameIntro.classList.add('fade-out');
+                            
+                            setTimeout(() => {
+                                content.classList.add('active');
+                                
+                                setTimeout(() => {
+                                    initParticles();
+                                    manageParticles();
+                                }, 1000);
+                                
+                            }, 1500);
+                        }, 2500);
+                    }, 500);
+                }, 3000);
+            }, 1000);
+        }
+    }, 50);
+}
+
+function initModals() {
+    const projectCards = document.querySelectorAll('.project-card');
+    const modalOverlays = document.querySelectorAll('.modal-overlay');
+    const modalCloseButtons = document.querySelectorAll('.modal-close');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    modalCloseButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.modal-overlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    modalOverlays.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+}
+
+function initSectionAnimations() {
+    const sections = document.querySelectorAll('.portfolio-section, .requests-section, .about-photo-section, .gallery-section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const section = entry.target;
+                
+                if (section.id === 'about') {
+                    animateAboutSection();
+                }
+                else if (section.id === 'projects') {
+                    animateProjectsSection();
+                }
+                else if (section.id === 'photo') {
+                    animatePhotoSection();
+                }
+                else if (section.id === 'gallery') {
+                    animateGallerySection();
+                }
+                else if (section.id === 'requests') {
+                    animateRequestsSection();
                 }
             }
         });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => {
+        observer.observe(section);
     });
+}
 
-    // Header shadow on scroll
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
+function animateAboutSection() {
+    const aboutTexts = document.querySelectorAll('.about-text');
+    const skills = document.querySelector('.skills');
+    
+    aboutTexts.forEach((text, index) => {
+        setTimeout(() => {
+            text.classList.add('active');
+        }, index * 300);
     });
+    
+    setTimeout(() => {
+        skills.classList.add('active');
+    }, aboutTexts.length * 300);
+}
 
-    // Background triangles animation
-    const trianglesBg = document.getElementById('trianglesBg');
-    const colors = ['rgba(255, 90, 95, 0.2)', 'rgba(255, 90, 95, 0.15)', 'rgba(255, 90, 95, 0.1)'];
+function animateProjectsSection() {
+    const projectCards = document.querySelectorAll('.project-card');
     
-    for (let i = 0; i < 30; i++) {
-        const triangle = document.createElement('div');
-        triangle.className = 'triangle';
-        
-        // Random parameters
-        const size = Math.random() * 20 + 10;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        
-        triangle.style.width = '0';
-        triangle.style.height = '0';
-        triangle.style.borderLeft = `${size/2}px solid transparent`;
-        triangle.style.borderRight = `${size/2}px solid transparent`;
-        triangle.style.borderBottom = `${size * 0.866}px solid ${color}`;
-        
-        // Positioning
-        triangle.style.left = `${Math.random() * 100}%`;
-        triangle.style.animationDuration = `${Math.random() * 10 + 10}s`;
-        triangle.style.animationDelay = `${Math.random() * 5}s`;
-        
-        trianglesBg.appendChild(triangle);
-    }
+    projectCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('active');
+        }, index * 200);
+    });
+}
 
-    // Gallery slider
-    const gallerySlider = document.getElementById('gallerySlider');
-    const gallerySlides = document.querySelectorAll('.gallery-slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const galleryDots = document.getElementById('galleryDots');
+function animatePhotoSection() {
+    const photoContent = document.querySelector('.photo-content');
+    photoContent.classList.add('active');
+}
+
+function animateGallerySection() {
+    const modelViewer = document.querySelector('.model-viewer');
+    modelViewer.classList.add('active');
+    init3DModel();
+}
+
+function animateRequestsSection() {
+    const requestContainer = document.querySelector('.request-container');
+    requestContainer.classList.add('active');
+}
+
+function initRequestForm() {
+    const requestForm = document.getElementById('requestForm');
     
-    let currentSlide = 0;
-    let slideInterval;
-    const slideTime = 5000; // 5 seconds
-    
-    // Create navigation dots
-    gallerySlides.forEach((slide, index) => {
-        const dot = document.createElement('div');
-        dot.className = 'gallery-dot';
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-            goToSlide(index);
-        });
-        galleryDots.appendChild(dot);
-    });
-    
-    // Go to specific slide
-    function goToSlide(n) {
-        currentSlide = (n + gallerySlides.length) % gallerySlides.length;
-        gallerySlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
-        // Update active dot
-        document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-        });
-        
-        // Reset auto-slide timer
-        resetInterval();
-    }
-    
-    // Next slide
-    function nextSlide() {
-        goToSlide(currentSlide + 1);
-    }
-    
-    // Previous slide
-    function prevSlide() {
-        goToSlide(currentSlide - 1);
-    }
-    
-    // Reset interval
-    function resetInterval() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, slideTime);
-    }
-    
-    // Button event listeners
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-    });
-    
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
-    });
-    
-    // Start auto-sliding
-    resetInterval();
-    
-    // Pause on hover
-    gallerySlider.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-    });
-    
-    gallerySlider.addEventListener('mouseleave', resetInterval);
-    
-    // Subscription modals
-    const plusModal = document.getElementById('plusModal');
-    const premiumModal = document.getElementById('premiumModal');
-    const planDetailsBtns = document.querySelectorAll('.plan-details-btn');
-    const modalCloseBtns = document.querySelectorAll('.modal-close');
-    
-    planDetailsBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const plan = btn.getAttribute('data-plan');
-            if (plan === 'plus') {
-                plusModal.classList.add('active');
-            } else if (plan === 'premium') {
-                premiumModal.classList.add('active');
-            }
-        });
-    });
-    
-    modalCloseBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            plusModal.classList.remove('active');
-            premiumModal.classList.remove('active');
-        });
-    });
-    
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === plusModal) {
-            plusModal.classList.remove('active');
-        }
-        if (e.target === premiumModal) {
-            premiumModal.classList.remove('active');
-        }
-    });
-    
-    // Scroll animations for steps
-    const steps = document.querySelectorAll('.step');
-    
-    function checkVisibility() {
-        steps.forEach((step, index) => {
-            const rect = step.getBoundingClientRect();
-            const isVisible = (rect.top <= window.innerHeight * 0.8 && rect.bottom >= 0);
+    if (requestForm) {
+        requestForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            if (isVisible) {
-                setTimeout(() => {
-                    step.classList.add('visible');
-                }, index * 200);
-            }
+            const name = document.getElementById('request-name').value;
+            const email = document.getElementById('request-email').value;
+            const service = document.getElementById('request-service').value;
+            const message = document.getElementById('request-message').value;
+            const budget = document.getElementById('request-budget').value;
+            
+            // Здесь можно добавить отправку данных на сервер
+            console.log('Форма отправлена:', { name, email, service, message, budget });
+            
+
+            alert(`Спасибо, ${name}! Ваша заявка отправлена. Я свяжусь с вами в ближайшее время.`);
+            
+            // Сбрасываем форму
+            requestForm.reset();
         });
     }
-    
-    // Check on load and scroll
-    window.addEventListener('load', checkVisibility);
-    window.addEventListener('scroll', checkVisibility);
-    
-    // Check first step if already visible
-    if (steps.length > 0) {
-        const firstStep = steps[0];
-        const rect = firstStep.getBoundingClientRect();
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-            checkVisibility();
-        }
-    }
+}
 
-    // Server status check
-    function checkServerStatus() {
-        // For demo purposes - in a real project this would be an API call
-        
-        // Russia
-        const russiaStatus = document.getElementById('russia-status');
-        const russiaStatusText = document.getElementById('russia-status-text');
-        const russiaPlayers = document.getElementById('russia-players');
-        
-        // Simulate online status (90% chance)
-        const isRussiaOnline = Math.random() > 0.1;
-        const russiaOnlineCount = isRussiaOnline ? Math.floor(Math.random() * 50) + 50 : 0;
-        
-        russiaStatus.className = isRussiaOnline ? 'online-dot' : 'online-dot offline';
-        russiaStatusText.textContent = isRussiaOnline ? 'Онлайн' : 'Оффлайн';
-        russiaPlayers.textContent = isRussiaOnline ? `${russiaOnlineCount}/128` : '0/128';
-        
-        // USA
-        const usaStatus = document.getElementById('usa-status');
-        const usaStatusText = document.getElementById('usa-status-text');
-        const usaPlayers = document.getElementById('usa-players');
-        
-        // Simulate online status (85% chance)
-        const isUsaOnline = Math.random() > 0.15;
-        const usaOnlineCount = isUsaOnline ? Math.floor(Math.random() * 60) + 40 : 0;
-        
-        usaStatus.className = isUsaOnline ? 'online-dot' : 'online-dot offline';
-        usaStatusText.textContent = isUsaOnline ? 'Онлайн' : 'Оффлайн';
-        usaPlayers.textContent = isUsaOnline ? `${usaOnlineCount}/128` : '0/128';
-    }
+function updateThreeJSBackground() {
+    const scene = window.threeJSScene;
     
-    // Check server status on load and every 30 seconds
-    checkServerStatus();
-    setInterval(checkServerStatus, 30000);
-});
+    if (scene) {
+        scene.background = new THREE.Color(
+            document.body.classList.contains('dark-mode') ? 0x1a1a1a : 0xf0f0f0
+        );
+    }
+}
+
+window.scrollToSection = function(sectionId) {
+    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+};
