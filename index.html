@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gates of Hell - WWII</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Тихое Место | RP сервер в Garry's Mod</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap');
-        
-        :root {
-            --gold: #D4AF37;
-            --dark: #1a1a1a;
-            --light: #f0f0f0;
-            --red: #8B0000;
-            --smoke: rgba(245, 245, 245, 0.8);
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -23,1734 +13,293 @@
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
+            font-family: 'Playfair Display', serif;
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            letter-spacing: 0.5px;
         }
         
-        /* Эффект загрузки */
-        .loading-screen {
+        .background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--dark);
+            background: url('https://i.ytimg.com/vi/VfdQ2mdpSts/maxresdefault.jpg') no-repeat center center;
+            background-size: cover;
+            filter: blur(8px) brightness(0.5);
+            z-index: -2;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+        
+        /* Прелоадер */
+        .loader {
+            background: #000;
+            background: radial-gradient(#222, #000);
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 99999;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            transition: opacity 1s;
         }
         
-        .loading-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        .loader-inner {
+            height: 60px;
+            width: 100px;
             position: relative;
         }
         
-        .loading-logo::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
+        .loader-line-wrap {
+            animation: spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+            box-sizing: border-box;
+            height: 50px;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            animation: loadingLine 2.5s infinite;
-        }
-        
-        @keyframes loadingLine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .loading-bar {
-            width: 300px;
-            height: 3px;
-            background-color: rgba(255,255,255,0.1);
-            margin-top: 20px;
             overflow: hidden;
-            border-radius: 3px;
-        }
-        
-        .loading-progress {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--dark), var(--gold));
-            transition: width 0.3s ease;
-        }
-        
-        /* Главный экран */
-        header {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-overlay {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
-            z-index: 2;
+            transform-origin: 50% 100%;
+            width: 100px;
         }
-        
-        .hero-video {
+        .loader-line {
+            border: 4px solid transparent;
+            border-radius: 100%;
+            box-sizing: border-box;
+            height: 100px;
+            left: 0;
+            margin: 0 auto;
             position: absolute;
+            right: 0;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
+            width: 100px;
+        }
+        .loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
+        .loader-line-wrap:nth-child(2) { animation-delay: -100ms; }
+        .loader-line-wrap:nth-child(3) { animation-delay: -150ms; }
+        .loader-line-wrap:nth-child(4) { animation-delay: -200ms; }
+        .loader-line-wrap:nth-child(5) { animation-delay: -250ms; }
+        
+        .loader-line-wrap:nth-child(1) .loader-line {
+            border-color: hsl(0, 80%, 60%);
+            height: 90px;
+            width: 90px;
+            top: 7px;
+        }
+        .loader-line-wrap:nth-child(2) .loader-line {
+            border-color: hsl(60, 80%, 60%);
+            height: 76px;
+            width: 76px;
+            top: 14px;
+        }
+        .loader-line-wrap:nth-child(3) .loader-line {
+            border-color: hsl(120, 80%, 60%);
+            height: 62px;
+            width: 62px;
+            top: 21px;
+        }
+        .loader-line-wrap:nth-child(4) .loader-line {
+            border-color: hsl(180, 80%, 60%);
+            height: 48px;
+            width: 48px;
+            top: 28px;
+        }
+        .loader-line-wrap:nth-child(5) .loader-line {
+            border-color: hsl(240, 80%, 60%);
+            height: 34px;
+            width: 34px;
+            top: 35px;
         }
         
-        .header-content {
+        @keyframes spin {
+            0%, 15% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .content {
             position: relative;
-            z-index: 3;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
-        }
-        
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 6rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(0,0,0,0.9);
-            opacity: 0;
-            transform: translateY(50px);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            position: relative;
-        }
-        
-        .main-title::before, .main-title::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 50px;
-            height: 2px;
-            background-color: var(--gold);
-        }
-        
-        .main-title::before {
-            left: -70px;
-        }
-        
-        .main-title::after {
-            right: -70px;
-        }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(50px);
-            line-height: 1.6;
-        }
-        
-        .cta-button {
-            padding: 15px 40px;
-            background-color: transparent;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: var(--gold);
-            transition: all 0.5s ease;
-            z-index: -1;
-        }
-        
-        .cta-button:hover {
-            color: var(--dark);
-        }
-        
-        .cta-button:hover::before {
-            left: 0;
-        }
-        
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--gold);
-            font-size: 1.2rem;
-            opacity: 0;
-            animation: bounce 2s infinite 3s;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-20px) translateX(-50%); }
-            60% { transform: translateY(-10px) translateX(-50%); }
-        }
-        
-        /* Навигация */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             padding: 20px;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-        
-        nav.scrolled {
-            background-color: rgba(0,0,0,0.9);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
         }
         
         .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-link {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1.1rem;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--gold);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--gold);
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Основные секции */
-        section {
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            margin-bottom: 70px;
-            color: var(--gold);
-            position: relative;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: var(--gold);
-        }
-        
-        /* Хронология */
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background: linear-gradient(to bottom, var(--gold), var(--red));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            opacity: 0;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: rgba(0,0,0,0.7);
-            position: relative;
-            border-radius: 6px;
-            border-left: 3px solid var(--gold);
-            transition: all 0.5s ease;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content {
-            border-left: none;
-            border-right: 3px solid var(--gold);
-        }
-        
-        .timeline-content:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-        
-        .timeline-date {
-            font-weight: bold;
-            color: var(--gold);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .timeline-title {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: var(--gold);
-            border: 4px solid var(--red);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .timeline-item:nth-child(even)::after {
-            left: -17px;
-        }
-        
-        /* Секция с техникой */
-        .tank-section {
-            background-color: rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        * {
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
-        }
-
-        *::-webkit-scrollbar {
-            display: none !important;
-        }
-        
-        .tank-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://i.pinimg.com/originals/29/50/7e/29507ec301b0fee9b3a753af9f70bc64.jpg') center/cover no-repeat;
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        .tank-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .tank-card {
-            width: 350px;
-            height: 450px;
-            perspective: 1000px;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        .tank-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
-        
-        .tank-card:hover .tank-card-inner {
-            transform: rotateY(180deg);
-        }
-        
-        .tank-card-front, .tank-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .tank-card-front {
-            background-color: var(--dark);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--gold);
-        }
-        
-        .tank-image {
-            height: 60%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .tank-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        }
-        
-        .tank-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .tank-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-        
-        .tank-card-back {
-            background-color: rgba(0,0,0,0.95);
-            transform: rotateY(180deg);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border: 1px solid var(--red);
-        }
-        
-        .tank-stats {
+            font-size: 5rem;
             margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
+            transform: translateY(-20px);
+            animation: slideUp 1.5s ease-out forwards;
+            animation-delay: 1s;
+            font-weight: 700;
         }
         
-        .stat-item {
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
+        .text-block {
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
         
-        .stat-label {
-            color: var(--gold);
-            font-weight: bold;
+        .text-line {
+            margin: 15px 0;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: textAppear 1.2s ease-out forwards;
         }
         
-        .stat-value {
-            color: var(--light);
-        }
+        .text-line:nth-child(1) { animation-delay: 1.5s; }
+        .text-line:nth-child(2) { animation-delay: 2s; }
+        .text-line:nth-child(3) { animation-delay: 2.5s; }
         
-        /* Интерактивная карта */
-        .interactive-map {
-            height: 700px;
+        .warning-block {
+            margin-top: 40px;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 3.5s;
+            opacity: 0;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .map-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-        }
-        
-        .map-marker {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--red);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 2;
-        }
-        
-        .map-marker::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: rgba(139, 0, 0, 0.5);
-            border-radius: 50%;
-            top: -5px;
-            left: -5px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(0.8);
-                opacity: 0.7;
-            }
-            70% {
-                transform: scale(1.3);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-        }
-        
-        .map-tooltip {
-            position: absolute;
-            background-color: rgba(0,0,0,0.9);
-            padding: 15px;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.5);
             border-radius: 5px;
-            border-left: 3px solid var(--gold);
-            max-width: 300px;
-            z-index: 3;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            box-shadow: 0 0 30px rgba(255,0,0,0.3);
         }
         
-        .map-marker:hover {
-            transform: translate(-50%, -50%) scale(1.3);
-        }
-        
-        .map-marker:hover + .map-tooltip {
-            opacity: 1;
-        }
-        
-        /* Секция с цитатами */
-        .quotes-section {
-            background-color: rgba(0,0,0,0.5);
-            padding: 100px 0;
-        }
-        
-        .quote-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-        
-        .quote-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: all 0.5s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-        
-        .quote-slide.active {
-            opacity: 1;
-        }
-        
-        .quote-text {
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            position: relative;
-        }
-        
-        .quote-text::before, .quote-text::after {
-            content: '"';
+        .warning {
+            color: #ff3a3a;
+            font-weight: bold;
             font-size: 2rem;
-            color: var(--gold);
-            position: absolute;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            position: relative;
         }
         
-        .quote-text::before {
-            top: -15px;
+        /* Эффект моргающей лампочки */
+        .warning::before {
+            content: "";
+            position: absolute;
             left: -25px;
-        }
-        
-        .quote-text::after {
-            bottom: -25px;
-            right: -25px;
-        }
-        
-        .quote-author {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--gold);
-        }
-        
-        .quote-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 15px;
-        }
-        
-        .quote-dot {
-            width: 12px;
-            height: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background: #ff3a3a;
             border-radius: 50%;
-            background-color: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 10px #ff3a3a, 0 0 20px #ff3a3a;
+            animation: blink 1.5s infinite steps(1);
         }
         
-        .quote-dot.active {
-            background-color: var(--gold);
-            transform: scale(1.2);
-        }
-        
-        /* Галерея */
-        .gallery-section {
-            background-color: var(--dark);
-        }
-        
-        .gallery-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .gallery-item {
-            height: 250px;
-            overflow: hidden;
-            border-radius: 5px;
-            position: relative;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-image {
-            transform: scale(1.1);
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-        
-        /* Подвал */
-        footer {
-            background-color: #000;
-            padding: 70px 0 30px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-        
-        .footer-description {
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .social-link {
-            color: var(--light);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-        
-        .social-link:hover {
-            color: var(--gold);
-        }
-        
-        .copyright {
-            margin-top: 30px;
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-        }
-        
-        /* Модальное окно */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .modal-content {
-            position: relative;
-            max-width: 900px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            background-color: var(--dark);
-            border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 30px;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            color: var(--light);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        
-        .close-modal:hover {
-            color: var(--gold);
-        }
-        
-        /* Анимации */
-        .animated {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in {
-            animation: fadeIn 1.5s ease forwards;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; }
             to { opacity: 1; }
         }
         
-        .smoke-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://4.bp.blogspot.com/-BfmF28ID6rY/XNPQruHNsPI/AAAAAAABGyQ/BFgO-NVWAwEDr8KtEaxx1-4OOxEM9TOCQCLcBGAs/s1600/Royalty_Free_Real_footage_Smoke_004_%25285%2529.gif') center/cover no-repeat;
-            animation: smoke 20s linear infinite;
-            opacity: 0.1;
-            z-index: 2;
-            pointer-events: none;
-        }
-        
-        @keyframes smoke {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 992px) {
-            .main-title {
-                font-size: 4rem;
+        @keyframes slideUp {
+            to { 
+                transform: translateY(0);
+                opacity: 1;
             }
-            
-            .section-title {
-                font-size: 2.5rem;
+        }
+        
+        @keyframes textAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
         @media (max-width: 768px) {
-            .main-title {
+            .logo {
                 font-size: 3rem;
             }
             
-            .main-title::before, .main-title::after {
-                width: 30px;
+            .text-line {
+                font-size: 1.3rem;
             }
             
-            .main-title::before {
-                left: -50px;
+            .warning {
+                font-size: 1.6rem;
             }
             
-            .main-title::after {
-                right: -50px;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-content {
-                border-left: 3px solid var(--gold) !important;
-                border-right: none !important;
-            }
-            
-            .timeline-item::after {
-                left: 15px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .main-title {
-                font-size: 2.5rem;
-                letter-spacing: 2px;
-            }
-            
-            .main-title::before, .main-title::after {
-                display: none;
-            }
-            
-            .tank-card {
-                width: 100%;
-                height: 400px;
+            .warning::before {
+                left: -20px;
+                width: 12px;
+                height: 12px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Эффект загрузки -->
-    <div class="loading-screen">
-        <div class="loading-logo">Gates of Hell</div>
-        <div class="loading-bar">
-            <div class="loading-progress"></div>
+    <div class="background"></div>
+    <div class="overlay"></div>
+    
+    <div class="loader" id="preloader">
+        <div class="loader-inner">
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
         </div>
     </div>
     
-    <!-- Навигация -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">Gates of Hell</a>
-            <div class="nav-links">
-                <a href="#timeline" class="nav-link">Хронология</a>
-                <a href="#tanks" class="nav-link">Техника</a>
-                <a href="#map" class="nav-link">Карта</a>
-                <a href="#gallery" class="nav-link">Галерея</a>
-                <a href="#quotes" class="nav-link">Цитаты</a>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Главный экран -->
-    <header>
-        <div class="hero-overlay"></div>
-        <video class="hero-video" autoplay muted loop>
-            <source src="https://www.sendgb.com/src/download_one.php?uploadId=EXC3cYIPlQ5&sc=30e0807866d2dd63211302ced9766eb7&file=ww2_video.mp4&private_id=J1HULoZFfC2e4pa" type="video/mp4">
-            <!-- Fallback image if video doesn't load -->
-            <img src="https://cs11.pikabu.ru/post_img/2018/08/10/9/og_og_1533915419238656476.jpg" alt="WWII Historical Footage">
-        </video>
-        <div class="smoke-effect"></div>
-        <div class="header-content">
-            <h1 class="main-title">Gates of Hell</h1>
-            <p class="subtitle">Погрузитесь в эпицентр самого масштабного военного конфликта в истории человечества. Hard RolePlay Проект в Garry's Mod.</p>
-            <button class="cta-button">Начать путешествие на фронте</button>
-            <div class="scroll-down">Листайте вниз</div>
-        </div>
-    </header>
-    
-    <!-- Хронология -->
-    <section id="timeline" class="timeline-section">
-        <h2 class="section-title">Хронология войны</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">1 сентября 1939</div>
-                    <h3 class="timeline-title">Начало войны</h3>
-                    <p>Германия вторгается в Польшу, что приводит к объявлению войны со стороны Великобритании и Франции. Начинается Вторая мировая война.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">22 июня 1941</div>
-                    <h3 class="timeline-title">Операция Барбаросса</h3>
-                    <p>Нацистская Германия начинает вторжение в Советский Союз, нарушив пакт о ненападении. Крупнейшая военная операция в истории.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">7 декабря 1941</div>
-                    <h3 class="timeline-title">Перл-Харбор</h3>
-                    <p>Японская авиация атакует американскую военно-морскую базу Перл-Харбор, что приводит к вступлению США в войну.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2 февраля 1943</div>
-                    <h3 class="timeline-title">Сталинградская битва</h3>
-                    <p>Завершение одного из самых кровопролитных сражений в истории, ставшего переломным моментом в войне на Восточном фронте.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">6 июня 1944</div>
-                    <h3 class="timeline-title">День Д</h3>
-                    <p>Высадка союзников в Нормандии, начало освобождения Западной Европы от нацистской оккупации. Крупнейшая десантная операция в истории.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">9 мая 1945</div>
-                    <h3 class="timeline-title">День Победы</h3>
-                    <p>Капитуляция Германии и окончание войны в Европе. Советский Союз празднует Великую Победу над нацизмом.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-date">2 сентября 1945</div>
-                    <h3 class="timeline-title">Окончание войны</h3>
-                    <p>Капитуляция Японии после атомных бомбардировок Хиросимы и Нагасаки. Окончание Второй мировой войны.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Техника -->
-    <section id="tanks" class="tank-section">
-        <h2 class="section-title">Легендарная техника</h2>
-        <div class="tank-container">
-            <div class="tank-card">
-                <div class="tank-card-inner">
-                    <div class="tank-card-front">
-                        <div class="tank-image" style="background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1686199/pub_5e4948986948c51ea07b3141_5e494ec892b8200f2f56c4fe/scale_1200');"></div>
-                        <div class="tank-info">
-                            <h3 class="tank-name">Т-34-85</h3>
-                            <p>Советский средний танк, символ победы в Великой Отечественной войне. Сочетание огневой мощи, защиты и подвижности.</p>
-                        </div>
-                    </div>
-                    <div class="tank-card-back">
-                        <div class="tank-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Страна:</span>
-                                <span class="stat-value">СССР</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Годы производства:</span>
-                                <span class="stat-value">1940-1958</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Экипаж:</span>
-                                <span class="stat-value">5 человек</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Вооружение:</span>
-                                <span class="stat-value">85-мм пушка ЗИС-С-53</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Броня:</span>
-                                <span class="stat-value">45-90 мм</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Скорость:</span>
-                                <span class="stat-value">55 км/ч</span>
-                            </div>
-                        </div>
-                        <button class="cta-button show-modal" data-modal="t34-modal">Подробнее</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tank-card">
-                <div class="tank-card-inner">
-                    <div class="tank-card-front">
-                        <div class="tank-image" style="background-image: url('https://static.encyclopedia.warthunder.com/images/jp_pzkpfw_vi_ausf_e_tiger.png');"></div>
-                        <div class="tank-info">
-                            <h3 class="tank-name">Tiger I</h3>
-                            <p>Немецкий тяжелый танк, один из самых мощных танков своего времени. Грозное оружие Вермахта.</p>
-                        </div>
-                    </div>
-                    <div class="tank-card-back">
-                        <div class="tank-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Страна:</span>
-                                <span class="stat-value">Германия</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Годы производства:</span>
-                                <span class="stat-value">1942-1944</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Экипаж:</span>
-                                <span class="stat-value">5 человек</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Вооружение:</span>
-                                <span class="stat-value">88-мм пушка KwK 36</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Броня:</span>
-                                <span class="stat-value">25-120 мм</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Скорость:</span>
-                                <span class="stat-value">38 км/ч</span>
-                            </div>
-                        </div>
-                        <button class="cta-button show-modal" data-modal="tiger-modal">Подробнее</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tank-card">
-                <div class="tank-card-inner">
-                    <div class="tank-card-front">
-                        <div class="tank-image" style="background-image: url('https://cdn140.picsart.com/261989770013212.png');"></div>
-                        <div class="tank-info">
-                            <h3 class="tank-name">M4 Sherman</h3>
-                            <p>Американский средний танк, основной танк союзников на Западном фронте. Производился в огромных количествах.</p>
-                        </div>
-                    </div>
-                    <div class="tank-card-back">
-                        <div class="tank-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Страна:</span>
-                                <span class="stat-value">США</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Годы производства:</span>
-                                <span class="stat-value">1941-1945</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Экипаж:</span>
-                                <span class="stat-value">5 человек</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Вооружение:</span>
-                                <span class="stat-value">75-мм пушка M3</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Броня:</span>
-                                <span class="stat-value">12-76 мм</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Скорость:</span>
-                                <span class="stat-value">48 км/ч</span>
-                            </div>
-                        </div>
-                        <button class="cta-button show-modal" data-modal="sherman-modal">Подробнее</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tank-card">
-                <div class="tank-card-inner">
-                    <div class="tank-card-front">
-                        <div class="tank-image" style="background-image: url('https://4.bp.blogspot.com/-BfmF28ID6rY/XNPQruHNsPI/AAAAAAABGyQ/BFgO-NVWAwEDr8KtEaxx1-4OOxEM9TOCQCLcBGAs/s1600/Royalty_Free_Real_footage_Smoke_004_%25285%2529.gif');"></div>
-                        <div class="tank-info">
-                            <h3 class="tank-name">Panther</h3>
-                            <p>Немецкий средний танк, сочетающий мощное вооружение, хорошую броню и подвижность. Один из лучших танков войны.</p>
-                        </div>
-                    </div>
-                    <div class="tank-card-back">
-                        <div class="tank-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Страна:</span>
-                                <span class="stat-value">Германия</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Годы производства:</span>
-                                <span class="stat-value">1943-1945</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Экипаж:</span>
-                                <span class="stat-value">5 человек</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Вооружение:</span>
-                                <span class="stat-value">75-мм пушка KwK 42</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Броня:</span>
-                                <span class="stat-value">16-100 мм</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Скорость:</span>
-                                <span class="stat-value">55 км/ч</span>
-                            </div>
-                        </div>
-                        <button class="cta-button show-modal" data-modal="panther-modal">Подробнее</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tank-card">
-                <div class="tank-card-inner">
-                    <div class="tank-card-front">
-                        <div class="tank-image" style="background-image: url('https://4.bp.blogspot.com/-BfmF28ID6rY/XNPQruHNsPI/AAAAAAABGyQ/BFgO-NVWAwEDr8KtEaxx1-4OOxEM9TOCQCLcBGAs/s1600/Royalty_Free_Real_footage_Smoke_004_%25285%2529.gif');"></div>
-                        <div class="tank-info">
-                            <h3 class="tank-name">ИС-2</h3>
-                            <p>Советский тяжелый танк прорыва с мощнейшим 122-мм орудием. Основной тяжелый танк Красной Армии в конце войны.</p>
-                        </div>
-                    </div>
-                    <div class="tank-card-back">
-                        <div class="tank-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Страна:</span>
-                                <span class="stat-value">СССР</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Годы производства:</span>
-                                <span class="stat-value">1943-1945</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Экипаж:</span>
-                                <span class="stat-value">4 человека</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Вооружение:</span>
-                                <span class="stat-value">122-мм пушка Д-25Т</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Броня:</span>
-                                <span class="stat-value">30-160 мм</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Скорость:</span>
-                                <span class="stat-value">37 км/ч</span>
-                            </div>
-                        </div>
-                        <button class="cta-button show-modal" data-modal="is2-modal">Подробнее</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tank-card">
-                <div class="tank-card-inner">
-                    <div class="tank-card-front">
-                        <div class="tank-image" style="background-image: url('https://4.bp.blogspot.com/-BfmF28ID6rY/XNPQruHNsPI/AAAAAAABGyQ/BFgO-NVWAwEDr8KtEaxx1-4OOxEM9TOCQCLcBGAs/s1600/Royalty_Free_Real_footage_Smoke_004_%25285%2529.gif');"></div>
-                        <div class="tank-info">
-                            <h3 class="tank-name">Tiger II</h3>
-                            <p>Немецкий тяжелый танк, также известный как "Королевский Тигр". Самый мощный серийный танк Второй мировой войны.</p>
-                        </div>
-                    </div>
-                    <div class="tank-card-back">
-                        <div class="tank-stats">
-                            <div class="stat-item">
-                                <span class="stat-label">Страна:</span>
-                                <span class="stat-value">Германия</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Годы производства:</span>
-                                <span class="stat-value">1944-1945</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Экипаж:</span>
-                                <span class="stat-value">5 человек</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Вооружение:</span>
-                                <span class="stat-value">88-мм пушка KwK 43</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Броня:</span>
-                                <span class="stat-value">40-185 мм</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Скорость:</span>
-                                <span class="stat-value">38 км/ч</span>
-                            </div>
-                        </div>
-                        <button class="cta-button show-modal" data-modal="tiger2-modal">Подробнее</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Интерактивная карта -->
-    <section id="map" class="interactive-map">
-        <img src="https://m.media-amazon.com/images/I/81Yd3GcEbPL.jpg" alt="Карта Второй мировой войны" class="map-image">
+    <div class="content">
+        <div class="logo">Тихое Место</div>
         
-        <!-- Маркеры для ключевых событий -->
-        <div class="map-marker" style="top: 30%; left: 50%;"></div>
-        <div class="map-tooltip" style="top: 30%; left: 52%;">
-            <h3>Сталинградская битва</h3>
-            <p>17 июля 1942 - 2 февраля 1943</p>
-            <p>Одно из самых кровопролитных сражений в истории, переломный момент в войне.</p>
+        <div class="text-block">
+            <div class="text-line">Если они услышат — ты умрёшь</div>
+            <div class="text-line">Добро пожаловать в тишину</div>
+            <div class="text-line">Это мир, где звук равносилен смерти. Где каждое неосторожное движение может стать последним.</div>
         </div>
         
-        <div class="map-marker" style="top: 40%; left: 20%;"></div>
-        <div class="map-tooltip" style="top: 40%; left: 22%;">
-            <h3>Высадка в Нормандии</h3>
-            <p>6 июня 1944</p>
-            <p>Крупнейшая десантная операция в истории, открытие Второго фронта.</p>
-        </div>
-        
-        <div class="map-marker" style="top: 25%; left: 80%;"></div>
-        <div class="map-tooltip" style="top: 25%; left: 82%;">
-            <h3>Битва за Берлин</h3>
-            <p>16 апреля - 2 мая 1945</p>
-            <p>Финальное сражение в Европе, взятие столицы Третьего рейха.</p>
-        </div>
-        
-        <div class="map-marker" style="top: 35%; left: 60%;"></div>
-        <div class="map-tooltip" style="top: 35%; left: 62%;">
-            <h3>Курская битва</h3>
-            <p>5 июля - 23 августа 1943</p>
-            <p>Крупнейшее танковое сражение в истории, окончательный переход инициативы к Красной Армии.</p>
-        </div>
-        
-        <div class="map-marker" style="top: 55%; left: 85%;"></div>
-        <div class="map-tooltip" style="top: 55%; left: 87%;">
-            <h3>Битва за Иводзиму</h3>
-            <p>19 февраля - 26 марта 1945</p>
-            <p>Ожесточенное сражение между США и Японией за стратегический остров в Тихом океане.</p>
-        </div>
-    </section>
-    
-    <!-- Цитаты -->
-    <section id="quotes" class="quotes-section">
-        <h2 class="section-title">Исторические цитаты</h2>
-        <div class="quote-slider">
-            <div class="quote-slide active">
-                <p class="quote-text">Никто не забыт, ничто не забыто.</p>
-                <p class="quote-author">Ольга Берггольц</p>
-            </div>
-            <div class="quote-slide">
-                <p class="quote-text">Великая Отечественная война показала, что советский народ способен творить чудеса и выходить победителем из самых трудных испытаний.</p>
-                <p class="quote-author">Георгий Жуков</p>
-            </div>
-            <div class="quote-slide">
-                <p class="quote-text">Наше дело правое. Враг будет разбит. Победа будет за нами!</p>
-                <p class="quote-author">Вячеслав Молотов</p>
-            </div>
-            <div class="quote-slide">
-                <p class="quote-text">Только тот народ, который чтит своих героев, может считаться великим.</p>
-                <p class="quote-author">Константин Рокоссовский</p>
-            </div>
-        </div>
-        <div class="quote-nav">
-            <div class="quote-dot active"></div>
-            <div class="quote-dot"></div>
-            <div class="quote-dot"></div>
-            <div class="quote-dot"></div>
-        </div>
-    </section>
-    
-    <!-- Галерея -->
-    <section id="gallery" class="gallery-section">
-        <h2 class="section-title">Фотоархив</h2>
-        <div class="gallery-container">
-            <div class="gallery-item">
-                <img src="https://i.ytimg.com/vi/eBD5lSEYpPs/maxresdefault.jpg" alt="Советские солдаты" class="gallery-image">
-                <div class="gallery-caption">Советские солдаты под Сталинградом, 1942</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://i.pinimg.com/originals/57/6e/59/576e5906443ab9e65f0835ca753366c1.jpg" alt="Высадка в Нормандии" class="gallery-image">
-                <div class="gallery-caption">Высадка союзников в Нормандии, 1944</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://cdn.culture.ru/images/1712effc-5286-55c7-97db-7c297e70e4b7" alt="Танковое сражение" class="gallery-image">
-                <div class="gallery-caption">Танковое сражение на Курской дуге, 1943</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://cdn.fishki.net/upload/post/201505/08/1526350/h2vzcq9w-yw.jpg" alt="Битва за Берлин" class="gallery-image">
-                <div class="gallery-caption">Советские солдаты в Берлине, 1945</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://stihi.ru/pics/2024/06/24/4401.jpg" alt="Парад Победы" class="gallery-image">
-                <div class="gallery-caption">Парад Победы на Красной площади, 1945</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://cdnstatic.rg.ru/uploads/images/187/18/43/form_photoreport_imageid_551372_2da505e1d9077661587103443.jpg" alt="Встреча на Эльбе" class="gallery-image">
-                <div class="gallery-caption">Встреча союзников на Эльбе, 1945</div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Подвал -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">Gates of Hell</div>
-            <p class="footer-description">Интерактивный архив Второй мировой войны. Проект создан с целью сохранения памяти о великом подвиге народов, победивших нацизм.</p>
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="copyright">© 2023 Gates of Hell. Все права защищены.</p>
-        </div>
-    </footer>
-    
-    <!-- Модальные окна -->
-    <div id="t34-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Т-34-85</h2>
-            <p>Советский средний танк периода Великой Отечественной войны, выпускавшийся с 1940 года, и с 1944 года являвшийся основной боевой единицей бронетанковых войск СССР.</p>
-            
-            <div style="display: flex; margin: 20px 0; gap: 20px;">
-                <img src="https://avatars.dzeninfra.ru/get-zen_doc/1686199/pub_5e4948986948c51ea07b3141_5e494ec892b8200f2f56c4fe/scale_1200" alt="Т-34-85" style="width: 50%; border-radius: 5px;">
-                <div>
-                    <h3>Технические характеристики</h3>
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li><strong>Экипаж:</strong> 5 человек</li>
-                        <li><strong>Боевая масса:</strong> 32 т</li>
-                        <li><strong>Длина:</strong> 6,1 м</li>
-                        <li><strong>Ширина:</strong> 3 м</li>
-                        <li><strong>Высота:</strong> 2,7 м</li>
-                        <li><strong>Броня:</strong> 45-90 мм</li>
-                        <li><strong>Вооружение:</strong> 85-мм пушка ЗИС-С-53, 2 × 7,62-мм пулемёта ДТ</li>
-                        <li><strong>Двигатель:</strong> В-2-34, 500 л.с.</li>
-                        <li><strong>Скорость:</strong> 55 км/ч</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>Историческая справка</h3>
-            <p>Т-34-85 был разработан в 1943 году как ответ на появление у немцев новых танков "Тигр" и "Пантера". Увеличенная башня позволила разместить более мощное 85-мм орудие и увеличить экипаж до 5 человек (добавился наводчик).</p>
-            <p>Танк сочетал в себе хорошую подвижность, мощное вооружение и рациональные углы наклона брони. Простота конструкции позволяла производить его в огромных количествах. Всего было выпущено около 35 тысяч Т-34 всех модификаций.</p>
-            <p>Т-34-85 оставался на вооружении многих стран до конца XX века и принимал участие во множестве конфликтов по всему миру.</p>
+        <div class="warning-block">
+            <div class="warning">ПРЕДУПРЕЖДЕНИЕ: НЕ ИЗДАВАЙТЕ ЗВУКОВ</div>
+            <div class="warning">Выживание зависит от вашей способности оставаться незамеченным</div>
         </div>
     </div>
-    
-    <div id="tiger-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Panzerkampfwagen VI Tiger I</h2>
-            <p>Немецкий тяжёлый танк времён Второй мировой войны, разработанный в 1942 году фирмой Henschel. Один из самых известных танков войны.</p>
-            
-            <div style="display: flex; margin: 20px 0; gap: 20px;">
-                <img src="https://static.encyclopedia.warthunder.com/images/jp_pzkpfw_vi_ausf_e_tiger.png" alt="Tiger I" style="width: 50%; border-radius: 5px;">
-                <div>
-                    <h3>Технические характеристики</h3>
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li><strong>Экипаж:</strong> 5 человек</li>
-                        <li><strong>Боевая масса:</strong> 56 т</li>
-                        <li><strong>Длина:</strong> 6,3 м</li>
-                        <li><strong>Ширина:</strong> 3,7 м</li>
-                        <li><strong>Высота:</strong> 2,9 м</li>
-                        <li><strong>Броня:</strong> 25-120 мм</li>
-                        <li><strong>Вооружение:</strong> 88-мм пушка KwK 36, 2 × 7,92-мм пулемёта MG 34</li>
-                        <li><strong>Двигатель:</strong> Maybach HL 230 P45, 700 л.с.</li>
-                        <li><strong>Скорость:</strong> 38 км/ч</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>Историческая справка</h3>
-            <p>Tiger I был разработан как ответ на советские танки КВ и Т-34. Его 88-мм пушка могла поражать любые танки противника на больших дистанциях, а мощная броня делала его практически неуязвимым для большинства противотанковых средств.</p>
-            <p>Однако танк был сложен в производстве и обслуживании, имел низкую надежность и малую подвижность. Всего было выпущено 1354 танка Tiger I.</p>
-            <p>Несмотря на малочисленность, Tiger I оказал значительное психологическое воздействие на противника и стал одним из символов немецкой бронетехники.</p>
-        </div>
-    </div>
-    
-    <div id="sherman-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>M4 Sherman</h2>
-            <p>Американский средний танк периода Второй мировой войны, выпускавшийся с 1942 года. Широко использовался союзниками на всех фронтах.</p>
-            
-            <div style="display: flex; margin: 20px 0; gap: 20px;">
-                <img src="https://cdn140.picsart.com/261989770013212.png" alt="M4 Sherman" style="width: 50%; border-radius: 5px;">
-                <div>
-                    <h3>Технические характеристики</h3>
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li><strong>Экипаж:</strong> 5 человек</li>
-                        <li><strong>Боевая масса:</strong> 30,3 т</li>
-                        <li><strong>Длина:</strong> 5,84 м</li>
-                        <li><strong>Ширина:</strong> 2,62 м</li>
-                        <li><strong>Высота:</strong> 2,74 м</li>
-                        <li><strong>Броня:</strong> 12-76 мм</li>
-                        <li><strong>Вооружение:</strong> 75-мм пушка M3, 1 × 12,7-мм пулемёт M2HB, 2 × 7,62-мм пулемёта M1919A4</li>
-                        <li><strong>Двигатель:</strong> Continental R975 C1, 400 л.с.</li>
-                        <li><strong>Скорость:</strong> 48 км/ч</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>Историческая справка</h3>
-            <p>M4 Sherman стал основным танком американских войск и поставлялся союзникам по ленд-лизу, включая СССР. Всего было выпущено около 50 тысяч танков различных модификаций.</p>
-            <p>Танк отличался надежностью, простотой в производстве и обслуживании, но уступал немецким танкам по вооружению и бронированию. Компенсировалось это численным превосходством и хорошей тактикой применения.</p>
-            <p>Sherman оставался на вооружении многих стран до 1970-х годов и участвовал во множестве послевоенных конфликтов.</p>
-        </div>
-    </div>
-    
-    <div id="panther-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Panzerkampfwagen V Panther</h2>
-            <p>Немецкий средний танк периода Второй мировой войны, разработанный фирмой MAN в 1943 году. Считается одним из лучших танков войны.</p>
-            
-            <div style="display: flex; margin: 20px 0; gap: 20px;">
-                <img src="https://wargamingamerica.com/images/encyclopedia/vehicles/pzkpfwV.png" alt="Panther" style="width: 50%; border-radius: 5px;">
-                <div>
-                    <h3>Технические характеристики</h3>
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li><strong>Экипаж:</strong> 5 человек</li>
-                        <li><strong>Боевая масса:</strong> 44,8 т</li>
-                        <li><strong>Длина:</strong> 6,87 м</li>
-                        <li><strong>Ширина:</strong> 3,27 м</li>
-                        <li><strong>Высота:</strong> 2,99 м</li>
-                        <li><strong>Броня:</strong> 16-100 мм</li>
-                        <li><strong>Вооружение:</strong> 75-мм пушка KwK 42, 2 × 7,92-мм пулемёта MG 34</li>
-                        <li><strong>Двигатель:</strong> Maybach HL 230 P30, 700 л.с.</li>
-                        <li><strong>Скорость:</strong> 55 км/ч</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>Историческая справка</h3>
-            <p>Panther был разработан как ответ на советский Т-34 и должен был заменить PzKpfw III и IV. Танк сочетал мощное вооружение, хорошую броню и подвижность.</p>
-            <p>75-мм пушка KwK 42 с длинным стволом превосходила по бронепробиваемости большинство танковых орудий того времени. Наклонная броня обеспечивала хорошую защиту.</p>
-            <p>Однако танк был сложен в производстве и обслуживании, имел проблемы с надежностью. Всего было выпущено около 6000 Panther.</p>
-        </div>
-    </div>
-    
-    <div id="is2-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>ИС-2</h2>
-            <p>Советский тяжёлый танк периода Великой Отечественной войны, разработанный в 1943 году. Аббревиатура ИС означает "Иосиф Сталин".</p>
-            
-            <div style="display: flex; margin: 20px 0; gap: 20px;">
-                <img src="https://wargamingamerica.com/images/encyclopedia/vehicles/is.png" alt="ИС-2" style="width: 50%; border-radius: 5px;">
-                <div>
-                    <h3>Технические характеристики</h3>
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li><strong>Экипаж:</strong> 4 человека</li>
-                        <li><strong>Боевая масса:</strong> 46 т</li>
-                        <li><strong>Длина:</strong> 6,77 м</li>
-                        <li><strong>Ширина:</strong> 3,07 м</li>
-                        <li><strong>Высота:</strong> 2,73 м</li>
-                        <li><strong>Броня:</strong> 30-160 мм</li>
-                        <li><strong>Вооружение:</strong> 122-мм пушка Д-25Т, 1 × 12,7-мм пулемёт ДШК, 3 × 7,62-мм пулемёта ДТ</li>
-                        <li><strong>Двигатель:</strong> В-2-ИС, 520 л.с.</li>
-                        <li><strong>Скорость:</strong> 37 км/ч</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>Историческая справка</h3>
-            <p>ИС-2 был разработан для прорыва сильно укрепленных оборонительных полос противника. Его 122-мм орудие могло эффективно бороться с любыми немецкими танками, включая "Тигры" и "Пантеры".</p>
-            <p>Танк отличался мощным бронированием и фугасным действием снарядов, что делало его эффективным против пехоты и укреплений. Всего было выпущено около 3800 ИС-2.</p>
-            <p>ИС-2 оставался на вооружении Советской Армии до 1950-х годов, а в некоторых странах - до 1990-х.</p>
-        </div>
-    </div>
-    
-    <div id="tiger2-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Panzerkampfwagen VI Tiger II</h2>
-            <p>Немецкий тяжёлый танк конца Второй мировой войны, также известный как "Королевский Тигр". Самый мощный серийный танк войны.</p>
-            
-            <div style="display: flex; margin: 20px 0; gap: 20px;">
-                <img src="https://wargamingamerica.com/images/encyclopedia/vehicles/pzkpfwVI.png" alt="Tiger II" style="width: 50%; border-radius: 5px;">
-                <div>
-                    <h3>Технические характеристики</h3>
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li><strong>Экипаж:</strong> 5 человек</li>
-                        <li><strong>Боевая масса:</strong> 68 т</li>
-                        <li><strong>Длина:</strong> 7,38 м</li>
-                        <li><strong>Ширина:</strong> 3,75 м</li>
-                        <li><strong>Высота:</strong> 3,09 м</li>
-                        <li><strong>Броня:</strong> 40-185 мм</li>
-                        <li><strong>Вооружение:</strong> 88-мм пушка KwK 43, 2 × 7,92-мм пулемёта MG 34</li>
-                        <li><strong>Двигатель:</strong> Maybach HL 230 P30, 700 л.с.</li>
-                        <li><strong>Скорость:</strong> 38 км/ч</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>Историческая справка</h3>
-            <p>Tiger II был разработан в 1943 году как преемник Tiger I. Танк сочетал мощное 88-мм орудие с длинным стволом и исключительно сильное бронирование.</p>
-            <p>Однако из-за огромной массы танк был малоподвижен, имел низкую надежность и расходовал много топлива. Всего было выпущено 489 Tiger II.</p>
-            <p>Несмотря на малочисленность, Tiger II оказал значительное психологическое воздействие на противника и стал символом немецкой бронетехники конца войны.</p>
-        </div>
-    </div>
-    
-    <!-- Font Awesome для иконок -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    
+
     <script>
-        // Загрузка страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            // Анимация загрузки
-            let progress = 0;
-            const loadingInterval = setInterval(() => {
-                progress += 5;
-                document.querySelector('.loading-progress').style.width = progress + '%';
-                
-                if (progress >= 100) {
-                    clearInterval(loadingInterval);
-                    document.querySelector('.loading-screen').style.opacity = 0;
-                    setTimeout(() => {
-                        document.querySelector('.loading-screen').style.display = 'none';
-                        animateElements();
-                    }, 500);
-                }
-            }, 100);
-            
-            // Анимация элементов при скролле
-            function animateElements() {
-                const headerElements = document.querySelectorAll('.main-title, .subtitle, .cta-button, .scroll-down');
-                headerElements.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.classList.add('animated');
-                    }, 200 + index * 200);
-                });
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('animated');
-                        }
-                    });
-                }, { threshold: 0.1 });
-                
-                document.querySelectorAll('.section-title, .timeline-item, .tank-card, .map-marker, .gallery-item').forEach(el => {
-                    observer.observe(el);
-                });
-            }
-            
-            // Взаимодействие с картой
-            const markers = document.querySelectorAll('.map-marker');
-            markers.forEach(marker => {
-                marker.addEventListener('click', function() {
-                    const tooltip = this.nextElementSibling;
-                    tooltip.style.opacity = tooltip.style.opacity === '1' ? '0' : '1';
-                });
-            });
-            
-            // 3D эффект для карточек танков
-            const tankCards = document.querySelectorAll('.tank-card');
-            tankCards.forEach(card => {
-                card.addEventListener('mousemove', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const angleY = (x - centerX) / 20;
-                    const angleX = (centerY - y) / 20;
-                    
-                    this.querySelector('.tank-card-inner').style.transform = `rotateY(${angleY}deg) rotateX(${angleX}deg)`;
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.querySelector('.tank-card-inner').style.transform = 'rotateY(0) rotateX(0)';
-                });
-            });
-            
-            // Слайдер цитат
-            const quotes = document.querySelectorAll('.quote-slide');
-            const dots = document.querySelectorAll('.quote-dot');
-            let currentSlide = 0;
-            
-            function showSlide(index) {
-                quotes.forEach(quote => quote.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                quotes[index].classList.add('active');
-                dots[index].classList.add('active');
-                currentSlide = index;
-            }
-            
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => showSlide(index));
-            });
-            
-            setInterval(() => {
-                let nextSlide = (currentSlide + 1) % quotes.length;
-                showSlide(nextSlide);
-            }, 5000);
-            
-            // Модальные окна
-            const modalButtons = document.querySelectorAll('.show-modal');
-            const modals = document.querySelectorAll('.modal');
-            const closeButtons = document.querySelectorAll('.close-modal');
-            
-            modalButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const modalId = button.getAttribute('data-modal');
-                    document.getElementById(modalId).classList.add('active');
-                });
-            });
-            
-            closeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    button.closest('.modal').classList.remove('active');
-                });
-            });
-            
-            modals.forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove('active');
-                    }
-                });
-            });
-            
-            // Плавная прокрутка
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-            
-            // Эффект появления навигации при скролле
-            window.addEventListener('scroll', function() {
-                const nav = document.querySelector('nav');
-                if (window.scrollY > 100) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            });
-            
-            // Запуск анимации дыма
-            const smoke = document.querySelector('.smoke-effect');
-            setTimeout(() => {
-                smoke.style.animation = 'smoke 20s linear infinite';
-            }, 1000);
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 1000);
+            }, 1500);
         });
     </script>
 </body>
