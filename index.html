@@ -3,518 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrey Reinz - Frontend Developer</title>
-    
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link rel="stylesheet" href="css/style.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <title>Для тебя, Соня</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #ffd1dc, #ffb6c1, #ffc6d9);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #8a2d56;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        /* Стили прелоадера */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffd1dc, #ffb6c1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1.5s ease, visibility 1.5s ease;
+        }
+
+        .heart-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            background-color: #ff4d6d;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.7);
+            transition: all 0.5s ease;
+            animation: heartbeat 1.8s infinite;
+        }
+
+        .heart:hover {
+            transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+            box-shadow: 0 0 40px rgba(255, 77, 109, 0.9);
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background-color: #ff4d6d;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -50px;
+        }
+
+        .instruction {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #a64d79;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+
+        .message-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            position: relative;
+            width: 100%;
+            min-height: 80vh;
+        }
+
+        .message-block {
+            position: absolute;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .message-block h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #ff4d6d;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-block p {
+            font-size: 1.3rem;
+            color: #8a2d56;
+            line-height: 1.6;
+        }
+
+        .block-1 {
+            top: 10%;
+            left: 5%;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 77, 109, 0.3);
+        }
+
+        .block-2 {
+            top: 15%;
+            right: 5%;
+            background: rgba(255, 240, 245, 0.5);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .block-3 {
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.35);
+            border: 2px solid rgba(255, 20, 147, 0.3);
+        }
+
+        .block-4 {
+            bottom: 15%;
+            right: 10%;
+            background: rgba(255, 240, 245, 0.45);
+            border: 2px solid rgba(219, 112, 147, 0.3);
+        }
+
+        .block-5 {
+            bottom: 10%;
+            left: 20%;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(199, 21, 133, 0.3);
+        }
+
+        .signature {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #ff4d6d;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .hearts-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 77, 109, 0.4);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Анимации для блоков */
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes zoomIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+            25% { transform: translate(-50%, -50%) rotate(45deg) scale(1.1); }
+            50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.05); }
+            75% { transform: translate(-50%, -50%) rotate(45deg) scale(1.15); }
+            100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1) rotate(180deg); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .message-block {
+                max-width: 300px;
+                padding: 20px;
+            }
+            
+            .message-block h1 {
+                font-size: 2.2rem;
+            }
+            
+            .message-block p {
+                font-size: 1.1rem;
+            }
+            
+            .block-1, .block-2, .block-3, .block-4, .block-5 {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+                transform: none;
+                margin: 20px auto;
+            }
+            
+            .message-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .signature {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 30px;
+            }
+            
+            .heart-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .heart {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .heart:before,
+            .heart:after {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .heart:before {
+                top: -40px;
+            }
+            
+            .heart:after {
+                left: -40px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="preloader">
-        <div class="preloader-snowflake">
-            <i class="fas fa-snowflake"></i>
+    <div class="preloader" id="preloader">
+        <div class="heart-container">
+            <div class="heart" id="heart"></div>
         </div>
-        <div class="preloader-bar">
-            <div class="preloader-progress"></div>
-        </div>
-        <div class="preloader-text">Загрузка ресурсов...</div>
+        <div class="instruction">Нажми на сердечко</div>
     </div>
-    
-    <div class="welcome-intro">
-        <div class="welcome-text">Welcome</div>
-        <div class="welcome-text">to</div>
-        <div class="welcome-text">Portfolio</div>
-        <div class="welcome-text">OniX Dev | Minimalism</div>
-    </div>
-    
-    <div class="name-intro">
-        <div class="intro-name">ANDREY REINZ</div>
-    </div>
-    
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </button>
-    
-    <video class="video-background" autoplay muted loop playsinline>
-        <source src="https://cdn.free-stock.video/412023/forest-fog-mountain-snow-winter-snow-outdoors-55315-small.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео тег.
-    </video>
-    
-    <div class="video-overlay"></div>
-    
-    <canvas id="particles-js" class="particles-js-canvas-el"></canvas>
-    
-    <div class="content">
-        <section class="main-screen" id="home">
-            <div class="name-container">
-                <h1 class="name-title" id="nameTitle">
-                    <span class="name-letter">A</span>
-                    <span class="name-letter">n</span>
-                    <span class="name-letter">d</span>
-                    <span class="name-letter">r</span>
-                    <span class="name-letter">e</span>
-                    <span class="name-letter">y</span>
-                    <span class="name-letter"> </span>
-                    <span class="name-letter">R</span>
-                    <span class="name-letter">e</span>
-                    <span class="name-letter">i</span>
-                    <span class="name-letter">n</span>
-                    <span class="name-letter">z</span>
-                </h1>
-                <h2 class="subtitle">Frontend Developer & FiveM Scripter</h2>
-                <h2 class="subtitle">CEO OniX Development</h2>
-            </div>
-            <div class="scroll-down" onclick="scrollToSection('about')">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </section>
-        
-        <section class="portfolio-section" id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p class="about-text">
-                    Привет! Я Андрей - профессиональный фронтенд разработчик с более чем 3-летним опытом создания современных веб-приложений. 
-                    Специализируюсь на создании интерактивных пользовательских интерфейсов с плавными анимациями и безупречным UX.
-                </p>
-                <p class="about-text">
-                    Также я профессионально разрабатываю скрипты для FiveM, создавая уникальные игровые механики, реалистичные системы 
-                    и интуитивные интерфейсы для RP серверов GTA V.
-                </p>
-                <div class="skills">
-                    <div class="skill">HTML5</div>
-                    <div class="skill">CSS3</div>
-                    <div class="skill">JavaScript</div>
-                    <div class="skill">React</div>
-                    <div class="skill">Vue.js</div>
-                    <div class="skill">Lua</div>
-                    <div class="skill">FiveM</div>
-                    <div class="skill">UI/UX Design</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- проекты -->
-        <section class="portfolio-section" id="projects">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-modal="modal-1">
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14.5 3.5C14.5 3.5 14.5 5.5 12 5.5C9.5 5.5 9.5 3.5 9.5 3.5H7.5L4.20711 6.79289C3.81658 7.18342 3.81658 7.81658 4.20711 8.20711L6.5 10.5V20.5H17.5V10.5L19.7929 8.20711C20.1834 7.81658 20.1834 7.18342 19.7929 6.79289L16.5 3.5H14.5Z"/>
-                        </svg>
-                    </div>
-                    <h3>FiveM Roleplay UI</h3>
-                    <p>Комплексный пользовательский интерфейс для ролевых серверов FiveM с системой инвентаря, HUD, диалогов и кастомизацией персонажа.</p>
-                    <div class="tags">
-                        <span class="tag">Lua</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">FiveM</span>
-                    </div>
-                    <div class="shine"></div>
-                    <div class="background">
-                        <div class="tiles">
-                            <div class="tile tile-1">ЗАКАЖИ</div>
-                            <div class="tile tile-2"></div>
-                            <div class="tile tile-3">Хочу работать</div>
-                            <div class="tile tile-4">LOVE</div>
-                            <div class="tile tile-5"></div>
-                            <div class="tile tile-6">Сделаю</div>
-                            <div class="tile tile-7"></div>
-                            <div class="tile tile-8">СКРИПТ</div>
-                            <div class="tile tile-9"></div>
-                            <div class="tile tile-10">Купи</div>
-                        </div>
-                        <div class="line line-1"></div>
-                        <div class="line line-2"></div>
-                        <div class="line line-3"></div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-modal="modal-2">
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4.5 9.5V5.5C4.5 4.94772 4.94772 4.5 5.5 4.5H9.5C10.0523 4.5 10.5 4.94772 10.5 5.5V9.5C10.5 10.0523 10.0523 10.5 9.5 10.5H5.5C4.94772 10.5 4.5 10.0523 4.5 9.5Z"/>
-                            <path d="M13.5 18.5V14.5C13.5 13.9477 13.9477 13.5 14.5 13.5H18.5C19.0523 13.5 19.5 13.9477 19.5 14.5V18.5C19.5 19.0523 19.0523 19.5 18.5 19.5H14.5C13.9477 19.5 13.5 19.0523 13.5 18.5Z"/>
-                            <path d="M4.5 19.5L7.5 13.5L10.5 19.5H4.5Z"/>
-                            <path d="M16.5 4.5C18.1569 4.5 19.5 5.84315 19.5 7.5C19.5 9.15685 18.1569 10.5 16.5 10.5C14.8431 10.5 13.5 9.15685 13.5 7.5C13.5 5.84315 14.8431 4.5 16.5 4.5Z"/>
-                        </svg>
-                    </div>
-                    <h3>Reg gun System</h3>
-                    <p>Скрипт который помогает выдовать оружие по заявки для игроков.</p>
-                    <div class="tags">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">GSAP</span>
-                    </div>
-                    <div class="shine"></div>
-                    <div class="background">
-                        <div class="tiles">
-                            <div class="tile tile-1">КУПИ</div>
-                            <div class="tile tile-2">СУКА</div>
-                            <div class="tile tile-3">НУ ЖЕ БЛЯТЬ</div>
-                            <div class="tile tile-4">Buy</div>
-                            <div class="tile tile-5"></div>
-                            <div class="tile tile-6">Please</div>
-                            <div class="tile tile-7"></div>
-                            <div class="tile tile-8">Love</div>
-                            <div class="tile tile-9"></div>
-                            <div class="tile tile-10">tatoo</div>
-                        </div>
-                        <div class="line line-1"></div>
-                        <div class="line line-2"></div>
-                        <div class="line line-3"></div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-modal="modal-3">
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3L3 8L12 13L21 8L12 3Z"/>
-                            <path d="M3 8L12 13L21 8"/>
-                            <path d="M3 16L12 21L21 16"/>
-                            <path d="M3 12L12 17L21 12"/>
-                        </svg>
-                    </div>
-                    <h3>Car Dealer System</h3>
-                    <p>Комплексная система автосалонов для FiveM с возможностью тест-драйва, покупки, кастомизации и кредитования.</p>
-                    <div class="tags">
-                        <span class="tag">Lua</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">UI/UX</span>
-                        <span class="tag">FiveM</span>
-                    </div>
-                    <div class="shine"></div>
-                    <div class="background">
-                        <div class="tiles">
-                            <div class="tile tile-1">BUY</div>
-                            <div class="tile tile-2">Эффект топ</div>
-                            <div class="tile tile-3"></div>
-                            <div class="tile tile-4">Love</div>
-                            <div class="tile tile-5"></div>
-                            <div class="tile tile-6">Реинз</div>
-                            <div class="tile tile-7"></div>
-                            <div class="tile tile-8"></div>
-                            <div class="tile tile-9">давай давай</div>
-                            <div class="tile tile-10">ДЕЛАЙ</div>
-                        </div>
-                        <div class="line line-1"></div>
-                        <div class="line line-2"></div>
-                        <div class="line line-3"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Добавьте эту секцию после секции проектов -->
-        <section class="portfolio-section" id="tech-stack">
-            <h2 class="section-title">Tech Stack</h2>
+    <div class="container">
+        <div class="message-container" id="messageContainer">
+            <div class="message-block block-1" id="block1">
+                <h1>Соня!</h1>
+                <p>Ты мне очень сильно нравишься!</p>
+            </div>
             
-            <div class="tech-stack-container">
-                <!-- Frontend -->
-                <div class="tech-card animate pop">
-                    <div class="tech-overlay">
-                        <div class="overlay-content animate slide-left delay-2">
-                            <h1 class="animate slide-left pop delay-4">
-                                <i class="fas fa-code"></i> Frontend
-                            </h1>
-                            <p class="animate slide-left pop delay-5">Основные технологии фронтенд разработки</p>
-                        </div>
-                        <div class="tech-image frontend-image animate slide delay-5"></div>
-                        <div class="tech-dots animate">
-                            <div class="dot animate slide-up delay-6"></div>
-                            <div class="dot animate slide-up delay-7"></div>
-                            <div class="dot animate slide-up delay-8"></div>
-                        </div>
-                    </div>
-                    <div class="tech-text">
-                        <p><i class="fab fa-js tech-icon"></i> <strong>JavaScript</strong> - основной язык для создания интерактивных веб-интерфейсов.</p>
-                        <p><i class="fas fa-star tech-icon"></i> <strong>TypeScript</strong> - строго типизированный JavaScript для масштабируемых приложений.</p>
-                        <p><i class="fab fa-react tech-icon"></i> <strong>React</strong> - библиотека для построения пользовательских интерфейсов.</p>
-                        <p><i class="fas fa-bolt tech-icon"></i> <strong>SolidJS</strong> - реактивная библиотека с высокой производительностью.</p>
-                        <p><i class="fas fa-magic tech-icon"></i> <strong>Svelte</strong> - компилятор для создания эффективных веб-приложений.</p>
-                    </div>
-                </div>
-                
-                <!-- Styling & Tools -->
-                <div class="tech-card animate pop">
-                    <div class="tech-overlay">
-                        <div class="overlay-content animate slide-left delay-2">
-                            <h1 class="animate slide-left pop delay-4">
-                                <i class="fas fa-paint-brush"></i> Styling & Tools
-                            </h1>
-                            <p class="animate slide-left pop delay-5">Инструменты для стилизации и сборки</p>
-                        </div>
-                        <div class="tech-image tools-image animate slide delay-5"></div>
-                        <div class="tech-dots animate">
-                            <div class="dot animate slide-up delay-6"></div>
-                            <div class="dot animate slide-up delay-7"></div>
-                            <div class="dot animate slide-up delay-8"></div>
-                        </div>
-                    </div>
-                    <div class="tech-text">
-                        <p><i class="fas fa-wind tech-icon"></i> <strong>TailwindCSS</strong> - утилитарный CSS-фреймворк для быстрой разработки.</p>
-                        <p><i class="fas fa-atom tech-icon"></i> <strong>UnoCSS</strong> - атомарный CSS-движок с высокой производительностью.</p>
-                        <p><i class="fas fa-rocket tech-icon"></i> <strong>Vite</strong> - современный инструмент для сборки фронтенд-приложений.</p>
-                        <p><i class="fas fa-bolt tech-icon"></i> <strong>Bun</strong> - быстрая JavaScript-среда выполнения и набор инструментов.</p>
-                    </div>
-                </div>
-                
-                <!-- Backend & DB -->
-                <div class="tech-card animate pop">
-                    <div class="tech-overlay">
-                        <div class="overlay-content animate slide-left delay-2">
-                            <h1 class="animate slide-left pop delay-4">
-                                <i class="fas fa-server"></i> Backend & DB
-                            </h1>
-                            <p class="animate slide-left pop delay-5">Серверные технологии и базы данных</p>
-                        </div>
-                        <div class="tech-image backend-image animate slide delay-5"></div>
-                        <div class="tech-dots animate">
-                            <div class="dot animate slide-up delay-6"></div>
-                            <div class="dot animate slide-up delay-7"></div>
-                            <div class="dot animate slide-up delay-8"></div>
-                        </div>
-                    </div>
-                    <div class="tech-text">
-                        <p><i class="fab fa-node-js tech-icon"></i> <strong>Node.js</strong> - среда выполнения JavaScript на сервере.</p>
-                        <p><i class="fas fa-database tech-icon"></i> <strong>PostgreSQL</strong> - мощная реляционная база данных.</p>
-                        <p><i class="fab fa-docker tech-icon"></i> <strong>Docker</strong> - платформа для контейнеризации приложений.</p>
-                    </div>
-                </div>
+            <div class="message-block block-2" id="block2">
+                <p>Ты очень милая</p>
             </div>
-        </section>
-        
-        <section class="about-photo-section" id="photo">
-            <h2 class="section-title"></h2>
-            <div class="photo-container">
-                <div class="photo-wrapper">
-                    <img src="assets/images/profile.jpg" alt="Andrey Reinz" loading="lazy">
-                </div>
-                <div class="photo-content">
-                    <h2>Andrey Reinz</h2>
-                    <p>Frontend разработчик и FiveM скриптер с 2023 года. Специализируюсь на создании современных веб-интерфейсов и игровых систем для мультиплеера GTA V.</p>
-                    <p>Моя цель - создавать продукты, которые не только функциональны, но и доставляют удовольствие от использования. Я уделяю внимание каждой детали, от пользовательского опыта до производительности.</p>
-                    <p>Работаю с такими технологиями как JavaScript, React, Vue.js, Lua, FiveM API и многими другими.</p>
-                </div>
+            
+            <div class="message-block block-3" id="block3">
+                <p>У тебя красивые глазки</p>
             </div>
-        </section>
-        
-        <section class="gallery-section" id="gallery">
-            <h2 class="section-title">3D Gallery</h2>
-            <div class="gallery-container">
-                <div class="model-viewer" id="modelViewer">
-                    <div class="model-controls">
-                        <button class="model-btn" id="rotateBtn"><i class="fas fa-sync-alt"></i></button>
-                        <button class="model-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
-                        <button class="model-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
-                    </div>
-                    <div class="model-info">Используйте колесо мыши для масштабирования, ЛКМ для вращения</div>
-                </div>
+            
+            <div class="message-block block-4" id="block4">
+                <p>Ты умеешь поддерживать</p>
             </div>
-        </section>
-        
-        <section class="requests-section" id="requests">
-            <h2 class="section-title">Заявки</h2>
-            <div class="request-container">
-                <form class="request-form" id="requestForm">
-                    <div class="form-group">
-                        <label for="request-name">Ваше имя</label>
-                        <input type="text" id="request-name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-email">Ваш Email</label>
-                        <input type="email" id="request-email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-service">Тип услуги</label>
-                        <select id="request-service" class="form-control" required>
-                            <option value="">Выберите услугу</option>
-                            <option value="web">Веб-разработка</option>
-                            <option value="fivem">FiveM скриптинг</option>
-                            <option value="ui">UI/UX дизайн</option>
-                            <option value="other">Другое</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-message">Описание проекта</label>
-                        <textarea id="request-message" class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-budget">Бюджет (USD)</label>
-                        <input type="number" id="request-budget" class="form-control" min="0">
-                    </div>
-                    <button type="submit" class="btn">Отправить заявку</button>
-                </form>
+            
+            <div class="message-block block-5" id="block5">
+                <p>Ты — самое прекрасное, что случилось со мной за последнее время.</p>
             </div>
-        </section>
-        
-        <!-- Футер -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Контакты</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://discord.gg/q4gddeEehT" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a></li>
-                        <li><a href="https://steamcommunity.com/id/AndreyReinz/" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i> Steam</a></li>
-                        <li><a href="kadr.vgf@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Соцсети</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/AndreyReinz" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li><a href="https://t.me/AndreyCode" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> Telegram</a></li>
-                        <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Информация</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-home"></i> Главная</a></li>
-                        <li><a href="#projects"><i class="fas fa-code"></i> Проекты</a></li>
-                        <li><a href="#requests"><i class="fas fa-paper-plane"></i> Заявки</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023-2025 Andrey Reinz. Все права защищены.</p>
-            </div>
-        </footer>
-        
-        <div class="music-controls">
-            <div class="volume-control">
-                <i class="fas fa-volume-down"></i>
-                <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
-                <i class="fas fa-volume-up"></i>
-            </div>
-            <button class="music-toggle" id="musicToggle">
-                <i class="fas fa-music"></i>
-            </button>
-        </div>
-        
-        <button class="back-to-top" id="backToTop" title="Go to top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-    </div>
-    
-    <div class="modal-overlay" id="modal-1">
-        <div class="modal">
-            <button class="modal-close">&times;</button>
-            <div class="modal-content">
-                <h2>FiveM Roleplay UI</h2>
-                <p>Комплексный пользовательский интерфейс для ролевых серверов FiveM с системой инвентаря, HUD, диалогов и кастомизацией персонажа. Проект разработан с использованием Lua и JavaScript, с акцентом на производительность и удобство использования.</p>
-                
-                <div class="modal-features">
-                    <h3>Основные особенности:</h3>
-                    <ul>
-                        <li>Полностью настраиваемый интерфейс</li>
-                        <li>Система инвентаря с drag-and-drop</li>
-                        <li>Динамический HUD с показателями здоровья, брони и голода</li>
-                        <li>Система диалогов с ветвлениями</li>
-                        <li>Кастомизация персонажа в реальном времени</li>
-                        <li>Оптимизированная производительность</li>
-                    </ul>
-                </div>
-                
-                <div class="tags">
-                    <span class="tag">Lua</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">FiveM</span>
-                </div>
-                
-                <div class="modal-links">
-                    <a href="#" class="demo-link">Демо</a>
-                </div>
-            </div>
+            
+            <div class="signature" id="signature">Хотя мы даже с тобой не видились... За все время общения с тобой, я вижу что очень хороший человек.</div>
         </div>
     </div>
-    
-    <div class="modal-overlay" id="modal-2">
-        <div class="modal">
-            <button class="modal-close">&times;</button>
-            <div class="modal-content">
-                <h2>Reg gun System</h2>
-                <p>Скрипт который помогает выдовать оружие по заявки для игроков.</p>
+
+    <div class="hearts-background" id="heartsBackground"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const preloader = document.getElementById('preloader');
+            const heart = document.getElementById('heart');
+            const messageContainer = document.getElementById('messageContainer');
+            const heartsBackground = document.getElementById('heartsBackground');
+            const blocks = [
+                { element: document.getElementById('block1'), animation: 'slideInLeft', delay: 300 },
+                { element: document.getElementById('block2'), animation: 'slideInRight', delay: 800 },
+                { element: document.getElementById('block3'), animation: 'slideInUp', delay: 1300 },
+                { element: document.getElementById('block4'), animation: 'slideInDown', delay: 1800 },
+                { element: document.getElementById('block5'), animation: 'zoomIn', delay: 2300 },
+                { element: document.getElementById('signature'), animation: 'slideInRight', delay: 3000 }
+            ];
+            
+            // Начальные позиции для анимации
+            function setInitialPositions() {
+                document.getElementById('block1').style.transform = 'translateX(-100px) scale(0.8)';
+                document.getElementById('block2').style.transform = 'translateX(100px) scale(0.8)';
+                document.getElementById('block3').style.transform = 'translateY(100px) scale(0.8)';
+                document.getElementById('block4').style.transform = 'translateY(-100px) scale(0.8)';
+                document.getElementById('block5').style.transform = 'scale(0.5)';
+                document.getElementById('signature').style.transform = 'translateX(50px)';
+            }
+            
+            // Создаем плавающие сердечки на фоне
+            function createFloatingHearts() {
+                for (let i = 0; i < 20; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('floating-heart');
+                    heart.innerHTML = '❤';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDelay = Math.random() * 8 + 's';
+                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    heartsBackground.appendChild(heart);
+                }
+            }
+            
+            // Создаем эффект искрения при клике
+            function createSparkles(x, y) {
+                for (let i = 0; i < 15; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('sparkle');
+                    sparkle.style.left = x + 'px';
+                    sparkle.style.top = y + 'px';
+                    sparkle.style.animation = `sparkle ${Math.random() * 0.5 + 0.3}s forwards`;
+                    document.body.appendChild(sparkle);
+                    
+                    // Удаляем искорки после анимации
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1000);
+                }
+            }
+            
+            // Анимируем блоки последовательно
+            function animateBlocks() {
+                blocks.forEach(block => {
+                    setTimeout(() => {
+                        block.element.style.animation = `${block.animation} 1s forwards`;
+                    }, block.delay);
+                });
+            }
+            
+            setInitialPositions();
+            createFloatingHearts();
+            
+            // Обработчик клика по сердцу
+            heart.addEventListener('click', function(e) {
+                // Создаем искорки в месте клика
+                createSparkles(e.clientX, e.clientY);
                 
-                <div class="modal-features">
-                    <h3>Основные особенности:</h3>
-                    <ul>
-                        <li>Параллакс-эффекты и плавные переходы</li>
-                        <li>3D элементы с использованием Three.js</li>
-                        <li>Сложные анимации с GSAP</li>
-                        <li>Адаптивный дизайн для всех устройств</li>
-                        <li>Оптимизированная загрузка ресурсов</li>
-                        <li>Интерактивные элементы управления</li>
-                    </ul>
-                </div>
+                // Увеличиваем и вращаем сердце перед исчезновением
+                heart.style.transform = 'translate(-50%, -50%) rotate(45deg) scale(1.5)';
+                heart.style.opacity = '0';
                 
-                <div class="tags">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">GSAP</span>
-                </div>
+                // Плавно скрываем прелоадер
+                setTimeout(() => {
+                    preloader.classList.add('fade-out');
+                }, 800);
                 
-                <div class="modal-links">
-                    <a href="#" class="demo-link">Демо</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="modal-overlay" id="modal-3">
-        <div class="modal">
-            <button class="modal-close">&times;</button>
-            <div class="modal-content">
-                <h2>Car Dealer System</h2>
-                <p>Комплексная система автосалонов для FiveM с возможностью тест-драйва, покупки, кастомизации и кредитования. Система включает в себя административную панель, систему учета и интеграцию с экономикой сервера.</p>
-                
-                <div class="modal-features">
-                    <h3>Основные особенности:</h3>
-                    <ul>
-                        <li>Полноценная система автосалонов</li>
-                        <li>Тест-драйв перед покупкой</li>
-                        <li>Глубокая кастомизация транспортных средств</li>
-                        <li>Система кредитования с различными условиями</li>
-                        <li>Интеграция с экономикой сервера</li>
-                        <li>Административная панель управления</li>
-                    </ul>
-                </div>
-                
-                <div class="tags">
-                    <span class="tag">Lua</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">UI/UX</span>
-                    <span class="tag">FiveM</span>
-                </div>
-                
-                <div class="modal-links">
-                    <a href="#" class="demo-link">Демо</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <audio loop id="bgMusic">
-        <source src="assets/audio/background.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио элемент.
-    </audio>
-    
-    <script src="js/main.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/threejs.js"></script>
+                // Показываем контейнер с сообщениями и анимируем блоки
+                setTimeout(() => {
+                    messageContainer.classList.add('show');
+                    animateBlocks();
+                }, 1500);
+            });
+            
+            // Добавляем дополнительные эффекты при наведении на сердце
+            heart.addEventListener('mouseover', function() {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createSparkles(
+                            heart.getBoundingClientRect().left + Math.random() * 100,
+                            heart.getBoundingClientRect().top + Math.random() * 100
+                        );
+                    }, i * 100);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
