@@ -1,522 +1,1572 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrey Reinz - Frontend Developer</title>
-    
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link rel="stylesheet" href="css/style.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ff8f6d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <title>С Днём Рождения, Мама</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg-top: #ffd7b0;
+      --bg-bottom: #ff8f6d;
+      --glass: rgba(255, 255, 255, 0.5);
+      --glass-border: rgba(255, 255, 255, 0.7);
+      --text-main: #2e2a2a;
+      --text-soft: #5a4e4e;
+      --accent-1: #ff6f4f;
+      --accent-2: #ffb347;
+      --accent-3: #158b7f;
+      --shadow-soft: 0 22px 45px rgba(86, 38, 24, 0.22);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      position: relative;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      color: var(--text-main);
+      background:
+        radial-gradient(1400px 700px at 20% -10%, rgba(255, 255, 255, 0.62), transparent 70%),
+        linear-gradient(165deg, var(--bg-top), var(--bg-bottom));
+      font-family: "SF Pro Rounded", "Avenir Next", "Trebuchet MS", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.8s ease;
+    }
+
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bg-orb {
+      position: fixed;
+      filter: blur(2px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.75;
+      transition: transform 0.24s ease-out;
+    }
+
+    .orb-a {
+      width: 220px;
+      height: 220px;
+      border-radius: 42% 58% 54% 46%;
+      left: -70px;
+      top: 18vh;
+      background: radial-gradient(circle at 35% 35%, #fff8e9, #ffb88f 70%);
+      animation: blobFloat 11s ease-in-out infinite alternate;
+    }
+
+    .orb-b {
+      width: 320px;
+      height: 320px;
+      border-radius: 55% 45% 35% 65%;
+      right: -120px;
+      top: 48vh;
+      background: radial-gradient(circle at 35% 35%, #ffeec8, #ff8a70 78%);
+      animation: blobFloat 13s ease-in-out infinite alternate-reverse;
+    }
+
+    .orb-c {
+      width: 180px;
+      height: 180px;
+      border-radius: 63% 37% 44% 56%;
+      left: 50%;
+      top: -40px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle at 30% 30%, #fffde9, #ffca87 72%);
+      animation: blobFloat 9s ease-in-out infinite;
+    }
+
+    .app {
+      position: relative;
+      z-index: 20;
+      width: min(100% - 26px, 460px);
+      margin: 0 auto;
+      padding: calc(var(--safe-top) + 18px) 0 calc(var(--safe-bottom) + 30px);
+      transform: none;
+      transform-style: preserve-3d;
+      transition: transform 0.36s ease;
+      isolation: isolate;
+    }
+
+    .supports-tilt .app {
+      transform: perspective(1100px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 6vw, 2.3rem);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+    }
+
+    h2 {
+      font-size: clamp(1.15rem, 4.7vw, 1.4rem);
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      font-size: 0.99rem;
+      line-height: 1.45;
+    }
+
+    .glass {
+      position: relative;
+      margin-bottom: 14px;
+      padding: 18px;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.68),
+        rgba(255, 255, 255, 0.43)
+      );
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .glass::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: calc(var(--radius-xl) - 2px);
+      pointer-events: none;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.28),
+        rgba(255, 255, 255, 0)
+      );
+    }
+
+    .hero {
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      background: linear-gradient(120deg, #4f2b2b 0%, #7a3e2b 35%, #fff5d8 55%, #6d3424 80%, #4f2b2b 100%);
+      background-size: 260% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: titleShimmer 6s linear infinite;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.55), transparent 68%);
+      top: -110px;
+      right: -55px;
+    }
+
+    .date {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(66, 54, 54, 0.7);
+      margin-bottom: 9px;
+    }
+
+    .subtitle {
+      margin-top: 11px;
+      color: var(--text-soft);
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .action-btn {
+      border: 0;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font: inherit;
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+      transform: translateY(0);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .action-btn:active {
+      transform: translateY(2px) scale(0.985);
+    }
+
+    .action-btn:disabled {
+      opacity: 0.66;
+      cursor: not-allowed;
+      transform: none;
+      filter: grayscale(0.06);
+    }
+
+    .action-btn:hover {
+      filter: brightness(1.03);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(125deg, #ff775e, #ff4f6c);
+      box-shadow: 0 12px 26px rgba(253, 97, 77, 0.35);
+    }
+
+    .action-btn.ghost {
+      color: #4b3636;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 9px 22px rgba(101, 55, 31, 0.16);
+    }
+
+    .action-btn.secondary {
+      background: linear-gradient(130deg, var(--accent-3), #0e7c95);
+      box-shadow: 0 12px 24px rgba(20, 114, 136, 0.33);
+    }
+
+    .wish-box .action-btn {
+      margin-top: 14px;
+      width: 100%;
+    }
+
+    .wish-box h2,
+    .cake-box h2,
+    .music-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .wish-text {
+      color: var(--text-soft);
+      min-height: 62px;
+    }
+
+    .wish-text.swap {
+      animation: wishSwap 0.44s ease;
+    }
+
+    .cake-box {
+      overflow: hidden;
+    }
+
+    .cake {
+      position: relative;
+      margin: 14px auto 8px;
+      width: 100%;
+      height: 195px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .cake::before {
+      content: "";
+      width: min(250px, 85%);
+      height: 120px;
+      border-radius: 20px 20px 14px 14px;
+      background: linear-gradient(180deg, #ffdeb0, #f4ad82);
+      box-shadow:
+        inset 0 -10px 0 rgba(228, 131, 95, 0.32),
+        0 14px 25px rgba(112, 55, 28, 0.2);
+    }
+
+    .cake::after {
+      content: "";
+      position: absolute;
+      bottom: 8px;
+      width: min(290px, 95%);
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(109, 66, 39, 0.22);
+      filter: blur(5px);
+      z-index: -1;
+    }
+
+    .icing {
+      position: absolute;
+      bottom: 106px;
+      width: min(250px, 85%);
+      height: 36px;
+      border-radius: 16px 16px 22px 22px;
+      background: linear-gradient(180deg, #fff8f1, #ffd9bf);
+      box-shadow: inset 0 -7px 0 rgba(255, 181, 146, 0.55);
+    }
+
+    .candles {
+      position: absolute;
+      bottom: 122px;
+      width: min(212px, 72%);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .candle {
+      position: relative;
+      width: 16px;
+      height: 58px;
+      border: 0;
+      border-radius: 8px;
+      background:
+        repeating-linear-gradient(
+          -28deg,
+          #ffe7ca,
+          #ffe7ca 5px,
+          #ff9d7a 5px,
+          #ff9d7a 10px
+        );
+      box-shadow: inset 0 0 0 1px rgba(113, 68, 42, 0.19);
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .flame {
+      position: absolute;
+      left: 50%;
+      top: -20px;
+      width: 14px;
+      height: 20px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle at 45% 35%, #fffbe7 4%, #ffcf4c 54%, #ff7247 80%);
+      box-shadow: 0 0 17px rgba(255, 161, 77, 0.8);
+      animation: flicker 0.6s infinite alternate ease-in-out;
+    }
+
+    .candle.off {
+      filter: saturate(0.55) brightness(0.93);
+    }
+
+    .candle.off .flame {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.12);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      animation: none;
+    }
+
+    .cake-hint {
+      text-align: center;
+      color: var(--text-soft);
+    }
+
+    .cake-box.celebration {
+      animation: cardPop 0.56s ease;
+    }
+
+    .memory-strip {
+      margin: 6px 0 14px;
+    }
+
+    .memory-strip h2 {
+      margin-bottom: 10px;
+      padding-left: 6px;
+    }
+
+    .memory-track {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 5px;
+    }
+
+    .memory-track::-webkit-scrollbar {
+      height: 7px;
+    }
+
+    .memory-track::-webkit-scrollbar-thumb {
+      background: rgba(111, 71, 48, 0.38);
+      border-radius: 999px;
+    }
+
+    .memory-card {
+      position: relative;
+      min-width: 205px;
+      max-width: 205px;
+      height: 200px;
+      perspective: 1000px;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      touch-action: manipulation;
+      scroll-snap-align: start;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.2, 0.75, 0.18, 1);
+    }
+
+    .memory-card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .memory-face {
+      position: absolute;
+      inset: 0;
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: 0 16px 25px rgba(91, 41, 20, 0.16);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.34)),
+        linear-gradient(180deg, rgba(255, 209, 171, 0.41), rgba(255, 145, 108, 0.36));
+    }
+
+    .memory-back {
+      display: grid;
+      place-items: center;
+      transform: rotateY(180deg);
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.8), rgba(255, 227, 192, 0.7)),
+        linear-gradient(180deg, rgba(245, 170, 122, 0.42), rgba(253, 123, 137, 0.35));
+    }
+
+    .memory-card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .memory-card p {
+      font-size: 0.91rem;
+      color: #5d5050;
+    }
+
+    .memory-back p {
+      font-size: 0.95rem;
+      text-align: center;
+      color: #5a3f3f;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .emoji {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .memory-hint {
+      text-align: center;
+      margin-top: 10px;
+      color: rgba(84, 62, 62, 0.82);
+      font-size: 0.88rem;
+    }
+
+    .music-box p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .music-box .action-btn {
+      width: 100%;
+    }
+
+    .mood-box p,
+    .game-box p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .mood-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .mood-chip {
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      border-radius: 14px;
+      padding: 10px 8px;
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #5f3b3b;
+      background: rgba(255, 255, 255, 0.72);
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .mood-chip.active {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 224, 173, 0.92));
+      box-shadow: 0 10px 18px rgba(120, 58, 34, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .game-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .game-head .action-btn {
+      padding: 11px 14px;
+      font-size: 0.92rem;
+    }
+
+    .game-score {
+      min-width: 80px;
+      text-align: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.89rem;
+      font-weight: 700;
+      color: #5a3939;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+
+    .heart-field {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      height: 220px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.5), transparent 35%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(255, 225, 192, 0.52));
+      box-shadow: inset 0 1px 18px rgba(255, 255, 255, 0.42);
+    }
+
+    .heart-field::before {
+      content: "Жми на сердечки";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+      color: rgba(95, 63, 63, 0.58);
+      letter-spacing: 0.02em;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .heart-field.playing::before {
+      opacity: 0;
+    }
+
+    .falling-heart {
+      position: absolute;
+      top: -26px;
+      width: 26px;
+      height: 26px;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      background: none;
+      animation-name: heartDrop;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+      filter: drop-shadow(0 4px 8px rgba(121, 43, 43, 0.35));
+      transform-origin: center;
+    }
+
+    .falling-heart::before {
+      content: "❤";
+      font-size: 24px;
+      line-height: 1;
+      color: var(--heart-color, #ff5f7a);
+    }
+
+    .falling-heart.caught {
+      animation: heartPop 0.24s ease forwards;
+    }
+
+    .app.party-mode .glass {
+      animation: glowPulse 1.2s ease-in-out 4;
+    }
+
+    .signature {
+      margin-top: 6px;
+      text-align: center;
+      color: #fff9f1;
+      text-shadow: 0 2px 12px rgba(101, 50, 30, 0.42);
+      font-size: 1.03rem;
+      font-weight: 600;
+      padding: 10px 8px 4px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(34, 17, 14, 0.4);
+      transition: opacity 0.28s ease;
+    }
+
+    .modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(100%, 410px);
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, 0.84), rgba(255, 243, 228, 0.75));
+      color: #3c2d2d;
+      box-shadow: 0 24px 40px rgba(44, 18, 8, 0.32);
+      transform: translateY(16px) scale(0.96);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-card h2 {
+      margin-bottom: 12px;
+    }
+
+    .modal-card p + p {
+      margin-top: 10px;
+    }
+
+    .close-modal {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      background: rgba(255, 255, 255, 0.84);
+      color: #6d4a4a;
+      cursor: pointer;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(var(--safe-bottom) + 18px);
+      transform: translateX(-50%) translateY(16px);
+      z-index: 120;
+      min-width: 220px;
+      max-width: calc(100% - 32px);
+      text-align: center;
+      padding: 11px 16px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(46, 30, 30, 0.86);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .spark {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      border-radius: 3px;
+      background: linear-gradient(125deg, #fffbd5, #ff8357);
+      box-shadow: 0 0 12px rgba(255, 187, 95, 0.65);
+      z-index: 80;
+      animation: sparkOut 0.62s ease forwards;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.pre-reveal {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .reveal.pre-reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    @keyframes blobFloat {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(9px, -14px) scale(1.06);
+      }
+    }
+
+    @keyframes titleShimmer {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 220% 50%;
+      }
+    }
+
+    @keyframes wishSwap {
+      0% {
+        transform: translateY(8px);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes flicker {
+      0% {
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        transform: translateX(-49%) scale(1.06, 0.95);
+      }
+      100% {
+        transform: translateX(-51%) scale(0.96, 1.06);
+      }
+    }
+
+    @keyframes sparkOut {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(-18px) scale(0.1) rotate(85deg);
+      }
+    }
+
+    @keyframes cardPop {
+      0% {
+        transform: scale(1);
+      }
+      40% {
+        transform: scale(1.015);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes heartDrop {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
+      100% {
+        transform: translateY(252px) rotate(190deg) scale(0.9);
+      }
+    }
+
+    @keyframes heartPop {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.5);
+      }
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: var(--shadow-soft);
+      }
+      50% {
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.72), 0 28px 45px rgba(255, 105, 116, 0.32);
+      }
+      100% {
+        box-shadow: var(--shadow-soft);
+      }
+    }
+
+    @media (min-width: 720px) {
+      .app {
+        padding-top: 22px;
+      }
+
+      .hero-actions {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .memory-card {
+        min-width: 226px;
+        max-width: 226px;
+        height: 210px;
+      }
+    }
+
+    @media (pointer: coarse) {
+      .app {
+        transform: none !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="preloader">
-        <div class="preloader-snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="preloader-bar">
-            <div class="preloader-progress"></div>
-        </div>
-        <div class="preloader-text">Загрузка ресурсов...</div>
-    </div>
-    
-    <div class="welcome-intro">
-        <div class="welcome-text">Welcome</div>
-        <div class="welcome-text">to</div>
-        <div class="welcome-text">Portfolio</div>
-        <div class="welcome-text">2077 | Developers</div>
-    </div>
-    
-    <div class="name-intro">
-        <div class="intro-name">ANDREY REINZ</div>
-    </div>
-    
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </button>
-    
-    <video class="video-background" autoplay muted loop playsinline>
-        <source src="https://cdn.free-stock.video/412023/forest-fog-mountain-snow-winter-snow-outdoors-55315-small.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео тег.
-    </video>
-    
-    <div class="video-overlay"></div>
-    
-    <canvas id="particles-js" class="particles-js-canvas-el"></canvas>
-    
-    <div class="content">
-        <section class="main-screen" id="home">
-            <div class="name-container">
-                <h1 class="name-title" id="nameTitle">
-                    <span class="name-letter">A</span>
-                    <span class="name-letter">n</span>
-                    <span class="name-letter">d</span>
-                    <span class="name-letter">r</span>
-                    <span class="name-letter">e</span>
-                    <span class="name-letter">y</span>
-                    <span class="name-letter"> </span>
-                    <span class="name-letter">R</span>
-                    <span class="name-letter">e</span>
-                    <span class="name-letter">i</span>
-                    <span class="name-letter">n</span>
-                    <span class="name-letter">z</span>
-                </h1>
-                <h2 class="subtitle">Frontend Developer & FiveM Scripter</h2>
-                <h2 class="subtitle">CEO OniX Development</h2>
-            </div>
-            <div class="scroll-down" onclick="scrollToSection('about')">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </section>
-        
-        <section class="portfolio-section" id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p class="about-text">
-                    Привет! Я Андрей - профессиональный фронтенд разработчик с более чем 3-летним опытом создания современных веб-приложений. 
-                    Специализируюсь на создании интерактивных пользовательских интерфейсов с плавными анимациями и безупречным UX.
-                </p>
-                <p class="about-text">
-                    Также я профессионально разрабатываю скрипты для FiveM, создавая уникальные игровые механики, реалистичные системы 
-                    и интуитивные интерфейсы для RP серверов GTA V.
-                </p>
-                <div class="skills">
-                    <div class="skill">HTML5</div>
-                    <div class="skill">CSS3</div>
-                    <div class="skill">JavaScript</div>
-                    <div class="skill">React</div>
-                    <div class="skill">Vue.js</div>
-                    <div class="skill">Lua</div>
-                    <div class="skill">FiveM</div>
-                    <div class="skill">UI/UX Design</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- проекты -->
-        <section class="portfolio-section" id="projects">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-modal="modal-1">
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14.5 3.5C14.5 3.5 14.5 5.5 12 5.5C9.5 5.5 9.5 3.5 9.5 3.5H7.5L4.20711 6.79289C3.81658 7.18342 3.81658 7.81658 4.20711 8.20711L6.5 10.5V20.5H17.5V10.5L19.7929 8.20711C20.1834 7.81658 20.1834 7.18342 19.7929 6.79289L16.5 3.5H14.5Z"/>
-                        </svg>
-                    </div>
-                    <h3>FiveM Roleplay UI</h3>
-                    <p>Комплексный пользовательский интерфейс для ролевых серверов FiveM с системой инвентаря, HUD, диалогов и кастомизацией персонажа.</p>
-                    <div class="tags">
-                        <span class="tag">Lua</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">FiveM</span>
-                    </div>
-                    <div class="shine"></div>
-                    <div class="background">
-                        <div class="tiles">
-                            <div class="tile tile-1">ЗАКАЖИ</div>
-                            <div class="tile tile-2"></div>
-                            <div class="tile tile-3">Хочу работать</div>
-                            <div class="tile tile-4">LOVE</div>
-                            <div class="tile tile-5"></div>
-                            <div class="tile tile-6">Сделаю</div>
-                            <div class="tile tile-7"></div>
-                            <div class="tile tile-8">СКРИПТ</div>
-                            <div class="tile tile-9"></div>
-                            <div class="tile tile-10">Купи</div>
-                        </div>
-                        <div class="line line-1"></div>
-                        <div class="line line-2"></div>
-                        <div class="line line-3"></div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-modal="modal-2">
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4.5 9.5V5.5C4.5 4.94772 4.94772 4.5 5.5 4.5H9.5C10.0523 4.5 10.5 4.94772 10.5 5.5V9.5C10.5 10.0523 10.0523 10.5 9.5 10.5H5.5C4.94772 10.5 4.5 10.0523 4.5 9.5Z"/>
-                            <path d="M13.5 18.5V14.5C13.5 13.9477 13.9477 13.5 14.5 13.5H18.5C19.0523 13.5 19.5 13.9477 19.5 14.5V18.5C19.5 19.0523 19.0523 19.5 18.5 19.5H14.5C13.9477 19.5 13.5 19.0523 13.5 18.5Z"/>
-                            <path d="M4.5 19.5L7.5 13.5L10.5 19.5H4.5Z"/>
-                            <path d="M16.5 4.5C18.1569 4.5 19.5 5.84315 19.5 7.5C19.5 9.15685 18.1569 10.5 16.5 10.5C14.8431 10.5 13.5 9.15685 13.5 7.5C13.5 5.84315 14.8431 4.5 16.5 4.5Z"/>
-                        </svg>
-                    </div>
-                    <h3>Reg gun System</h3>
-                    <p>Скрипт который помогает выдовать оружие по заявки для игроков.</p>
-                    <div class="tags">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">GSAP</span>
-                    </div>
-                    <div class="shine"></div>
-                    <div class="background">
-                        <div class="tiles">
-                            <div class="tile tile-1">КУПИ</div>
-                            <div class="tile tile-2">СУКА</div>
-                            <div class="tile tile-3">НУ ЖЕ БЛЯТЬ</div>
-                            <div class="tile tile-4">Buy</div>
-                            <div class="tile tile-5"></div>
-                            <div class="tile tile-6">Please</div>
-                            <div class="tile tile-7"></div>
-                            <div class="tile tile-8">Love</div>
-                            <div class="tile tile-9"></div>
-                            <div class="tile tile-10">tatoo</div>
-                        </div>
-                        <div class="line line-1"></div>
-                        <div class="line line-2"></div>
-                        <div class="line line-3"></div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-modal="modal-3">
-                    <div class="icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3L3 8L12 13L21 8L12 3Z"/>
-                            <path d="M3 8L12 13L21 8"/>
-                            <path d="M3 16L12 21L21 16"/>
-                            <path d="M3 12L12 17L21 12"/>
-                        </svg>
-                    </div>
-                    <h3>Car Dealer System</h3>
-                    <p>Комплексная система автосалонов для FiveM с возможностью тест-драйва, покупки, кастомизации и кредитования.</p>
-                    <div class="tags">
-                        <span class="tag">Lua</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">UI/UX</span>
-                        <span class="tag">FiveM</span>
-                    </div>
-                    <div class="shine"></div>
-                    <div class="background">
-                        <div class="tiles">
-                            <div class="tile tile-1">BUY</div>
-                            <div class="tile tile-2">Эффект топ</div>
-                            <div class="tile tile-3"></div>
-                            <div class="tile tile-4">Love</div>
-                            <div class="tile tile-5"></div>
-                            <div class="tile tile-6">Реинз</div>
-                            <div class="tile tile-7"></div>
-                            <div class="tile tile-8"></div>
-                            <div class="tile tile-9">давай давай</div>
-                            <div class="tile tile-10">ДЕЛАЙ</div>
-                        </div>
-                        <div class="line line-1"></div>
-                        <div class="line line-2"></div>
-                        <div class="line line-3"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <canvas id="particleCanvas"></canvas>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="bg-orb orb-c"></div>
 
-        <!-- Добавьте эту секцию после секции проектов -->
-        <section class="portfolio-section" id="tech-stack">
-            <h2 class="section-title">Tech Stack</h2>
-            
-            <div class="tech-stack-container">
-                <!-- Frontend -->
-                <div class="tech-card animate pop">
-                    <div class="tech-overlay">
-                        <div class="overlay-content animate slide-left delay-2">
-                            <h1 class="animate slide-left pop delay-4">
-                                <i class="fas fa-code"></i> Frontend
-                            </h1>
-                            <p class="animate slide-left pop delay-5">Основные технологии фронтенд разработки</p>
-                        </div>
-                        <div class="tech-image frontend-image animate slide delay-5"></div>
-                        <div class="tech-dots animate">
-                            <div class="dot animate slide-up delay-6"></div>
-                            <div class="dot animate slide-up delay-7"></div>
-                            <div class="dot animate slide-up delay-8"></div>
-                        </div>
-                    </div>
-                    <div class="tech-text">
-                        <p><i class="fab fa-js tech-icon"></i> <strong>JavaScript</strong> - основной язык для создания интерактивных веб-интерфейсов.</p>
-                        <p><i class="fas fa-star tech-icon"></i> <strong>TypeScript</strong> - строго типизированный JavaScript для масштабируемых приложений.</p>
-                        <p><i class="fab fa-react tech-icon"></i> <strong>React</strong> - библиотека для построения пользовательских интерфейсов.</p>
-                        <p><i class="fas fa-bolt tech-icon"></i> <strong>SolidJS</strong> - реактивная библиотека с высокой производительностью.</p>
-                        <p><i class="fas fa-magic tech-icon"></i> <strong>Svelte</strong> - компилятор для создания эффективных веб-приложений.</p>
-                    </div>
-                </div>
-                
-                <!-- Styling & Tools -->
-                <div class="tech-card animate pop">
-                    <div class="tech-overlay">
-                        <div class="overlay-content animate slide-left delay-2">
-                            <h1 class="animate slide-left pop delay-4">
-                                <i class="fas fa-paint-brush"></i> Styling & Tools
-                            </h1>
-                            <p class="animate slide-left pop delay-5">Инструменты для стилизации и сборки</p>
-                        </div>
-                        <div class="tech-image tools-image animate slide delay-5"></div>
-                        <div class="tech-dots animate">
-                            <div class="dot animate slide-up delay-6"></div>
-                            <div class="dot animate slide-up delay-7"></div>
-                            <div class="dot animate slide-up delay-8"></div>
-                        </div>
-                    </div>
-                    <div class="tech-text">
-                        <p><i class="fas fa-wind tech-icon"></i> <strong>TailwindCSS</strong> - утилитарный CSS-фреймворк для быстрой разработки.</p>
-                        <p><i class="fas fa-atom tech-icon"></i> <strong>UnoCSS</strong> - атомарный CSS-движок с высокой производительностью.</p>
-                        <p><i class="fas fa-rocket tech-icon"></i> <strong>Vite</strong> - современный инструмент для сборки фронтенд-приложений.</p>
-                        <p><i class="fas fa-bolt tech-icon"></i> <strong>Bun</strong> - быстрая JavaScript-среда выполнения и набор инструментов.</p>
-                    </div>
-                </div>
-                
-                <!-- Backend & DB -->
-                <div class="tech-card animate pop">
-                    <div class="tech-overlay">
-                        <div class="overlay-content animate slide-left delay-2">
-                            <h1 class="animate slide-left pop delay-4">
-                                <i class="fas fa-server"></i> Backend & DB
-                            </h1>
-                            <p class="animate slide-left pop delay-5">Серверные технологии и базы данных</p>
-                        </div>
-                        <div class="tech-image backend-image animate slide delay-5"></div>
-                        <div class="tech-dots animate">
-                            <div class="dot animate slide-up delay-6"></div>
-                            <div class="dot animate slide-up delay-7"></div>
-                            <div class="dot animate slide-up delay-8"></div>
-                        </div>
-                    </div>
-                    <div class="tech-text">
-                        <p><i class="fab fa-node-js tech-icon"></i> <strong>Node.js</strong> - среда выполнения JavaScript на сервере.</p>
-                        <p><i class="fas fa-database tech-icon"></i> <strong>PostgreSQL</strong> - мощная реляционная база данных.</p>
-                        <p><i class="fab fa-docker tech-icon"></i> <strong>Docker</strong> - платформа для контейнеризации приложений.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="about-photo-section" id="photo">
-            <h2 class="section-title"></h2>
-            <div class="photo-container">
-                <div class="photo-wrapper">
-                    <img src="assets/images/profile.jpg" alt="Andrey Reinz" loading="lazy">
-                </div>
-                <div class="photo-content">
-                    <h2>Andrey Reinz</h2>
-                    <p>Frontend разработчик и FiveM скриптер с 2023 года. Специализируюсь на создании современных веб-интерфейсов и игровых систем для мультиплеера GTA V.</p>
-                    <p>Моя цель - создавать продукты, которые не только функциональны, но и доставляют удовольствие от использования. Я уделяю внимание каждой детали, от пользовательского опыта до производительности.</p>
-                    <p>Работаю с такими технологиями как JavaScript, React, Vue.js, Lua, FiveM API и многими другими.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="gallery-section" id="gallery">
-            <h2 class="section-title">3D Gallery</h2>
-            <div class="gallery-container">
-                <div class="model-viewer" id="modelViewer">
-                    <div class="model-controls">
-                        <button class="model-btn" id="rotateBtn"><i class="fas fa-sync-alt"></i></button>
-                        <button class="model-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
-                        <button class="model-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
-                    </div>
-                    <div class="model-info">Используйте колесо мыши для масштабирования, ЛКМ для вращения</div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="requests-section" id="requests">
-            <h2 class="section-title">Заявки</h2>
-            <div class="request-container">
-                <form class="request-form" id="requestForm">
-                    <div class="form-group">
-                        <label for="request-name">Ваше имя</label>
-                        <input type="text" id="request-name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-email">Ваш Email</label>
-                        <input type="email" id="request-email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-service">Тип услуги</label>
-                        <select id="request-service" class="form-control" required>
-                            <option value="">Выберите услугу</option>
-                            <option value="web">Веб-разработка</option>
-                            <option value="fivem">FiveM скриптинг</option>
-                            <option value="ui">UI/UX дизайн</option>
-                            <option value="other">Другое</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-message">Описание проекта</label>
-                        <textarea id="request-message" class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="request-budget">Бюджет (USD)</label>
-                        <input type="number" id="request-budget" class="form-control" min="0">
-                    </div>
-                    <button type="submit" class="btn">Отправить заявку</button>
-                </form>
-            </div>
-        </section>
-        
-        <!-- Футер -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Контакты</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://discord.gg/q4gddeEehT" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a></li>
-                        <li><a href="https://steamcommunity.com/id/AndreyReinz/" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i> Steam</a></li>
-                        <li><a href="kadr.vgf@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Соцсети</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/AndreyReinz" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li><a href="https://t.me/AndreyCode" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> Telegram</a></li>
-                        <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Информация</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-home"></i> Главная</a></li>
-                        <li><a href="#projects"><i class="fas fa-code"></i> Проекты</a></li>
-                        <li><a href="#requests"><i class="fas fa-paper-plane"></i> Заявки</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023-2025 Andrey Reinz. Все права защищены.</p>
-            </div>
-        </footer>
-        
-        <div class="music-controls">
-            <div class="volume-control">
-                <i class="fas fa-volume-down"></i>
-                <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
-                <i class="fas fa-volume-up"></i>
-            </div>
-            <button class="music-toggle" id="musicToggle">
-                <i class="fas fa-music"></i>
-            </button>
+  <main class="app">
+    <header class="hero glass reveal">
+      <p class="date" id="todayDate"></p>
+      <h1>С Днём Рождения, Мама</h1>
+      <p class="subtitle">
+        Мам, это поздравление от меня, твоего сына. Спасибо за твою любовь, поддержку и за то, что ты всегда рядом.
+      </p>
+      <div class="hero-actions">
+        <button class="action-btn primary" id="confettiBtn">Запустить праздник</button>
+        <button class="action-btn ghost" id="openLetterBtn">Открыть письмо от сына</button>
+      </div>
+    </header>
+
+    <section class="wish-box glass reveal">
+      <h2>Пожелание от сына</h2>
+      <p class="wish-text" id="wishText">
+        Мам, я хочу, чтобы каждый твой день был спокойным, тёплым и счастливым.
+      </p>
+      <button class="action-btn secondary" id="newWishBtn">Ещё пожелание</button>
+    </section>
+
+    <section class="cake-box glass reveal">
+      <h2>Загадай желание и задуй свечи</h2>
+      <div class="cake" id="cake">
+        <div class="icing"></div>
+        <div class="candles">
+          <button class="candle" aria-label="Свеча 1"><span class="flame"></span></button>
+          <button class="candle" aria-label="Свеча 2"><span class="flame"></span></button>
+          <button class="candle" aria-label="Свеча 3"><span class="flame"></span></button>
+          <button class="candle" aria-label="Свеча 4"><span class="flame"></span></button>
+          <button class="candle" aria-label="Свеча 5"><span class="flame"></span></button>
         </div>
-        
-        <button class="back-to-top" id="backToTop" title="Go to top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
+      </div>
+      <p class="cake-hint" id="cakeHint">Нажми на все свечи, чтобы задуть их.</p>
+    </section>
+
+    <section class="memory-strip reveal">
+      <h2>Моменты, которые я ценю</h2>
+      <div class="memory-track">
+        <article class="memory-card">
+          <div class="memory-face memory-front">
+            <span class="emoji">🌞</span>
+            <h3>Твоё доброе утро</h3>
+            <p>Я всегда помню, как твой голос с утра делал день спокойнее и лучше.</p>
+          </div>
+          <div class="memory-face memory-back">
+            <p>Ты научила меня встречать новый день с верой в себя.</p>
+          </div>
+        </article>
+        <article class="memory-card">
+          <div class="memory-face memory-front">
+            <span class="emoji">🍰</span>
+            <h3>Тепло дома</h3>
+            <p>Рядом с тобой даже обычный вечер превращается в уют и радость.</p>
+          </div>
+          <div class="memory-face memory-back">
+            <p>Там, где ты, всегда есть место для любви, смеха и спокойствия.</p>
+          </div>
+        </article>
+        <article class="memory-card">
+          <div class="memory-face memory-front">
+            <span class="emoji">🌷</span>
+            <h3>Твоя поддержка</h3>
+            <p>Ты всегда находишь слова, после которых мне становится легче и сильнее.</p>
+          </div>
+          <div class="memory-face memory-back">
+            <p>Спасибо, что веришь в меня даже в те моменты, когда я сомневаюсь.</p>
+          </div>
+        </article>
+        <article class="memory-card">
+          <div class="memory-face memory-front">
+            <span class="emoji">✨</span>
+            <h3>Твоя сила</h3>
+            <p>Ты учишь меня быть честным, смелым и любящим человеком.</p>
+          </div>
+          <div class="memory-face memory-back">
+            <p>Ты мой пример того, как мягкость и сила могут жить в одном сердце.</p>
+          </div>
+        </article>
+      </div>
+      <p class="memory-hint">Нажми на карточку, чтобы перевернуть её.</p>
+    </section>
+
+    <section class="music-box glass reveal">
+      <h2>Мини-серенада</h2>
+      <p>Нажми кнопку и послушай праздничную мелодию от меня.</p>
+      <button class="action-btn secondary" id="playTuneBtn">Сыграть мелодию</button>
+    </section>
+
+    <section class="mood-box glass reveal">
+      <h2>Выбери настроение праздника</h2>
+      <p>Каждый режим меняет атмосферу и анимацию фона.</p>
+      <div class="mood-grid">
+        <button class="mood-chip active" data-mode="sunset">Солнечный</button>
+        <button class="mood-chip" data-mode="rose">Романтика</button>
+        <button class="mood-chip" data-mode="mint">Свежесть</button>
+      </div>
+    </section>
+
+    <section class="game-box glass reveal">
+      <h2>Мини-игра: поймай сердечки</h2>
+      <p>У тебя 15 секунд. Чем больше сердечек поймаешь, тем ярче салют.</p>
+      <div class="game-head">
+        <button class="action-btn primary" id="startGameBtn">Начать игру</button>
+        <div class="game-score" id="gameScore">Счёт: 0</div>
+      </div>
+      <div class="heart-field" id="heartField" aria-live="polite"></div>
+    </section>
+
+    <footer class="signature reveal">
+      С огромной любовью, твой сын ❤️
+    </footer>
+  </main>
+
+  <div class="modal" id="letterModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close-modal" id="closeLetterBtn" aria-label="Закрыть окно">×</button>
+      <h2>Любимая мама,</h2>
+      <p>
+        С Днём Рождения тебя! Я очень сильно тебя люблю и благодарен за всё, что ты для меня делаешь.
+        Спасибо тебе за твоё сердце, терпение, заботу и доброту.
+      </p>
+      <p>
+        Я хочу, чтобы ты всегда улыбалась, была здоровой и чувствовала, как ты мне дорога каждый день.
+        Пусть в твоей жизни будет много счастья, спокойствия и красивых моментов.
+      </p>
+      <p>С любовью, твой сын 💐</p>
     </div>
-    
-    <div class="modal-overlay" id="modal-1">
-        <div class="modal">
-            <button class="modal-close">&times;</button>
-            <div class="modal-content">
-                <h2>FiveM Roleplay UI</h2>
-                <p>Комплексный пользовательский интерфейс для ролевых серверов FiveM с системой инвентаря, HUD, диалогов и кастомизацией персонажа. Проект разработан с использованием Lua и JavaScript, с акцентом на производительность и удобство использования.</p>
-                
-                <div class="modal-features">
-                    <h3>Основные особенности:</h3>
-                    <ul>
-                        <li>Полностью настраиваемый интерфейс</li>
-                        <li>Система инвентаря с drag-and-drop</li>
-                        <li>Динамический HUD с показателями здоровья, брони и голода</li>
-                        <li>Система диалогов с ветвлениями</li>
-                        <li>Кастомизация персонажа в реальном времени</li>
-                        <li>Оптимизированная производительность</li>
-                    </ul>
-                </div>
-                
-                <div class="tags">
-                    <span class="tag">Lua</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">FiveM</span>
-                </div>
-                
-                <div class="modal-links">
-                    <a href="#" class="demo-link">Демо</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="modal-overlay" id="modal-2">
-        <div class="modal">
-            <button class="modal-close">&times;</button>
-            <div class="modal-content">
-                <h2>Reg gun System</h2>
-                <p>Скрипт который помогает выдовать оружие по заявки для игроков.</p>
-                
-                <div class="modal-features">
-                    <h3>Основные особенности:</h3>
-                    <ul>
-                        <li>Параллакс-эффекты и плавные переходы</li>
-                        <li>3D элементы с использованием Three.js</li>
-                        <li>Сложные анимации с GSAP</li>
-                        <li>Адаптивный дизайн для всех устройств</li>
-                        <li>Оптимизированная загрузка ресурсов</li>
-                        <li>Интерактивные элементы управления</li>
-                    </ul>
-                </div>
-                
-                <div class="tags">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">GSAP</span>
-                </div>
-                
-                <div class="modal-links">
-                    <a href="#" class="demo-link">Демо</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="modal-overlay" id="modal-3">
-        <div class="modal">
-            <button class="modal-close">&times;</button>
-            <div class="modal-content">
-                <h2>Car Dealer System</h2>
-                <p>Комплексная система автосалонов для FiveM с возможностью тест-драйва, покупки, кастомизации и кредитования. Система включает в себя административную панель, систему учета и интеграцию с экономикой сервера.</p>
-                
-                <div class="modal-features">
-                    <h3>Основные особенности:</h3>
-                    <ul>
-                        <li>Полноценная система автосалонов</li>
-                        <li>Тест-драйв перед покупкой</li>
-                        <li>Глубокая кастомизация транспортных средств</li>
-                        <li>Система кредитования с различными условиями</li>
-                        <li>Интеграция с экономикой сервера</li>
-                        <li>Административная панель управления</li>
-                    </ul>
-                </div>
-                
-                <div class="tags">
-                    <span class="tag">Lua</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">UI/UX</span>
-                    <span class="tag">FiveM</span>
-                </div>
-                
-                <div class="modal-links">
-                    <a href="#" class="demo-link">Демо</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <audio loop id="bgMusic">
-        <source src="assets/audio/background.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио элемент.
-    </audio>
-    
-    <script src="js/main.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/threejs.js"></script>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const app = document.querySelector(".app");
+    const dateEl = document.getElementById("todayDate");
+    const confettiBtn = document.getElementById("confettiBtn");
+    const openLetterBtn = document.getElementById("openLetterBtn");
+    const closeLetterBtn = document.getElementById("closeLetterBtn");
+    const letterModal = document.getElementById("letterModal");
+    const wishText = document.getElementById("wishText");
+    const newWishBtn = document.getElementById("newWishBtn");
+    const candles = Array.from(document.querySelectorAll(".candle"));
+    const cakeHint = document.getElementById("cakeHint");
+    const cakeBox = document.querySelector(".cake-box");
+    const playTuneBtn = document.getElementById("playTuneBtn");
+    const moodChips = Array.from(document.querySelectorAll(".mood-chip"));
+    const startGameBtn = document.getElementById("startGameBtn");
+    const gameScoreEl = document.getElementById("gameScore");
+    const heartField = document.getElementById("heartField");
+    const memoryCards = Array.from(document.querySelectorAll(".memory-card"));
+    const signature = document.querySelector(".signature");
+    const toast = document.getElementById("toast");
+    const canvas = document.getElementById("particleCanvas");
+
+    const wishes = [
+      "Мам, от всего сердца желаю тебе крепкого здоровья и лёгкости в каждом дне.",
+      "Я желаю тебе много радости, спокойствия и только добрых новостей.",
+      "Пусть тебя окружает любовь, тепло и забота близких людей.",
+      "Пусть сбываются твои мечты, а в душе всегда будет светло.",
+      "Хочу, чтобы ты чаще отдыхала, улыбалась и чувствовала себя счастливой.",
+      "Мам, спасибо тебе за всё. Я желаю тебе долгих и счастливых лет."
+    ];
+
+    const confettiColors = ["#ff6f4f", "#ffb347", "#fff4c2", "#2dbda8", "#f95d6a"];
+    const gameHeartColors = ["#ff6b89", "#ff8f6d", "#f95777", "#ff4f6c", "#ffb347"];
+    const moodThemes = {
+      sunset: { top: "#ffd7b0", bottom: "#ff8f6d", accent: "#158b7f" },
+      rose: { top: "#ffd3dd", bottom: "#ff7aa8", accent: "#a35c8b" },
+      mint: { top: "#d5ffe9", bottom: "#78d0b5", accent: "#0b8f87" }
+    };
+
+    let activeWish = 0;
+    let cakeCompleted = false;
+    let toastTimer = null;
+    let audioCtx = null;
+    let particles = [];
+    let viewWidth = window.innerWidth;
+    let viewHeight = window.innerHeight;
+    let dpr = window.devicePixelRatio || 1;
+    let gameActive = false;
+    let gameScoreValue = 0;
+    let gameSpawnInterval = null;
+    let gameEndTimeout = null;
+    let signatureHoldTimeout = null;
+    let lastTrailAt = 0;
+    const isCoarsePointer =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(pointer: coarse)").matches;
+    const ctx = canvas.getContext("2d");
+
+    function setDate() {
+      const formatted = new Intl.DateTimeFormat("ru-RU", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(new Date());
+      dateEl.textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    }
+
+    function resizeCanvas() {
+      if (!ctx) {
+        return;
+      }
+      viewWidth = window.innerWidth;
+      viewHeight = window.innerHeight;
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(viewWidth * dpr);
+      canvas.height = Math.floor(viewHeight * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function drawHeart(x, y, size, color, alpha, rotation) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(0, size * 0.35);
+      ctx.bezierCurveTo(size * 0.5, -size * 0.2, size, size * 0.2, 0, size);
+      ctx.bezierCurveTo(-size, size * 0.2, -size * 0.5, -size * 0.2, 0, size * 0.35);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawRect(x, y, size, color, alpha, rotation) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = color;
+      ctx.fillRect(-size / 2, -size / 2, size, size);
+      ctx.restore();
+    }
+
+    function createBurst(x, y, amount = 100) {
+      for (let i = 0; i < amount; i += 1) {
+        const speed = Math.random() * 5 + 1.2;
+        const angle = Math.random() * Math.PI * 2;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - Math.random() * 2.2,
+          size: Math.random() * 8 + 4,
+          life: 0,
+          maxLife: Math.random() * 45 + 55,
+          gravity: Math.random() * 0.11 + 0.08,
+          drag: 0.987,
+          spin: (Math.random() - 0.5) * 0.24,
+          rotation: Math.random() * Math.PI * 2,
+          color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+          shape: Math.random() > 0.32 ? "rect" : "heart"
+        });
+      }
+    }
+
+    function animateParticles() {
+      if (!ctx) {
+        return;
+      }
+      ctx.clearRect(0, 0, viewWidth, viewHeight);
+      particles = particles.filter((particle) => particle.life < particle.maxLife);
+
+      for (const particle of particles) {
+        particle.life += 1;
+        particle.vx *= particle.drag;
+        particle.vy = particle.vy * particle.drag + particle.gravity;
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.rotation += particle.spin;
+        const alpha = 1 - particle.life / particle.maxLife;
+
+        if (particle.shape === "heart") {
+          drawHeart(particle.x, particle.y, particle.size, particle.color, alpha, particle.rotation);
+        } else {
+          drawRect(particle.x, particle.y, particle.size, particle.color, alpha, particle.rotation);
+        }
+      }
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    function createCelebration(message, intensity = 1) {
+      showToast(message);
+      const bursts = [
+        [0.18, 0.28, 70],
+        [0.5, 0.2, 95],
+        [0.82, 0.3, 70],
+        [0.3, 0.45, 60],
+        [0.7, 0.42, 60]
+      ];
+      bursts.forEach(([x, y, amount], index) => {
+        setTimeout(
+          () => createBurst(viewWidth * x, viewHeight * y, Math.floor(amount * intensity)),
+          index * 110
+        );
+      });
+    }
+
+    function nextWish() {
+      let idx = activeWish;
+      while (idx === activeWish && wishes.length > 1) {
+        idx = Math.floor(Math.random() * wishes.length);
+      }
+      activeWish = idx;
+      return wishes[idx];
+    }
+
+    function updateWish() {
+      wishText.classList.remove("swap");
+      wishText.textContent = nextWish();
+      void wishText.offsetWidth;
+      wishText.classList.add("swap");
+      createBurst(viewWidth * 0.5, viewHeight * 0.38, 44);
+    }
+
+    function openLetter() {
+      letterModal.classList.add("open");
+      letterModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeLetter() {
+      letterModal.classList.remove("open");
+      letterModal.setAttribute("aria-hidden", "true");
+    }
+
+    function extinguishCandle(candle) {
+      if (candle.classList.contains("off")) {
+        return;
+      }
+      candle.classList.add("off");
+      const rect = candle.getBoundingClientRect();
+      createBurst(rect.left + rect.width / 2, rect.top + 10, 20);
+
+      if (!cakeCompleted && candles.every((item) => item.classList.contains("off"))) {
+        cakeCompleted = true;
+        cakeHint.textContent = "Желание принято. Я очень тебя люблю, мам!";
+        cakeBox.classList.add("celebration");
+        createCelebration("Свечи задуты! С Днём Рождения, мама! 🎉", 1.2);
+      }
+    }
+
+    function playMelody() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+
+      const sequence = [
+        { freq: 523.25, len: 0.2 },
+        { freq: 587.33, len: 0.2 },
+        { freq: 659.25, len: 0.22 },
+        { freq: 698.46, len: 0.28 },
+        { freq: 659.25, len: 0.2 },
+        { freq: 587.33, len: 0.2 },
+        { freq: 523.25, len: 0.35 },
+        { freq: 783.99, len: 0.34 },
+        { freq: 698.46, len: 0.35 }
+      ];
+
+      let t = audioCtx.currentTime + 0.04;
+      for (const note of sequence) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "triangle";
+        osc.frequency.value = note.freq;
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.13, t + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + note.len);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + note.len + 0.02);
+        t += note.len + 0.035;
+      }
+
+      showToast("Мелодия для мамы от сына 🎵");
+      createBurst(viewWidth * 0.5, viewHeight * 0.3, 55);
+    }
+
+    function addSpark(x, y) {
+      const spark = document.createElement("span");
+      spark.className = "spark";
+      spark.style.left = `${x}px`;
+      spark.style.top = `${y}px`;
+      document.body.appendChild(spark);
+      setTimeout(() => spark.remove(), 620);
+    }
+
+    function bindTap(element, handler) {
+      if (!element) {
+        return;
+      }
+
+      let touchTriggered = false;
+      element.addEventListener("touchend", (event) => {
+        touchTriggered = true;
+        event.preventDefault();
+        handler(event);
+        setTimeout(() => {
+          touchTriggered = false;
+        }, 420);
+      }, { passive: false });
+
+      element.addEventListener("click", (event) => {
+        if (touchTriggered) {
+          return;
+        }
+        handler(event);
+      });
+    }
+
+    function applyMood(mode) {
+      const theme = moodThemes[mode] || moodThemes.sunset;
+      document.documentElement.style.setProperty("--bg-top", theme.top);
+      document.documentElement.style.setProperty("--bg-bottom", theme.bottom);
+      document.documentElement.style.setProperty("--accent-3", theme.accent);
+      moodChips.forEach((chip) => {
+        chip.classList.toggle("active", chip.dataset.mode === mode);
+      });
+      createBurst(viewWidth * 0.5, viewHeight * 0.2, 30);
+    }
+
+    function flipCard(card) {
+      card.classList.toggle("flipped");
+      const rect = card.getBoundingClientRect();
+      createBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+    }
+
+    function updateGameScore(nextScore) {
+      gameScoreValue = nextScore;
+      gameScoreEl.textContent = `Счёт: ${gameScoreValue}`;
+    }
+
+    function clearFieldHearts() {
+      heartField.querySelectorAll(".falling-heart").forEach((heart) => heart.remove());
+    }
+
+    function spawnGameHeart() {
+      if (!gameActive) {
+        return;
+      }
+      const heart = document.createElement("button");
+      heart.type = "button";
+      heart.className = "falling-heart";
+      heart.setAttribute("aria-label", "Сердечко");
+      heart.style.left = `${Math.random() * Math.max(heartField.clientWidth - 38, 50) + 8}px`;
+      heart.style.animationDuration = `${(Math.random() * 1.6 + 2.1).toFixed(2)}s`;
+      heart.style.setProperty("--heart-color", gameHeartColors[Math.floor(Math.random() * gameHeartColors.length)]);
+
+      bindTap(heart, () => {
+        if (!gameActive || heart.classList.contains("caught")) {
+          return;
+        }
+        heart.classList.add("caught");
+        const rect = heart.getBoundingClientRect();
+        createBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
+        updateGameScore(gameScoreValue + 1);
+        setTimeout(() => heart.remove(), 220);
+      });
+
+      heart.addEventListener("animationend", () => {
+        heart.remove();
+      });
+
+      heartField.appendChild(heart);
+    }
+
+    function finishHeartGame() {
+      if (!gameActive) {
+        return;
+      }
+
+      gameActive = false;
+      heartField.classList.remove("playing");
+      startGameBtn.disabled = false;
+      startGameBtn.textContent = "Играть ещё";
+      clearInterval(gameSpawnInterval);
+      clearTimeout(gameEndTimeout);
+      gameSpawnInterval = null;
+      gameEndTimeout = null;
+
+      if (gameScoreValue >= 24) {
+        app.classList.add("party-mode");
+        createCelebration("🔥 Рекорд! Ты собрал очень много сердечек!", 1.45);
+      } else if (gameScoreValue >= 15) {
+        app.classList.add("party-mode");
+        createCelebration("Отличный результат! Праздник становится ярче!", 1.2);
+      } else if (gameScoreValue >= 8) {
+        showToast("Круто! Попробуй ещё раз, будет ещё больше.");
+        createBurst(viewWidth * 0.5, viewHeight * 0.28, 65);
+      } else {
+        showToast("Давай ещё раз! Поймай больше сердечек 💖");
+      }
+
+      setTimeout(() => app.classList.remove("party-mode"), 4800);
+      setTimeout(clearFieldHearts, 260);
+    }
+
+    function startHeartGame() {
+      if (gameActive) {
+        return;
+      }
+
+      gameActive = true;
+      updateGameScore(0);
+      clearFieldHearts();
+      heartField.classList.add("playing");
+      startGameBtn.disabled = true;
+      startGameBtn.textContent = "Игра идёт...";
+      showToast("Лови сердечки 15 секунд!");
+
+      spawnGameHeart();
+      gameSpawnInterval = setInterval(spawnGameHeart, 340);
+      gameEndTimeout = setTimeout(finishHeartGame, 15000);
+    }
+
+    function triggerSecretMode() {
+      app.classList.add("party-mode");
+      createCelebration("Секретный режим сына активирован ✨", 1.4);
+      [100, 210, 320, 430].forEach((delay, index) => {
+        setTimeout(() => {
+          createBurst(viewWidth * (0.22 + index * 0.19), viewHeight * 0.22, 60);
+        }, delay);
+      });
+      setTimeout(() => app.classList.remove("party-mode"), 5200);
+    }
+
+    function setupTiltAndOrbs() {
+      const hasHover =
+        typeof window.matchMedia === "function" &&
+        window.matchMedia("(hover: hover)").matches;
+      if (isCoarsePointer || !hasHover || !("PointerEvent" in window)) {
+        document.documentElement.style.setProperty("--tilt-x", "0deg");
+        document.documentElement.style.setProperty("--tilt-y", "0deg");
+        return;
+      }
+
+      document.documentElement.classList.add("supports-tilt");
+
+      window.addEventListener("pointermove", (event) => {
+        const nx = event.clientX / viewWidth - 0.5;
+        const ny = event.clientY / viewHeight - 0.5;
+        document.documentElement.style.setProperty("--tilt-x", `${nx * 4}deg`);
+        document.documentElement.style.setProperty("--tilt-y", `${-ny * 4}deg`);
+      }, { passive: true });
+
+      window.addEventListener("pointerup", () => {
+        document.documentElement.style.setProperty("--tilt-x", "0deg");
+        document.documentElement.style.setProperty("--tilt-y", "0deg");
+      });
+    }
+
+    function setupReveal() {
+      const revealItems = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("in-view"));
+        return;
+      }
+
+      revealItems.forEach((item) => item.classList.add("pre-reveal"));
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.17 }
+      );
+      revealItems.forEach((item) => observer.observe(item));
+    }
+
+    function setupMemoryCards() {
+      memoryCards.forEach((card) => {
+        card.tabIndex = 0;
+        bindTap(card, () => flipCard(card));
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            flipCard(card);
+          }
+        });
+      });
+    }
+
+    function setupEvents() {
+      bindTap(confettiBtn, () => {
+        createCelebration("Мам, с Днём Рождения! Твой сын тебя очень любит ❤️", 1.25);
+      });
+
+      bindTap(newWishBtn, updateWish);
+      bindTap(openLetterBtn, openLetter);
+      bindTap(closeLetterBtn, closeLetter);
+      bindTap(playTuneBtn, playMelody);
+      bindTap(startGameBtn, startHeartGame);
+
+      moodChips.forEach((chip) => {
+        bindTap(chip, () => {
+          applyMood(chip.dataset.mode);
+          showToast(`Режим «${chip.textContent.trim()}» включён`);
+        });
+      });
+
+      letterModal.addEventListener("click", (event) => {
+        if (event.target === letterModal) {
+          closeLetter();
+        }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && letterModal.classList.contains("open")) {
+          closeLetter();
+        }
+      });
+
+      candles.forEach((candle) => {
+        bindTap(candle, () => extinguishCandle(candle));
+      });
+
+      if ("PointerEvent" in window) {
+        document.addEventListener("pointerdown", (event) => {
+          addSpark(event.clientX, event.clientY);
+        }, { passive: true });
+
+        document.addEventListener("pointermove", (event) => {
+          if (!event.isPrimary) {
+            return;
+          }
+          if (event.timeStamp - lastTrailAt < 72) {
+            return;
+          }
+          lastTrailAt = event.timeStamp;
+          if (event.pointerType === "touch" || event.pressure > 0) {
+            addSpark(event.clientX, event.clientY);
+          }
+        }, { passive: true });
+      } else {
+        document.addEventListener("touchstart", (event) => {
+          const touch = event.touches[0];
+          if (touch) {
+            addSpark(touch.clientX, touch.clientY);
+          }
+        }, { passive: true });
+      }
+
+      const startSignatureHold = () => {
+        clearTimeout(signatureHoldTimeout);
+        signatureHoldTimeout = setTimeout(triggerSecretMode, 650);
+      };
+      const stopSignatureHold = () => {
+        clearTimeout(signatureHoldTimeout);
+      };
+
+      if ("PointerEvent" in window) {
+        signature.addEventListener("pointerdown", startSignatureHold);
+        ["pointerup", "pointerleave", "pointercancel"].forEach((eventName) => {
+          signature.addEventListener(eventName, stopSignatureHold);
+        });
+      } else {
+        signature.addEventListener("touchstart", startSignatureHold, { passive: true });
+        signature.addEventListener("touchend", stopSignatureHold);
+        signature.addEventListener("touchcancel", stopSignatureHold);
+        signature.addEventListener("mousedown", startSignatureHold);
+        signature.addEventListener("mouseup", stopSignatureHold);
+        signature.addEventListener("mouseleave", stopSignatureHold);
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+    }
+
+    setDate();
+    resizeCanvas();
+    animateParticles();
+    setupReveal();
+    setupTiltAndOrbs();
+    setupMemoryCards();
+    setupEvents();
+    applyMood("sunset");
+  </script>
 </body>
 </html>
-
-
